@@ -1,0 +1,150 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+ *= require_self
+ *= require_tree . 
+*/
+
+body {
+  margin: 20px;
+  font-size: 100%;
+  font-family: Trebuchet MS, Helvetica, Calibri, Tahoma, Verdana, Arial;
+  background-color:#E7F1FD;
+}
+
+#errorExplanation {
+    margin-top: 2em;
+    margin-bottom: 2em;
+    margin-left: 4em;
+    margin-right: 4em;
+}
+
+#topbar {
+  /* background-image: image_url("bg_menubar_home.jpg"); */
+  background-image: image_url("bg_topbar.png");
+  background-repeat:repeat-x;
+  height:55px;
+  margin: 0;
+
+  img {
+    padding:2px 2px 2px 100px;
+  }
+  h2 {
+    width: 200px;
+    margin: 0;
+    line-height:55px;
+    vertical-align:top;
+    display:inline-block;
+    a {text-decoration:none;color: #9BBA41;}
+
+    img {margin: 0; padding: 0; 
+    }
+  }
+
+  ul {
+    height:55px;
+    list-style:none;
+    margin:0 auto;
+    display:inline-block;
+    float:right;
+
+    li {
+      float:left;
+      padding-left:20px;
+      padding-top:20px;
+      padding-right:20px;
+      padding-bottom:20px;
+
+      a {
+        color:white;
+        &:hover {
+          color:#2173AF;
+          cursor:pointer;
+        }
+        text-decoration:none;
+      }
+    }
+  }
+}
+
+#banner_no_screenshot {
+/*  background-image: image_url("bg_site.jpg"); */
+  background-color:#15428B;
+  height:125px;
+    
+    h1 {
+    margin-left: 125px;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top:40px;
+    width: 500px;
+    font-size: 2em;
+    color: white;
+  }
+
+}
+
+#banner {
+  background: #24478E;
+  padding: 10px;
+  font-size: 1.5em;
+  color: white;
+  text-align: left;
+  height: 58px;
+  border-bottom: 0.1em solid #dcdce9;
+
+  img {
+    float: left;
+    height: 100%;
+    margin-right:10px;
+  }
+}
+
+#menu {
+  height:26px;
+  position: relative;top:14px; 
+  width:600px;
+  font-size: 13px;
+
+  ul {
+    margin:0;
+    padding:0;
+    list-style:none;
+
+    li {
+      float:left;
+      margin: 0 0.15em;
+      height:26px;
+      background-color:#648DDE;
+
+      a {
+          height: 2em;
+          line-height: 2em;
+          float: left;
+          width: 9em;
+          border-top: 0.1em solid #dcdce9;
+          border-left: 0.1em solid #dcdce9;
+          border-right: 0.1em solid #dcdce9;
+          color: #0d2474;
+          text-decoration: none;
+          text-align: center;
+          &:hover {background-color:#FFCF73;}
+       }
+    }
+
+    #current {
+      background-color:#FFCF73;
+    }
+
+  }
+}
+#submenu {
+  height:26px;
+  background-color:#648DDE;
+}
+#submenu.selected  {background-color:#FFCF73;}
+
+#main {
+  clear:both;
+}

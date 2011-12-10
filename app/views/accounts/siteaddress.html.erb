@@ -1,0 +1,19 @@
+<div id="banner_no_screenshot">
+  <h1><%= t('.customerlogin') %></h1>
+</div>
+
+<%= form_tag(:controller => "accounts", :action => "loginredirect", :method => "get") do %>
+  <fieldset>
+    <legend><%= t('users.sessions.new.logintoyouraccount') %></legend>
+    <p>
+      <%= t('.enteraddress') %>
+    </p>
+    <div class="unit">
+      <%= text_field_tag :siteaddress %>.<%= Saas::Config.base_domain %>
+    </div>
+      <%= image_submit_tag("btn_login.jpg") %>
+    <p><%= t('.siteaddressexplain_html') %></p>
+  </fieldset>
+
+  
+<% end %>

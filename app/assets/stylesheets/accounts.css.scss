@@ -1,0 +1,93 @@
+// Place all the styles related to the Accounts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.accounts {
+
+  margin: 0;
+
+  .genericmessage {
+      margin-top: 2em;
+      margin-bottom: 2em;
+      margin-left: 4em;
+      margin-right: 4em;
+  }
+
+  form {
+    width: 800px;
+    margin: 0 auto;
+    padding: 0;
+
+    fieldset{
+      margin-top: 2em;
+      margin-bottom: 2em;
+      margin-left: 4em;
+      margin-right: 4em;
+      border-radius:15px;
+      background-color:#F1F7FE;
+      border: 1px solid #C1CAD5;
+
+      div.unit {
+        display:block;
+        clear:both;
+      }
+      
+      p {
+        font-size: 0.9em;
+        color: #636B75;
+        display:block;
+      }
+      
+      label {
+        font-weight: bold;
+        display:block;
+        float:left;
+        line-height:29px;
+        width: 200px;
+        text-align:right;
+        margin-right:10px;
+      }
+      
+      input[type="text"] {
+        width: 200px;
+        height:20px;
+        border: 1px solid #8D9095;
+        border-radius:1px;
+        font-size:13px;
+        color:#29384C;
+        padding: 5px;
+        padding-top:7px;
+        background-color:white;
+        background-image: image_url("bg_inputs.png");
+        margin: 0.5em;
+      }
+      input[type="image"] {
+        margin: 0.5em;
+      }
+    }
+
+  }
+
+  .pricingoptions {
+      width: 500px;
+      margin: 0 auto;
+
+      ul {
+        list-style:none;
+        margin: 0;
+        padding: 0;
+
+        a {
+          font-weight: bold;
+          color: #2173AF;
+          text-decoration: none;
+          &:hover {text-decoration: underline; cursor:pointer;}
+        }
+        p {
+          margin-bottom: 18px;
+          margin-top:0px;
+          color: #636B75;
+        }
+      }
+  }
+}

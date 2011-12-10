@@ -1,0 +1,52 @@
+.sessions {
+  margin: 0;
+
+  .loginForm {
+    width: 600px;
+    display:block;
+    margin: 0 auto;
+
+    fieldset{
+      margin-top: 2em;
+      margin-bottom: 2em;
+      margin-left: 4em;
+      margin-right: 4em;
+
+      div.unit {
+        display:block;
+        clear:both;
+      }
+
+      p {
+        font-size: 0.75em;
+        color: #636B75;
+        display:block;
+      }
+      
+      label {
+        font-weight: bold;
+        display:block;
+        float:left;
+        line-height:29px;
+        width: 150px;
+        text-align:right;
+        margin-right:10px;
+      }
+      
+      input {
+        margin: 0.5em;
+      }
+    }
+
+    p {
+      margin-left: 160px;
+    }
+    
+    a {
+      color: #B0B0B0;
+      font-size: .75em;
+      text-decoration: underline;
+      cursor: pointer;  
+    }
+  }
+}

@@ -1,0 +1,27 @@
+<div id="banner_no_screenshot">
+  <h1><%= t('.logintoyouraccount') %></h1>
+</div>
+
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "loginForm", :multipart => true}) do |f| %>
+  <%= f.hidden_field :account_id, :value => current_account.id %>
+  
+  <fieldset>
+    <legend><%= t('.signin') %></legend>
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+    <div class="unit">
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+    </div>
+    <% if devise_mapping.rememberable? -%>
+      <div class="unit">
+        <%= f.label :remember_me %>
+        <%= f.check_box :remember_me %>
+      </div>
+    <% end -%>
+
+    <p><%= image_submit_tag("btn_login.jpg") %></p>
+    <%= render :partial => "devise/shared/links" %>
+  </fieldset>
+<% end %>
+

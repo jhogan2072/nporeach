@@ -1,0 +1,40 @@
+<div class="banner_with_screenshot">
+  <h1><%= t('.headertext1') %></h1>
+  <h3><%= t('.headertext2') %></h3>
+  <div>
+    <%= link_to(image_tag("btn_tryfree.png"), plans_path) %>
+    <%= link_to(image_tag("btn_viewfeatures.png"), plans_path) %>
+  </div>
+</div>
+<div class="lowerhomepage">
+  <div>
+    <%= image_tag("two.png") %>
+    <p>Registrations</p>
+    <ul>
+      <li>Scheduling Courses</li>
+      <li>Managing Facilities/Rooms</li>
+      <li>Enrolling Students</li>
+    </ul>
+  </div>
+  <div>
+    <%= image_tag("two.png") %>
+    <p>Donors and Donations</p>
+    <ul>
+      <li>Manage Donors</li>
+      <li>Track Campaigns over time</li>
+    </ul>
+  </div>
+  <div>
+    <%= image_tag("three.png") %>
+    <p>Finances</p>
+    <ul>
+      <li>Employee Time Cards</li>
+      <li>Invoices, Billing, &amp; Payments</li>
+      <li>Export to Quickbooks</li>
+    </ul>
+  </div> 
+</div>
+
+<p>
+  <%= link_to('Sign in', '/saas_admin') %> to the admin area.
+</p>

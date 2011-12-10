@@ -1,0 +1,84 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  subscriptionplandesc1: "Try Arts Helper for 30 days absolutely free"
+  subscriptionplandesc2: "Choose this option if you're unsure about committing for a full year"
+  subscriptionplandesc3: "The yearly plan is the best value for your money.  Once you try it, you will never want to go back"
+  accountmodel:
+    domainnotavailable: "The domain is not available, please choose another"
+    adminmissing: "You must define an administrator for this account"
+
+  accountscontroller:
+    accountupdated: "Your account has been updated."
+    billingupdated: "Your billing information has been updated."
+    subscriptionchanged: "Your subscription has been changed."
+    errordeletingpaypal: "Error deleting PayPal profile: "
+    errorupdatingplan: "Error updating your plan: "
+    errorcompletingpaypal: "Error completing PayPal profile: "
+    
+  layouts:
+    public:
+      artshelperregsystem: "Arts Helper Registration System"
+    application:
+      title:  "Arts Helper"
+
+  content:
+    index:
+      headertext1: "Music and Art School Management Software that thinks like you do"
+      headertext2: "Schedule classes, register students, collaborate with parents and teachers, and do it all quickly and easily so you can spend more time on what really matters"
+
+  users:
+    missingpassword: "Please enter a password"
+    sessions:
+      new:
+        signin: "Sign in"
+        logintoyouraccount: "Log in to your account"
+
+  accounts:
+    new:
+      setupyouraccount: "Step 1: Set up your account"
+      discount: "Discount Code"
+      enteradmininfo: "Step 2: Enter an email and password for the administrator account"
+      business_name: "Business Name"
+      createaccount: "Step %{stepno}: Create your account" 
+      createanaccount: "Create An Account"
+      createmyaccount: "Create my account"
+    siteaddress:
+      customerlogin: "Customer Login"
+      enteraddress: "Enter your site address and we'll connect you to your account"
+      login: "Log In"
+      siteaddressexplain_html: "Every account has a unique site address which looks like &lt;yourname&gt;.artshelper.com, where &lt;yourname&gt; is replaced by a unique word for your business. This is the address you'll use to login to your account once it has been created.  Please enter just the first part of the address in the field above (e.g. yourname)."
+    plans:
+      plans: "Pricing Plans"
+      plansintro: "If you've never experienced Arts Helper, choose the Try It Free option and give it a test drive for 30 days.  When you're ready, just return to this page and choose from one of our convenient pricing options"
+      hereareourplans: "Choose from one of our convenient pricing plans"
+    thanks:
+      accountcreated: "Account Created - Thank You!"
+  
+  shared:
+    credit_card_form:
+      enterpaymentinfo: "Step %{stepno}: Enter your payment information"
+      nameoncard: "Name on Card (First, Last)"
+      cardnumber: "Card Number (no spaces)"
+      type: "Type"
+      expiration: "Expiration"
+      cvv: "CVV"
+      address: "Address"
+      address2: "Address Line 2"
+      city: "City"
+      state: "State"
+      zip: "Zip"
+      country: "Country"
+      phone: "Phone"
+
+  number:
+    currency:
+      format:
+        unit: "$"
+        precision: 2
+        separator: "."
+        delimiter: ","
+        format: "%u%n"
+
+

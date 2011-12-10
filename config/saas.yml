@@ -1,0 +1,32 @@
+defaults: &defaults
+  app_name: Conservatory
+  from_email: support@artshelper.com
+  base_domain: artshelper.com
+
+  gateway: bogus
+  credentials:
+    gateway:
+      :login: demo
+      :password: password
+    paypal:
+      :login: demo
+      :password: password
+      :signature: signature
+    
+development:
+  <<: *defaults
+  base_domain: conservatory.dev # Edit /etc/hosts to add subscriptions.dev, test.subscriptions.dev, etc., or use Pow: http://pow.cx
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
+  credentials:
+    gateway:
+      :login: demo
+      :password: password
+    paypal:
+      :login: demo
+      :password: password
+      :signature: signature
