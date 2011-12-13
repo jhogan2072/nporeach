@@ -1,8 +1,11 @@
 class User < ActiveRecord::Base
   belongs_to :account
-  validates :email, :password, presence: true
+  validates :email, presence: true
   validates :email, :uniqueness => {:scope => :account_id}, format: { with: /\A[^@]+@[^@]+\z/ }
-  validates :password, confirmation: true, length: {within: 6..128}
+  # validates :password, confirmation: true, length: {within: 6..128}
+  validates_presence_of     :password, :if => :password_required?
+  validates_confirmation_of :password, :if => :password_required?
+  validates_length_of       :password, :within => 6..128, :allow_blank => true
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable, :registerable and :timeoutable
@@ -12,9 +15,14 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
   attr_protected :account_id
 
-  private
+  protected
+    # Checks whether a password is needed or not. For validations only.
+    # Passwords are always required if it's a new record, or if the password
+    # or confirmation are being set somewhere.
+    def password_required?
+      debugger
+      !persisted? || !password.nil? || !password_confirmation.nil?
+    end
 
-  def password_non_blank
-    errors.add(:password, I18n.t('users.missingpassword')) if encrypted_password.blank?
-  end
+
 end

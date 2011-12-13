@@ -2,9 +2,15 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  helpers:
+    submit:
+      create: "Create %{model}"
+      update: "Update %{model}"
+
   subscriptionplandesc1: "Try Arts Helper for 30 days absolutely free"
   subscriptionplandesc2: "Choose this option if you're unsure about committing for a full year"
   subscriptionplandesc3: "The yearly plan is the best value for your money.  Once you try it, you will never want to go back"
+
   accountmodel:
     domainnotavailable: "The domain is not available, please choose another"
     adminmissing: "You must define an administrator for this account"
@@ -22,6 +28,7 @@ en:
       artshelperregsystem: "Arts Helper Registration System"
     application:
       title:  "Arts Helper"
+      home: "Home"
 
   content:
     index:
@@ -29,7 +36,24 @@ en:
       headertext2: "Schedule classes, register students, collaborate with parents and teachers, and do it all quickly and easily so you can spend more time on what really matters"
 
   users:
+    edituser: "Edit User"
+    newuser: "New User"
+    users: "Users"
     missingpassword: "Please enter a password"
+    form:
+      preventusersave: " prohibited this user from being saved:"
+      manageuserinformation: "Manage User Information"
+      name: "Name (first, last, middle)"
+      updateinformation: "Update information"
+    index:
+      manageusers: "Manage Users"
+    edit:
+      editinguser: "Editing a User"
+    new:
+      newuser: "Creating a new User"
+    passwords:
+      changeyourpassword: "Change your password"
+      changepassword: "Change Password"
     sessions:
       new:
         signin: "Sign in"
@@ -39,7 +63,8 @@ en:
     new:
       setupyouraccount: "Step 1: Set up your account"
       discount: "Discount Code"
-      enteradmininfo: "Step 2: Enter an email and password for the administrator account"
+      enteradmininfo: "Step 2: Designate an administrator"
+      step2desc: "Enter an email and password for the administrator account. This user will be responsible for managing your account, adding additional users, etc."
       business_name: "Business Name"
       createaccount: "Step %{stepno}: Create your account" 
       createanaccount: "Create An Account"
@@ -56,8 +81,18 @@ en:
     thanks:
       accountcreated: "Account Created - Thank You!"
   
+  portlets:
+    default_portlet:
+      welcome: "Welcome to Arts Helper!"
+      defaultmessage: "This is a default portlet.  Leave it on this page until you're ready to add some different ones"
+      thingstodo: "Here are some things you might want to do:"
+      manageusers: "Manage Users"
+      accountsettings: "Manage your account settings"
+      logout: "Log out of the system"
+
   shared:
     credit_card_form:
+      paywithcard: "Pay with a credit card"
       enterpaymentinfo: "Step %{stepno}: Enter your payment information"
       nameoncard: "Name on Card (First, Last)"
       cardnumber: "Card Number (no spaces)"
@@ -71,6 +106,9 @@ en:
       zip: "Zip"
       country: "Country"
       phone: "Phone"
+      paymentinfoerrors: "Errors encountered with your payment information:"
+      addresserrors: "Errors encountered with your address:"
+      paymenterrors: "Errors encountered with your payment:"
 
   number:
     currency:

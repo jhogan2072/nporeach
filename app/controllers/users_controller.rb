@@ -1,15 +1,30 @@
 class UsersController < InheritedResources::Base
+  respond_to :html, :json
+  respond_to :js, :only => :create
   before_filter :authenticate_user!
   before_filter :authorized?
   before_filter :check_user_limit, :only => :create
-  
+  add_breadcrumb I18n.t('layouts.application.home'), :root_path
+  add_breadcrumb I18n.t('users.users'), :users_path
+
   def create
-    create! { users_url }
+   create! { users_url }
   end
   
   def update
     update! { users_url }
   end
+
+  def edit
+    add_breadcrumb I18n.t('users.edituser'), request.url
+    edit!
+  end
+
+  def new
+    add_breadcrumb I18n.t('users.newuser'), request.url
+    new!
+  end
+
   
   protected
 

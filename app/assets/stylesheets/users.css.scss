@@ -3,4 +3,18 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .users {
+  div.user_list {
+    width:1121px;
+  
+    .name {width:200px;}
+    .email {width:200px;}
+    .address {width:200px;}
+    .city {width:100px;}
+    .state {width:40px;}
+    .zip {width:80px;}
+    .phone {width:150px;}
+    .editdelete {width:55px;}
+  }
+
 }
+

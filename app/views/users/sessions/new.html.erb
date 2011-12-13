@@ -2,26 +2,31 @@
   <h1><%= t('.logintoyouraccount') %></h1>
 </div>
 
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "loginForm", :multipart => true}) do |f| %>
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "standard_form", :multipart => true}) do |f| %>
   <%= f.hidden_field :account_id, :value => current_account.id %>
   
-  <fieldset>
-    <legend><%= t('.signin') %></legend>
+  <ul>
+    <li class="form_header">
+    <h2><%= t('.signin') %></h2>
+    <li>
       <%= f.label :email %>
       <%= f.text_field :email %>
-    <div class="unit">
+    </li>
+    <li>
       <%= f.label :password %>
       <%= f.password_field :password %>
-    </div>
+    </li>
     <% if devise_mapping.rememberable? -%>
-      <div class="unit">
+      <li>
         <%= f.label :remember_me %>
         <%= f.check_box :remember_me %>
-      </div>
-    <% end -%>
-
-    <p><%= image_submit_tag("btn_login.jpg") %></p>
-    <%= render :partial => "devise/shared/links" %>
-  </fieldset>
+      </li>
+    <% end %>
+    <li>
+      <%= image_submit_tag("btn_login.jpg") %>
+      <%= render :partial => "devise/shared/links" %>
+    </li>
+    <li class="bottom"></li>
+  </ul>
 <% end %>
 

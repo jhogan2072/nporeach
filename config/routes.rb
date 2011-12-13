@@ -5,6 +5,10 @@ class MainSite
 end
 
 Conservatory::Application.routes.draw do
+  resources :portlets
+
+  resources :portlet_categories
+
   # Routes for the public site
   constraints MainSite do
     # Homepage

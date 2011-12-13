@@ -1,0 +1,23 @@
+<h1>Listing portlet_categories</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @portlet_categories.each do |portlet_category| %>
+  <tr>
+    <td><%= portlet_category.name %></td>
+    <td><%= link_to 'Show', portlet_category %></td>
+    <td><%= link_to 'Edit', edit_portlet_category_path(portlet_category) %></td>
+    <td><%= link_to 'Destroy', portlet_category, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Portlet category', new_portlet_category_path %>

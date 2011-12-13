@@ -1,0 +1,17 @@
+<div class="default_portlet">
+  <div class="portlet_header">
+    <h2><%= t('.welcome') %></h2>
+  </div>
+  <div>
+    <%= image_tag("arts.jpg", size: "200x200") %>
+    <p><%= t('.defaultmessage') %></p>
+  </div>
+  <div class="right_half">
+    <p><%= t('.thingstodo') %></p>
+      <ul>
+        <li><%= link_to t('.manageusers'), users_path %></li>
+        <li><%= link_to t('.accountsettings'), account_path %></li>
+        <li><%= link_to(t('.logout'), destroy_user_session_path, :method => :delete) %></li>
+      </ul>
+  </div>
+</div>

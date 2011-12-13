@@ -12,4 +12,17 @@ module ApplicationHelper
   def discount_label(discount)
     (discount.percent? ? number_to_percentage(discount.amount * 100, :precision => 0) : number_to_currency(discount.amount)) + ' off'
   end
+
+  def page_title(pagetitle)
+    unless current_account.nil?
+      unless pagetitle.nil?
+        current_account.name + " - " + pagetitle
+      else
+        current_account.name
+      end
+    else
+      ""
+    end
+  end
+
 end

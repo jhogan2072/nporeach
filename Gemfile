@@ -42,6 +42,7 @@ gem 'activemerchant', :require => "active_merchant"
 gem 'ssl_requirement'
 gem "dynamic_form"
 gem "inherited_resources"
+gem "breadcrumbs_on_rails"
 
 group :production do
   gem 'mysql2'

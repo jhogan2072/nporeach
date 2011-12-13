@@ -7,65 +7,10 @@
   margin: 0;
 
   .genericmessage {
-      margin-top: 2em;
-      margin-bottom: 2em;
-      margin-left: 4em;
-      margin-right: 4em;
-  }
-
-  form {
-    width: 800px;
-    margin: 0 auto;
-    padding: 0;
-
-    fieldset{
-      margin-top: 2em;
-      margin-bottom: 2em;
-      margin-left: 4em;
-      margin-right: 4em;
-      border-radius:15px;
-      background-color:#F1F7FE;
-      border: 1px solid #C1CAD5;
-
-      div.unit {
-        display:block;
-        clear:both;
-      }
-      
-      p {
-        font-size: 0.9em;
-        color: #636B75;
-        display:block;
-      }
-      
-      label {
-        font-weight: bold;
-        display:block;
-        float:left;
-        line-height:29px;
-        width: 200px;
-        text-align:right;
-        margin-right:10px;
-      }
-      
-      input[type="text"] {
-        width: 200px;
-        height:20px;
-        border: 1px solid #8D9095;
-        border-radius:1px;
-        font-size:13px;
-        color:#29384C;
-        padding: 5px;
-        padding-top:7px;
-        background-color:white;
-        background-image: image_url("bg_inputs.png");
-        margin: 0.5em;
-      }
-      input[type="image"] {
-        margin: 0.5em;
-      }
-    }
-
+      margin-top: 32px;
+      margin-bottom: 32px;
+      margin-left: 46px;
+      margin-right: 46px;
   }
 
   .pricingoptions {
@@ -79,9 +24,6 @@
 
         a {
           font-weight: bold;
-          color: #2173AF;
-          text-decoration: none;
-          &:hover {text-decoration: underline; cursor:pointer;}
         }
         p {
           margin-bottom: 18px;
@@ -89,5 +31,62 @@
           color: #636B75;
         }
       }
+  }
+  
+  .default_portlet {
+    margin: 0 auto;
+    padding: 0;
+    margin-top:32px;
+    padding:0;
+    border-radius:15px;
+    border: 1px solid #C1CAD5;
+    list-style:none;
+    width:960px;
+    background-color:#E3E9F2;
+    height:400px;
+
+    .portlet_header {
+      background-color:transparent;
+      border-bottom: 1px solid #C1CAD4;
+      height:48px;
+      width:960px;
+
+      h2 {
+        color:#0350A6;
+        margin-top:6px;
+        font-weight:bold;
+        margin-left:48px;
+        margin-bottom:0;
+      }
+
+      p {margin: 0; margin-left:48px;}
+    }
+    
+    div {
+      width:479px;
+      background-color:#F1F7FE;
+      display:block;
+      float:left;
+      height: 340px;
+
+    }
+
+    div.right_half {
+      border-left: 1px solid #d4d4d4;
+    }
+    
+    img {
+      margin: 10px;
+      float:left;
+    }
+    
+    p {
+      margin: 10px;
+    }
+    
+    ul {
+      clear:both;
+    }
+
   }
 }

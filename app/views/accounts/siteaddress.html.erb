@@ -2,18 +2,23 @@
   <h1><%= t('.customerlogin') %></h1>
 </div>
 
-<%= form_tag(:controller => "accounts", :action => "loginredirect", :method => "get") do %>
-  <fieldset>
-    <legend><%= t('users.sessions.new.logintoyouraccount') %></legend>
-    <p>
-      <%= t('.enteraddress') %>
-    </p>
-    <div class="unit">
-      <%= text_field_tag :siteaddress %>.<%= Saas::Config.base_domain %>
-    </div>
+<%= form_tag( {:controller => "accounts", :action => "loginredirect", :method => "get"}, :class => "standard_form") do %>
+  <ul>
+    <li class="form_header">
+      <h2><%= t('users.sessions.new.logintoyouraccount') %></h2>
+      <p><%= t('.enteraddress') %></p>
+    </li>
+    <li>
+      <div class="indent">
+        <%= text_field_tag :siteaddress,nil, :class=>"rightjustify" %>.<%= Saas::Config.base_domain %>
+      </div>
+    </li>
+    <li>
       <%= image_submit_tag("btn_login.jpg") %>
-    <p><%= t('.siteaddressexplain_html') %></p>
-  </fieldset>
+      <p><%= t('.siteaddressexplain_html') %></p>
+    </li>
+    <li class="bottom"></li>
+  </ul>
 
   
 <% end %>

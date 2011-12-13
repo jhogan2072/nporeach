@@ -12,7 +12,7 @@
     <h2><%= link_to(t('layouts.application.title'), root_url) %> <%= link_to(image_tag("home.png", :size => "18x15"),root_url) if controller_name != "content" && action_name != "index"%></h2>
     <ul>
       <li><%= link_to("Features", "#", :class => "headerlink") %></li>
-      <li><%= link_to("Pricing", "#", :class => "headerlink") %></li>
+      <li><%= link_to("Pricing","http://" << Saas::Config.base_domain << plans_path , :class => "headerlink") %></li>
       <li><%= link_to("Support", "#", :class => "headerlink") %></li>
       <li><%= link_to("Sign Up", "http://" << Saas::Config.base_domain << plans_path, :class => "headerlink") %></li>
       <li><%= link_to("Log In", "http://" << Saas::Config.base_domain << login_path, :class => "headerlink") %></li>

@@ -1,0 +1,27 @@
+<h1>Listing portlets</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Category</th>
+    <th>Portlet url</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @portlets.each do |portlet| %>
+  <tr>
+    <td><%= portlet.name %></td>
+    <td><%= portlet.category_id %></td>
+    <td><%= portlet.portlet_url %></td>
+    <td><%= link_to 'Show', portlet %></td>
+    <td><%= link_to 'Edit', edit_portlet_path(portlet) %></td>
+    <td><%= link_to 'Destroy', portlet, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Portlet', new_portlet_path %>
