@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111209210015) do
+ActiveRecord::Schema.define(:version => 20111216011046) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name",        :null => false
@@ -24,6 +24,58 @@ ActiveRecord::Schema.define(:version => 20111209210015) do
   end
 
   add_index "accounts", ["full_domain"], :name => "index_accounts_on_full_domain"
+
+  create_table "assignments", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "role_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "grants", :force => true do |t|
+    t.integer  "privilege_id"
+    t.integer  "role_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pictures", :force => true do |t|
+    t.string   "name"
+    t.string   "content_type"
+    t.binary   "data",         :limit => 1048576
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "portlet_categories", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "portlets", :force => true do |t|
+    t.string   "name"
+    t.integer  "category_id"
+    t.string   "portlet_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "privileges", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "controller"
+    t.string   "action"
+    t.integer  "menu_item_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "roles", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "saas_admins", :force => true do |t|
     t.string   "email",                               :default => "", :null => false

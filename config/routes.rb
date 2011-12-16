@@ -5,6 +5,14 @@ class MainSite
 end
 
 Conservatory::Application.routes.draw do
+  resources :assignments
+
+  resources :grants
+
+  resources :privileges
+
+  resources :roles
+
   resources :portlets
 
   resources :portlet_categories

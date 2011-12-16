@@ -3,19 +3,20 @@
 <table id="users">
   <tr class="toolbar">
     <td>
-      <label for="panel-4-2">
+      <a href="<%= new_user_url %>" title="<%= t('.adduser') %>" class="button">
         <%= image_tag("addperson.png") %>
-        <%= link_to('Add User', new_user_url) %></label>
+        <span><%= t('.adduser') %></span>
+      </a>
     </td>
   </tr>
   <tr class="headers">
-    <th class="name">Name</th>
-    <th class="email">Email</th>
-    <th class="address">Address</th>
-    <th class="city">City</th>
-    <th class="state">State</th>
-    <th class="zip">Zip</th>
-    <th class:"phone">Home Phone</th>
+    <th class="name"><%= t('.name') %></th>
+    <th class="email"><%= t('.email') %></th>
+    <th class="address"><%= t('.address') %></th>
+    <th class="city"><%= t('.city') %></th>
+    <th class="state"><%= t('.state') %></th>
+    <th class="zip"><%= t('.zip') %></th>
+    <th class:"phone"><%= t('.homephone') %></th>
     <th class="editdelete"></th>
     <th class="editdelete"></th>
   </tr>

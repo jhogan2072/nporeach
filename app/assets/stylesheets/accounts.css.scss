@@ -73,15 +73,20 @@
 
     div.right_half {
       border-left: 1px solid #d4d4d4;
+      p {
+        margin-top:20px;
+      }
     }
     
     img {
       margin: 10px;
+      margin-top:70px;
       float:left;
     }
     
     p {
       margin: 10px;
+      margin-top:130px;
     }
     
     ul {

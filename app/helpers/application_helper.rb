@@ -13,6 +13,14 @@ module ApplicationHelper
     (discount.percent? ? number_to_percentage(discount.amount * 100, :precision => 0) : number_to_currency(discount.amount)) + ' off'
   end
 
+  def hide_ul_if(condition, attributes = {}, &block)
+  debugger
+    if condition
+      attributes["style"] = "display: none"
+    end
+    content_tag("ul", attributes, &block)
+  end
+
   def page_title(pagetitle)
     unless current_account.nil?
       unless pagetitle.nil?
@@ -24,5 +32,7 @@ module ApplicationHelper
       ""
     end
   end
+
+
 
 end

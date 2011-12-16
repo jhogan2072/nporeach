@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   belongs_to :account
+  has_many :roles, :through => :assignments
   validates :email, presence: true
   validates :email, :uniqueness => {:scope => :account_id}, format: { with: /\A[^@]+@[^@]+\z/ }
   # validates :password, confirmation: true, length: {within: 6..128}
@@ -24,5 +25,8 @@ class User < ActiveRecord::Base
       !persisted? || !password.nil? || !password_confirmation.nil?
     end
 
+    def can?(controller, action)
+      roles.includes(:privileges).for(controller, action).any?
+    end
 
 end

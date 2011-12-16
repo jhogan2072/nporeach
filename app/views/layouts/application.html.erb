@@ -8,21 +8,11 @@
 </head>
 <body class='<%= controller.controller_name %>'>
   <div id="banner">
+    <span><%= page_title(@page_title) %></span>
     <%= link_to image_tag("ahlogo.png", :border => 0 ), root_url %>
-    <%= page_title(@page_title) %>
-<!--
-    <div id="menu">
-      <ul>
-        <li><a href="#">Schedule</a></li>
-        <li><a id="current" href="#">Registrations</a></li>
-        <li><a href="#">Employees</a></li>
-        <li><a href="#">Payments</a></li>
-      </ul>
-    </div>
--->
+
+    <%= render 'shared/menu' %>
   </div>
-<!--  <div id="submenu" class="selected"> 
-  </div> -->
   <div id="main">
   <div id="breadcrumbs">
     <%= render_breadcrumbs(:class => "breadcrumbs") %>

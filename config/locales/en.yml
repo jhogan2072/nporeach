@@ -10,7 +10,11 @@ en:
   subscriptionplandesc1: "Try Arts Helper for 30 days absolutely free"
   subscriptionplandesc2: "Choose this option if you're unsure about committing for a full year"
   subscriptionplandesc3: "The yearly plan is the best value for your money.  Once you try it, you will never want to go back"
+  notauthorized: "You are not authorized to view the page you requested"
 
+  picturemodel:
+    onlypictures: "--- you can only upload pictures"
+    
   accountmodel:
     domainnotavailable: "The domain is not available, please choose another"
     adminmissing: "You must define an administrator for this account"
@@ -29,6 +33,10 @@ en:
     application:
       title:  "Arts Helper"
       home: "Home"
+      schedule: "Schedule"
+      registrations: "Registrations"
+      employees: "Employees"
+      payments: "Payments"
 
   content:
     index:
@@ -47,6 +55,15 @@ en:
       updateinformation: "Update information"
     index:
       manageusers: "Manage Users"
+      adduser: "Add User"
+      name: "Name"
+      email: "Email"
+      address: "Address"
+      city: "City"
+      state: "State"
+      zip: "Zip"
+      homephone: "Home Phone"
+
     edit:
       editinguser: "Editing a User"
     new:

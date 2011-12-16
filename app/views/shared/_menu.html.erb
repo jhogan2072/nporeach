@@ -1,0 +1,19 @@
+<ul id="menubar">
+  <li>
+    <a href="#" title="<%= t('layouts.application.schedule') %>"><%= image_tag("schedule.png") %><span><%= t('layouts.application.schedule') %></span></a>
+  </li>
+  <li>
+    <%= hide_ul_if(2==1, id: 'submenu') do %>
+      <%= render 'shared/submenus' %>
+    <% end %>
+  </li>
+  <li>
+    <a href="#" title="<%= t('layouts.application.registrations') %>"><%=image_tag("registrations.png")%><span><%= t('layouts.application.registrations') %></span></a>
+  </li>
+  <li>
+    <a href="#" title="<%= t('layouts.application.employees') %>"><%=image_tag("employees.png")%><span><%= t('layouts.application.employees') %></span></a>
+  </li>
+  <li>
+    <a href="#" title="<%= t('layouts.application.payments') %>"><%=image_tag("payments.png")%><span><%= t('layouts.application.payments') %></span></a>
+  </li>
+</ul>

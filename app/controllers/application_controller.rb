@@ -1,14 +1,14 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  #before_filter :check_authorization
 
-  layout :layout_by_resource
+  private
 
-  def layout_by_resource
-    if devise_controller? && resource_name == :user && action_name == 'new'
-      "public"
-    else
-      "application"
+  def check_authorization
+    if user_signed_in?
+      unless current_user.can?(controller_name, action_name) 
+        redirect_to :back, :error => I18n.t('notauthorized')
+      end
     end
   end
-
 end
