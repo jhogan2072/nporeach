@@ -1,31 +1,35 @@
-<h1>Listing privileges</h1>
+<% @page_title = t('.manageprivileges') %>
 
+<div class="standard_list privilege_list">
 <table>
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Controller</th>
-    <th>Action</th>
-    <th>Menu</th>
-    <th></th>
-    <th></th>
-    <th></th>
+  <tr class="toolbar">
+    <td>
+      <a href="<%= new_privilege_path %>" title="<%= t('.addprivilege') %>" class="button">
+        <%= image_tag("addperson.png") %>
+        <span><%= t('.addprivilege') %></span>
+      </a>
+    </td>
+  </tr>
+  <tr class="headers">
+    <th class="name">Name</th>
+    <th class="description">Description</th>
+    <th class="controller">Controller</th>
+    <th class="category">Category</th>
+    <th class="menutext">Menu Text</th>
+    <th class="editdelete"></th>
+    <th class="editdelete"></th>
   </tr>
 
 <% @privileges.each do |privilege| %>
-  <tr>
+  <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
     <td><%= privilege.name %></td>
     <td><%= privilege.description %></td>
     <td><%= privilege.controller %></td>
-    <td><%= privilege.action %></td>
-    <td><%= privilege.menu_id %></td>
-    <td><%= link_to 'Show', privilege %></td>
-    <td><%= link_to 'Edit', edit_privilege_path(privilege) %></td>
-    <td><%= link_to 'Destroy', privilege, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= privilege.category %></td>
+    <td><%= privilege.menu_text %></td>
+    <td align="center"><%= link_to t('common.edit'), edit_privilege_path(privilege) %></td>
+    <td align="center"><%= link_to t('common.delete'), privilege, confirm: t('.suredeleteprivilege'), method: :delete %></td>
   </tr>
 <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New Privilege', new_privilege_path %>
+</div>

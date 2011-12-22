@@ -1,0 +1,30 @@
+<%= form_for(@user, :html => {:class => "standard_form wide_form", :multipart => true}) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    
+  <ul>
+    <li class="form_header">
+      <h2><%= t('.updateroles') %></h2>
+    </li>
+    <li>
+      <% Role.all.each do |role| %>
+        <%= check_box_tag 'user[role_ids][]', role.id, @user.roles.include?(role) %>
+        <%= role.name %>
+      <% end %>
+      <%= hidden_field_tag 'user[role_ids][]', '' %>
+    </li>
+    <li>
+      <%= f.submit t('.updateroles') %>
+    </li>
+    <li class="bottom"></li>
+  </ul>
+<% end %>

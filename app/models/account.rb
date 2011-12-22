@@ -1,6 +1,7 @@
 class Account < ActiveRecord::Base
-
+  has_many :privileges, :dependent => :destroy
   has_many :users, :dependent => :destroy
+  has_many :roles, :dependent => :destroy
   has_one :admin, :class_name => "User", :conditions => { :admin => true }
   accepts_nested_attributes_for :admin
 

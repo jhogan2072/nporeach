@@ -9,6 +9,7 @@
   <div class="right_half">
     <p><%= t('.thingstodo') %></p>
       <ul>
+        <li><%= link_to t('.manageroles'), roles_path %></li>
         <li><%= link_to t('.manageusers'), users_path %></li>
         <li><%= link_to t('.accountsettings'), account_path %></li>
         <li><%= link_to(t('.logout'), destroy_user_session_path, :method => :delete) %></li>

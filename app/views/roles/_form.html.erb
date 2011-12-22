@@ -1,7 +1,7 @@
-<%= form_for(@role) do |f| %>
+<%= form_for(@role, :html => {:class => "standard_form", :multipart => true}) do |f| %>
   <% if @role.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@role.errors.count, "error") %> prohibited this role from being saved:</h2>
+      <h2><%= pluralize(@role.errors.count, "error") %><%= t('.preventrolesave') %></h2>
 
       <ul>
       <% @role.errors.full_messages.each do |msg| %>
@@ -11,11 +11,25 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <ul>
+    <li class="form_header">
+      <h2><%= t('.manageroleinformation') %></h2>
+    </li>
+    <li>
+      <%= f.label :name %><br />
+      <%= f.text_field :name %>
+    </li>
+    <li>
+      <%= f.label :privileges %>
+      <% current_account.privileges.all.each do |privilege| %>
+        <%= check_box_tag 'role[privilege_ids][]', privilege.id, @role.privileges.include?(privilege), :class => "checkbox_group" %>
+        <%= privilege.name %>
+      <% end %>
+      <%= hidden_field_tag 'role[privilege_ids][]','' %>
+    </li>
+    <li>
+      <%= f.submit %>
+    </li>
+    <li class="bottom"></li>
+  </ul>
 <% end %>

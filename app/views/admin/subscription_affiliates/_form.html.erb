@@ -1,0 +1,18 @@
+<p>
+  <%= t('.rateispercentage') %>
+</p>
+
+<%= form.error_messages %>
+<fieldset>
+
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+
+  <%= form.label :token %>
+  <%= form.text_field :token %>
+
+  <%= form.label :rate %>
+  <%= form.text_field :rate %>
+
+</fieldset>
+<%= submit_tag %>

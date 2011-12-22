@@ -1,23 +1,26 @@
-<h1>Listing roles</h1>
+<% @page_title = t('.manageroles') %>
 
+<div class="standard_list role_list">
 <table>
-  <tr>
-    <th>Name</th>
-    <th></th>
-    <th></th>
-    <th></th>
+  <tr class="toolbar">
+    <td>
+      <a href="<%= new_role_path %>" title="<%= t('.addrole') %>" class="button">
+        <%= image_tag("addperson.png") %>
+        <span><%= t('.addrole') %></span>
+      </a>
+    </td>
   </tr>
-
-<% @roles.each do |role| %>
-  <tr>
-    <td><%= role.name %></td>
-    <td><%= link_to 'Show', role %></td>
-    <td><%= link_to 'Edit', edit_role_path(role) %></td>
-    <td><%= link_to 'Destroy', role, confirm: 'Are you sure?', method: :delete %></td>
+  <tr class="headers">
+  <th class="name"><%= t('common.name') %></th>
+    <th class="editdelete"></th>
+    <th class="editdelete"></th>
   </tr>
-<% end %>
+  <% current_account.roles.each do |role| %>
+    <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+      <td class="name"><%=role.name %></td>
+      <td align="center"><%= link_to(t('common.edit'), edit_role_path(role)) %></td>
+      <td align="center"><%= link_to(t('common.delete'), role, :method => 'delete', :confirm => t('.suredeleterole')) %></td>
+  </tr>
+  <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New Role', new_role_path %>
+</div>

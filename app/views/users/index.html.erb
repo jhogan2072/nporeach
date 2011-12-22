@@ -3,7 +3,7 @@
 <table id="users">
   <tr class="toolbar">
     <td>
-      <a href="<%= new_user_url %>" title="<%= t('.adduser') %>" class="button">
+      <a href="<%= new_user_path %>" title="<%= t('.adduser') %>" class="button">
         <%= image_tag("addperson.png") %>
         <span><%= t('.adduser') %></span>
       </a>
@@ -22,15 +22,15 @@
   </tr>
   <% current_account.users.each do |user| %>
     <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
-      <td class="name"><%=h user.last_name %><%= user.first_name ? ", " : "" %><%= h user.first_name %><%= user.middle_name ? " " << truncate(user.middle_name, length: 1) : "" %></td>
+      <td class="name"><%=user.full_name %></td>
       <td><%=h user.email %></td>
       <td><%=h user.address %></td>
       <td><%=h user.city %></td>
       <td align="center"><%=h user.state %></td>
       <td align="center"><%=h user.zip %></td>
       <td align="center"><%=h user.home_phone %></td>
-      <td align="center"><%= link_to('Edit', edit_user_path(user)) %></td>
-      <td align="center"><%= link_to('Delete', user, :method => 'delete', :confirm => 'Are you sure you want to delete this user?') unless user == current_user %></td>
+      <td align="center"><%= link_to(t('common.edit'), edit_user_path(user)) %></td>
+      <td align="center"><%= link_to(t('common.delete'), user, :method => 'delete', :confirm => t('.suredeleteuser')) unless user == current_user %></td>
     </tr>
   <% end %>
 </table>

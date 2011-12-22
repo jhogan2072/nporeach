@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111216011046) do
+ActiveRecord::Schema.define(:version => 20111221193359) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name",        :null => false
@@ -25,9 +25,49 @@ ActiveRecord::Schema.define(:version => 20111216011046) do
 
   add_index "accounts", ["full_domain"], :name => "index_accounts_on_full_domain"
 
+  create_table "admins", :force => true do |t|
+    t.string   "email",                               :default => "", :null => false
+    t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
+    t.string   "password_salt",                       :default => "", :null => false
+    t.string   "reset_password_token"
+    t.string   "remember_token"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",                       :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "assignments", :force => true do |t|
     t.integer  "user_id"
     t.integer  "role_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "default_grants", :force => true do |t|
+    t.integer  "privilege_id"
+    t.integer  "role_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "default_privileges", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "controller"
+    t.string   "category"
+    t.string   "menu_text"
+    t.integer  "operations"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "default_roles", :force => true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -65,32 +105,19 @@ ActiveRecord::Schema.define(:version => 20111216011046) do
     t.string   "name"
     t.string   "description"
     t.string   "controller"
-    t.string   "action"
-    t.integer  "menu_item_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "category"
+    t.string   "menu_text"
+    t.integer  "account_id"
+    t.integer  "operations"
   end
 
   create_table "roles", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "saas_admins", :force => true do |t|
-    t.string   "email",                               :default => "", :null => false
-    t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
-    t.string   "password_salt",                       :default => "", :null => false
-    t.string   "reset_password_token"
-    t.string   "remember_token"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                       :default => 0
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer  "account_id"
   end
 
   create_table "subscription_affiliates", :force => true do |t|

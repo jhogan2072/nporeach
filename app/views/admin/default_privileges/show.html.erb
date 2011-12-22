@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Privilege:</b>
+  <%= @default_grant.privilege_id %>
+</p>
+
+<p>
+  <b>Default Role:</b>
+  <%= @default_grant.default_role_id %>
+</p>
+
+<p>
+  <b>Operations:</b>
+  <%= @default_grant.operations %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_default_grant_path(@default_grant) %> |
+<%= link_to 'Back', admin_default_grants_path %>

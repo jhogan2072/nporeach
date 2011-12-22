@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   belongs_to :account
+  has_many :assignments
   has_many :roles, :through => :assignments
   validates :email, presence: true
   validates :email, :uniqueness => {:scope => :account_id}, format: { with: /\A[^@]+@[^@]+\z/ }
@@ -15,6 +16,10 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
   attr_protected :account_id
+
+  def full_name
+    read_attribute(:last_name) << ((read_attribute(:first_name).empty? || read_attribute(:first_name).nil?) ? "" : ", " + read_attribute(:first_name)) << ((read_attribute(:middle_name).empty? || read_attribute(:middle_name).nil?) ? "" : " " + read_attribute(:middle_name).first + ".")
+  end
 
   protected
     # Checks whether a password is needed or not. For validations only.

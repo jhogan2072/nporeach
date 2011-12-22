@@ -5,16 +5,11 @@ class MainSite
 end
 
 Conservatory::Application.routes.draw do
+
   resources :assignments
-
-  resources :grants
-
   resources :privileges
-
   resources :roles
-
   resources :portlets
-
   resources :portlet_categories
 
   # Routes for the public site
@@ -54,6 +49,28 @@ Conservatory::Application.routes.draw do
       match :billing, :paypal, :plan, :plan_paypal, :cancel
     end
   end
+
+  # Administrative routs
+  devise_for :admins
+
+  namespace "admin" do
+
+    root :to => "subscriptions#index"
+
+    resources :subscriptions do
+      member do
+        post :charge
+      end
+    end
+
+    resources :default_privileges
+    resources :default_roles
+    resources :accounts
+    resources :subscription_plans, :path => 'plans'
+    resources :subscription_discounts, :path => 'discounts'
+    resources :subscription_affiliates, :path => 'affiliates'
+  end
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

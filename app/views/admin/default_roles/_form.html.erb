@@ -1,0 +1,28 @@
+<%= form_for [:admin, @default_role] do |f| %>
+  <% if @default_role.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@default_role.errors.count, "error") %> prohibited this default_role from being saved:</h2>
+
+      <ul>
+      <% @default_role.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <% Privilege.all.each do |privilege| %>
+      <%= check_box_tag 'default_role[privilege_ids][]', privilege.id, @default_role.privileges.include?(privilege) %>
+      <%= privilege.name %>
+    <% end %>
+    <%= hidden_field_tag 'default_role[privilege_ids][]','' %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

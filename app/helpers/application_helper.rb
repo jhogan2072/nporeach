@@ -14,7 +14,6 @@ module ApplicationHelper
   end
 
   def hide_ul_if(condition, attributes = {}, &block)
-  debugger
     if condition
       attributes["style"] = "display: none"
     end
@@ -33,6 +32,12 @@ module ApplicationHelper
     end
   end
 
-
+  def has_privilege(privilege, current_privileges)
+    retval = false
+    unless privilege.nil? || current_privileges.nil?
+      retval = true if (privilege & current_privileges > 0)
+    end
+    return retval
+  end
 
 end

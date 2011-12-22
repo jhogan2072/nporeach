@@ -134,7 +134,7 @@ module Saas
   module ControllerHelpers
     def self.included(base)
       base.inherit_resources
-      base.before_filter :authenticate_saas_admin!
+      base.before_filter :authenticate_admin!
     end
   end
   

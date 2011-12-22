@@ -16,15 +16,14 @@
 </p>
 
 <p>
-  <b>Action:</b>
-  <%= @privilege.action %>
+  <b>Category:</b>
+  <%= @privilege.category %>
 </p>
 
 <p>
-  <b>Menu:</b>
-  <%= @privilege.menu_id %>
+  <b>Menu Text:</b>
+  <%= @privilege.menu_text %>
 </p>
-
 
 <%= link_to 'Edit', edit_privilege_path(@privilege) %> |
 <%= link_to 'Back', privileges_path %>

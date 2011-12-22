@@ -293,16 +293,16 @@ a {
       }
 
       input[type="checkbox"] {
-        border: 1px solid #8D9095;
-        border-radius:1px;
-        color:#29384C;
         font-size:16px;
-        background-color:white;
-        background-image: image_url("bg_inputs.png");
         margin: 13px;
         margin-left:0;
         vertical-align:middle;
       }
+      
+      input[type="checkbox"].checkbox_group {
+          margin-right:0px;
+          margin-left:5px;
+        }
 
       select {
         width:200px;
@@ -427,6 +427,7 @@ a {
   table {
     border-collapse: collapse;
     margin-left:10px;
+    margin-right:10px;
     margin-bottom:10px;
   }
 

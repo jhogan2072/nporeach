@@ -7,6 +7,12 @@ en:
       create: "Create %{model}"
       update: "Update %{model}"
 
+  common:
+    edit: "Edit"
+    delete: "Delete"
+    new: "New"
+    name: "Name"
+
   subscriptionplandesc1: "Try Arts Helper for 30 days absolutely free"
   subscriptionplandesc2: "Choose this option if you're unsure about committing for a full year"
   subscriptionplandesc3: "The yearly plan is the best value for your money.  Once you try it, you will never want to go back"
@@ -26,6 +32,9 @@ en:
     errordeletingpaypal: "Error deleting PayPal profile: "
     errorupdatingplan: "Error updating your plan: "
     errorcompletingpaypal: "Error completing PayPal profile: "
+
+  subscriptionscontroller:
+    cardhasbeencharged: "The card has been charged."
     
   layouts:
     public:
@@ -37,6 +46,82 @@ en:
       registrations: "Registrations"
       employees: "Employees"
       payments: "Payments"
+
+  admin:
+    default_privileges:
+      edit:
+        editingdefaultprivilege: "Editing a Default Privilege"
+      index:
+        managedefaultprivileges: "Manage Default Privileges"
+      new:
+        newdefaultprivilege: "New Default Privilege"
+    subscription_affiliates:
+      accounts:
+        show: "View Account"
+        index: "Accounts"
+      form:
+        rateispercentage: "The rate is a percentage, so 0.1 is a 10% affiliate fee."
+      edit:
+        editaffiliate: "Edit Affiliate"
+      new:
+        createaffiliate: "Create Affiliate"
+      index:
+        affiliates: "Affiliates"
+        addnewaffiliate: "Add New Affiliate"
+      show:
+        viewaffiliate: "View Affiliate"
+    subscription_discounts:
+      edit:
+        editdiscount: "Edit Discount"
+      index:
+        discounts: "Discounts"
+        addnewdiscount: "Add a new discount"
+        name: "Name"
+        code: "Code"
+        amount: "Amount"
+      new:
+        creatediscount: "Create Discount"
+      show:
+        viewdiscount: "View discount"
+    subscription_plans:
+      edit:
+        editplan: "Edit Plan"
+      index:
+        plans: "Plans"
+        addnewplan: "Add a new plan"
+      new:
+        createplan: "Create Plan"
+      show:
+        viewplan: "View Plan"
+        revenuepermonth: "Revenue per Month"
+
+    subscriptions:
+      edit:
+        editsubscription: "Edit Subscription"
+        changesmade: "Changes made to the assigned plan or the assigned discount (or both) will override any changes made to the amount."
+      index:
+        subscriptions: "Subscriptions"
+        revenuesummary: "Revenue Summary"
+        lastmonth: "Last Month"
+        last30days: "Last 30 Days"
+        thismonth: "This Month"
+        account: "Account"
+        amount: "Amount"
+        created: "Created"
+        nextrenewal: "Next Renewal"
+        state: "State"
+      show:
+        viewsubscription: "View Subscription"
+        usethisform: "Use this form to make a one-time charge against the card on file for the subscription.  A transaction will happen as soon as you submit this form.  Amounts should be entered as dollars and cents, without the dollar sign or commas: e.g., 1.50 to charge $1.50."
+        chargesubscription: "Charge Subscription"
+        errorswhilecharging: "Errors encountered while charging the card:"
+        transactions: "Transactions"
+        date: "Date"
+        amount: "Amount"
+        transactionid: "Transaction ID"
+        chargecard: "Charge card"
+        pleaseenter: "Please enter a number greater than 0"
+        areyousure: "Are you sure you want to charge  + %{charge} + ?"
 
   content:
     index:
@@ -63,6 +148,7 @@ en:
       state: "State"
       zip: "Zip"
       homephone: "Home Phone"
+      suredeleteuser: "Are you sure you want to delete this user?"
 
     edit:
       editinguser: "Editing a User"
@@ -71,10 +157,44 @@ en:
     passwords:
       changeyourpassword: "Change your password"
       changepassword: "Change Password"
+    roles:
+      updateroles: "Update Roles"
     sessions:
       new:
-        signin: "Sign in"
         logintoyouraccount: "Log in to your account"
+
+  roles:
+    roles: "Roles"
+    newrole: "New Role"
+    editrole: "Edit Role"
+    form:
+      manageroleinformation: "Manage Role Information:"
+      preventrolesave: "  prevented this role from being saved:"
+    edit:
+      editingrole: "Editing a Role"
+    index:
+      manageroles: "Manage Roles"
+      addrole: "Add Role"
+      suredeleterole: "Are you sure you want to delete this role?"
+    new:
+      newrole: "Creating a new Role"
+
+  privileges:
+    privileges: "Privileges"
+    newprivilege: "New Privilege"
+    editprivilege: "Edit Privilege"
+    form:
+      selectcategory: "Select a category"
+      manageprivilegeinformation: "Manage Privilege Information:"
+      preventprivilegesave: " prevented this privilege from being saved:"
+    edit:
+      editingprivilege: "Editing a Privilege"
+    index:
+      manageprivileges: "Manage Privileges"
+      addprivilege: "Add Privilege"
+      suredeleteprivilege: "Are you sure you want to delete this privilege?"
+    new:
+      newprivilege: "Creating a new Privilege"
 
   accounts:
     new:
@@ -103,7 +223,9 @@ en:
       welcome: "Welcome to Arts Helper!"
       defaultmessage: "This is a default portlet.  Leave it on this page until you're ready to add some different ones"
       thingstodo: "Here are some things you might want to do:"
+      manageroles: "Manage Roles"
       manageusers: "Manage Users"
+      managegrants: "Manage Grants"
       accountsettings: "Manage your account settings"
       logout: "Log out of the system"
 

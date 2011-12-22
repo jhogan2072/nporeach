@@ -1,0 +1,16 @@
+<h1><%= @page_title = t('.discounts') %></h1>
+<%= link_to(t('addnewdiscount'), :action => 'new') %>
+<table id="discounts">
+  <tr>
+    <th><%= t('.name') %></th>
+    <th><%= t('.code') %></th>
+    <th><%= t('.amount') %></th>
+  </tr>
+  <% @subscription_discounts.each do |discount| %>
+    <tr>
+      <td><%= link_to(h(discount.name), [:admin, discount]) %></td>
+      <td><%= link_to(h(discount.code), [:admin, discount]) %></td>
+      <td><%= discount_label(discount) %></td>
+    </tr>
+  <% end %>
+</table>
