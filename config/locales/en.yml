@@ -12,6 +12,7 @@ en:
     delete: "Delete"
     new: "New"
     name: "Name"
+    description: "Description"
 
   subscriptionplandesc1: "Try Arts Helper for 30 days absolutely free"
   subscriptionplandesc2: "Choose this option if you're unsure about committing for a full year"
@@ -24,6 +25,17 @@ en:
   accountmodel:
     domainnotavailable: "The domain is not available, please choose another"
     adminmissing: "You must define an administrator for this account"
+
+  privilegemodel:
+    administration: "Administration"
+    privileges: "Privileges"
+    roles: "Roles"
+    users: "Users"
+    schedules: "Schedules"
+    registrations: "Registrations"
+    payments: "Payments"
+    employees: "Employees"
+    students: "Students"
 
   accountscontroller:
     accountupdated: "Your account has been updated."
@@ -184,12 +196,14 @@ en:
     newprivilege: "New Privilege"
     editprivilege: "Edit Privilege"
     form:
-      selectcategory: "Select a category"
-      manageprivilegeinformation: "Manage Privilege Information:"
+      objectmanaged: "Resource Managed"
+      selectaction: "Select an activity"
+      manageprivilegeinformation: "Defining a Privilege"
       preventprivilegesave: " prevented this privilege from being saved:"
     edit:
       editingprivilege: "Editing a Privilege"
     index:
+      menutext: "Menu Text"
       manageprivileges: "Manage Privileges"
       addprivilege: "Add Privilege"
       suredeleteprivilege: "Are you sure you want to delete this privilege?"
@@ -223,9 +237,6 @@ en:
       welcome: "Welcome to Arts Helper!"
       defaultmessage: "This is a default portlet.  Leave it on this page until you're ready to add some different ones"
       thingstodo: "Here are some things you might want to do:"
-      manageroles: "Manage Roles"
-      manageusers: "Manage Users"
-      managegrants: "Manage Grants"
       accountsettings: "Manage your account settings"
       logout: "Log out of the system"
 

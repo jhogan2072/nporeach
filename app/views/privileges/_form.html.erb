@@ -21,19 +21,12 @@
     </li>
     <li>
       <%= f.label :description %>
-      <%= f.text_field :description %>
+      <%= f.text_area :description, cols: 30,rows: 3 %>
     </li>
     <li>
-      <%= f.label :category %>
-      <%= f.select :category, Privilege::CATEGORIES, prompt: t('.selectcategory') %>
-    </li>
-    <li>
-      <%= f.label :controller %>
-      <%= f.text_field :controller %>
-    </li>
-    <li>
-      <%= f.label :menu_text %>
-      <%= f.text_field :menu_text %>
+      <%= f.label t('.objectmanaged') %>
+      <% controllers_array = Privilege::CONTROLLERS.map {|priv_controller| [priv_controller.first, priv_controller.last[1]] } %>
+      <%= f.collection_select :controller, controllers_array, :first, :last, prompt: t('.objectmanaged') %>
     </li>
     <li>
       <%= f.label :operations %>
@@ -42,6 +35,10 @@
         <%= key %>
       <% end %>
       <%= hidden_field_tag 'allowed_operations[]','' %>
+    </li>
+    <li>
+      <%= f.label :menu_text %>
+      <%= f.text_field :menu_text %>
     </li>
     <li>
       <%= f.submit %>

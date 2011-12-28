@@ -107,10 +107,10 @@ ActiveRecord::Schema.define(:version => 20111221193359) do
     t.string   "controller"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "category"
     t.string   "menu_text"
     t.integer  "account_id"
     t.integer  "operations"
+    t.string   "category"
   end
 
   create_table "roles", :force => true do |t|

@@ -1,1 +1,1 @@
-  <li><a href="#" title="<%= submenus.menu_text %>" class="<%= (session[:curmenu] == submenus.menu_text)? "current" : "" %>"><span><%= submenus.menu_text %></span></a></li>
+  <li><%= link_to content_tag("span", submenus.menu_text), { :controller => submenus.controller }, :title => submenus.menu_text, :class => (controller_name == submenus.controller)? "current" : "" %></li>

@@ -4,7 +4,22 @@ class Privilege < ActiveRecord::Base
   has_many :roles, :through => :grants
   validates_uniqueness_of :controller, :scope => :account_id
 
-  CATEGORIES = ["Schedule", "Registrations", "Payments", "Students", "Employees"]
+  CATEGORIES = {
+    "ADMINISTRATION" => ["registrations.png",I18n.t('privilegemodel.administration')], 
+    "SCHEDULES" => ["schedule.png",I18n.t('privilegemodel.schedules')], 
+    "REGISTRATIONS" => ["registrations.png", I18n.t('privilegemodel.registrations')],
+    "EMPLOYEES" => ["employees.png", I18n.t('privilegemodel.employees')],
+    "PAYMENTS" => ["payments.png", I18n.t('privilegemodel.payments')],
+    "STUDENTS" => ["students.png", I18n.t('privilegemodel.students')],
+  }
+  
+#This maps controllers to categories.  It is used by the privileges_controller to automatically populate category for the user based on the controller they've picked
+#The second field in the array corresponds to the translated name for the controller that the user sees in the drop-down
+  CONTROLLERS = {
+    "users" => ["ADMINISTRATION", I18n.t('privilegemodel.users')],
+    "privileges" => ["ADMINISTRATION", I18n.t('privilegemodel.privileges')],
+    "roles" => ["ADMINISTRATION", I18n.t('privilegemodel.roles')],
+  }
 
   OPERATIONS = {
     "read" => 1,

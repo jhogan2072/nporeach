@@ -5,6 +5,7 @@ class PrivilegesController < InheritedResources::Base
 
   def update
     @privilege = Privilege.find(params[:id])
+    @privilege.category = Privilege::CONTROLLERS[@privilege.controller][0]
     @privilege.operations = 0
     @checkboxvalues = params[:allowed_operations]
     @checkboxvalues.each do |value|
@@ -15,6 +16,7 @@ class PrivilegesController < InheritedResources::Base
 
   def create
     @privilege = current_account.privileges.build(params[:privilege])
+    @privilege.category = Privilege::CONTROLLERS[@privilege.controller][0]
     @privilege.operations = 0
     @checkboxvalues = params[:allowed_operations]
     @checkboxvalues.each do |value|

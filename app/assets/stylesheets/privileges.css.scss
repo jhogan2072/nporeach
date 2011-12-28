@@ -3,14 +3,12 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .privileges {
   div.privilege_list {
-    width:1000px;
+    width:800px;
   
-    .name {width:200px;}
-    .description {width:400px;}
-    .controller {width:100px;}
-    .category {width:100px;}
-    .defaultaction {width:100px;}
-    .menutext {width:80px;}
+    .name {width:150px;}
+    .description {width:200px;}
+    .controller {width:60px;}
+    .menutext {width:60px;}
     .editdelete {width:55px;}
   }
 }

@@ -11,11 +11,10 @@
     </td>
   </tr>
   <tr class="headers">
-    <th class="name">Name</th>
-    <th class="description">Description</th>
-    <th class="controller">Controller</th>
-    <th class="category">Category</th>
-    <th class="menutext">Menu Text</th>
+    <th class="name"><%= t('common.name') %></th>
+    <th class="description"><%= t('common.description') %></th>
+    <th class="controller"><%= t('privileges.form.objectmanaged') %></th>
+    <th class="menutext"><%= t('.menutext') %></th>
     <th class="editdelete"></th>
     <th class="editdelete"></th>
   </tr>
@@ -24,8 +23,7 @@
   <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
     <td><%= privilege.name %></td>
     <td><%= privilege.description %></td>
-    <td><%= privilege.controller %></td>
-    <td><%= privilege.category %></td>
+    <td><%= Privilege::CONTROLLERS[privilege.controller][1] %></td>
     <td><%= privilege.menu_text %></td>
     <td align="center"><%= link_to t('common.edit'), edit_privilege_path(privilege) %></td>
     <td align="center"><%= link_to t('common.delete'), privilege, confirm: t('.suredeleteprivilege'), method: :delete %></td>
