@@ -198,3 +198,6 @@ app/
 == Testing
 
 If you'd like to run the included test suite, run 'rake spec'.
+
+For testing credit cards, you can use the VISA test number 4111
+1111 1111 111 and the CVV 123.

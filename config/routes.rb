@@ -36,13 +36,13 @@ Conservatory::Application.routes.draw do
   end
 
   root :to => "accounts#dashboard"
-
   devise_for :users
 
   #
   # Account / User Management Routes
   #
   resources :users
+
   resource :account do 
     member do
       get :dashboard, :thanks, :plans, :canceled

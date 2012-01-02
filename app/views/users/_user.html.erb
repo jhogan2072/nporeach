@@ -1,0 +1,11 @@
+    <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+      <td class="name"><%=link_to user.full_name, edit_user_path(user) %></td>
+      <td><%=h user.email %></td>
+      <td><%=h user.address %></td>
+      <td><%=h user.city %></td>
+      <td align="center"><%=h user.state %></td>
+      <td align="center"><%=h user.zip %></td>
+      <td align="center"><%=h user.home_phone %></td>
+      <td align="center"><%= link_to(t('common.edit'), edit_user_path(user)) %></td>
+      <td align="center"><%= link_to(t('common.delete'), user, :method => 'delete', :confirm => t('.suredeleteuser')) unless user == current_user %></td>
+    </tr>

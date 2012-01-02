@@ -19,4 +19,14 @@ class SubscriptionAffiliate < ActiveRecord::Base
   def fees(period = (Time.now.beginning_of_month - 1).beginning_of_month .. (Time.now.beginning_of_month - 1).end_of_month)
     subscription_payments.all(:conditions => { :created_at => period }).collect(&:affiliate_amount).sum    
   end
+
+  private
+    def self.search(search)
+      if search #&& column_name && self.column_names.include?(column_name)
+        where('name LIKE ?', "%#{search}%")
+      else
+        scoped
+      end
+    end
+
 end

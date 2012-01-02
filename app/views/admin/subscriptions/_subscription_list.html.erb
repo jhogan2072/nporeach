@@ -1,0 +1,29 @@
+<table id="subscriptions">
+  <tr class="section_title">
+    <td class="section_title"><h3><%= t('.subscriptions') %></h3></td>
+  </tr>
+  <tr class="headers">
+    <th class="account"><%= header_link(t('.account'), "subscriptions", "index", "account") %></th>
+    <th class="amount"><%= header_link(t('.amount'), "subscriptions", "index", "amount") %></th>
+    <th class="created"><%= header_link(t('.created'), "subscriptions", "index", "created_at") %></th>
+    <th class="nextrenewal"><%= header_link(t('.nextrenewal'), "subscriptions", "index", "next_renewal_at") %></th>
+    <th class="plan"><%= header_link(t('.plan'), "subscriptions", "index", "subscription_plan_id") %></th>
+    <th class="discount"><%= header_link(t('.discount'), "subscriptions", "index", "discount") %></th>
+    <th class="state"><%= header_link(t('.state'), "subscriptions", "index", "state") %></th>
+    <th class="editdelete"><a href="#" class="column_header"></a></th>
+    <th class="editdelete"><a href="#" class="column_header"></a></th>
+   </tr>
+  <% @subscriptions.each do |subscription| %>
+    <tr class="<%= cycle('list_line_odd', 'list_line_even') %><%=' expired' unless subscription.current? %>">
+      <td class="account"><%= link_to(h(subscription.subscriber), [:admin, subscription]) %></td>
+      <td class="amount"><%= number_to_currency(subscription.amount) %> <%= "(#{subscription.discount.name})" if subscription.discount %></td>
+      <td class="created"><%= subscription.created_at.strftime '%m/%d/%Y' %></td>
+      <td class="nextnenewal"><%= subscription.next_renewal_at.strftime '%m/%d/%Y' %></td>
+      <td class="plan"><%= subscription.subscription_plan %></td>
+      <td class="discount"><%= subscription.discount %></td>
+      <td class="state"><%= subscription.state %></td>
+      <td align="center"><%= link_to(t('common.edit'), edit_admin_subscription_path(subscription)) %></td>
+      <td align="center"><%= link_to(t('.charge'), [:admin, subscription] ) %></td>
+     </tr>
+  <% end %>
+</table>

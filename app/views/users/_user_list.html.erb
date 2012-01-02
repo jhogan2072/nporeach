@@ -1,0 +1,14 @@
+<table id="users">
+  <tr class="headers">
+    <th class="name"><%= header_link(t('.name'), "users", "index", "last_name") %></th>
+    <th class="email"><%= header_link(t('.email'), "users", "index", "email") %></th>
+    <th class="address"><%= header_link(t('.address'), "users", "index", "address") %></th>
+    <th class="city"><%= header_link(t('.city'), "users", "index", "city") %></th>
+    <th class="state"><%= header_link(t('.state'), "users", "index", "state") %></th>
+    <th class="zip"><%= header_link(t('.zip'), "users", "index", "zip") %></th>
+    <th class="phone"><%= header_link(t('.homephone'), "users", "index", "home_phone") %></th>
+    <th class="editdelete"><a href="#" class="column_header"></a></th>
+    <th class="editdelete"><a href="#" class="column_header"></a></th>
+  </tr>
+  <%= render(@users) %>
+</table>

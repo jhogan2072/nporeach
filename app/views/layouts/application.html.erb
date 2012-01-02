@@ -10,10 +10,17 @@
   <div id="banner">
     <span><%= page_title(@page_title) %></span>
     <%= link_to image_tag("ahlogo.png", :border => 0 ), root_url %>
+    <% if user_signed_in? %>
+    <ul id="adminmenu">
+      <li><%= link_to "Sign Out", destroy_user_session_path, {method: :delete} %></li>
+    </ul>
+    <% end %>
+
     <% if user_signed_in? && current_menu %>
       <%= render(partial: 'shared/menu', locals: {:menu => current_menu}) %>
     <% end %>
   </div>
+  <div class="clear"></div>
   <div id="main">
   <div id="breadcrumbs">
     <%= render_breadcrumbs(:class => "breadcrumbs") %>

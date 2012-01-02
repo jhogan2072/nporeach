@@ -1,8 +1,14 @@
 class DefaultRole < ActiveRecord::Base
-  has_many :default_grants
-  has_many :privileges, :through => :default_grants
-  scope :for, lambda{|controller, action|
-        where("privileges.controller = ? AND ? & default_grants.operation > 0", 
-        controller, Privilege::OPERATION_MAPPINGS[action])
-  }
+  has_many :default_grants, :dependent => :destroy
+  has_many :default_privileges, :through => :default_grants
+  validates :name, uniqueness: true, presence: true
+
+  def self.search(search)
+    if search #&& column_name && self.column_names.include?(column_name)
+      where('name LIKE ?', "%#{search}%")
+    else
+      scoped
+    end
+  end
+
 end

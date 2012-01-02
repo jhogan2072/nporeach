@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= t('layouts.application.title') %></title>
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body class='<%= controller.controller_name %>'>
+  <div id="banner">
+    <span><%= @page_title %></span>
+    <%= link_to image_tag("ahlogo.png", :border => 0 ), root_url %>
+    <% if admin_signed_in? %>
+    <ul id="adminmenu">
+      <li><%= link_to "Default Roles", admin_default_roles_path %></li>
+      <li><%= link_to "Default Privileges", admin_default_privileges_path %></li>
+      <li><%= link_to "Subscriptions", admin_subscriptions_path %></li>
+      <li><%= link_to "Subscription Plans", admin_subscription_plans_path %></li>
+      <li><%= link_to "Subscription Discounts", admin_subscription_discounts_path %></li>
+      <li><%= link_to "Subscription Affiliates", admin_subscription_affiliates_path %></li>
+      <li><%= link_to "Sign Out", destroy_admin_session_path, {method: :delete} %></li>
+    </ul>
+    <% end %>
+  </div>
+  <div id="main">
+  <div id="breadcrumbs">
+    <%= render_breadcrumbs(:class => "breadcrumbs") %>
+  </div>
+    <%= yield %> 
+    </div>
+</body>
+</html>

@@ -6,6 +6,8 @@ class AccountsController < InheritedResources::Base
   before_filter :load_subscription, :only => [ :billing, :plan, :paypal, :plan_paypal ]
   before_filter :load_discount, :only => [ :plans, :plan, :new, :create ]
   before_filter :build_plan, :only => [:new, :create]
+  add_breadcrumb I18n.t('layouts.application.home'), :root_path
+  add_breadcrumb I18n.t('accounts.accounts'), :account_path
   
   # ssl_required :billing, :cancel, :new, :create
   # ssl_allowed :plans, :thanks, :canceled, :paypal
@@ -40,6 +42,11 @@ class AccountsController < InheritedResources::Base
       render :action => 'new', :layout => 'public' # Uncomment if your "public" site has a different layout than the one used for logged-in users
     end
   end
+
+  def edit
+    add_breadcrumb I18n.t('accounts.edit.editorganization'), request.url
+    edit!
+  end
   
   def update
     if resource.update_attributes(params[:account])
@@ -56,6 +63,7 @@ class AccountsController < InheritedResources::Base
   end
   
   def billing
+    add_breadcrumb I18n.t('accounts.billing.billinginformation'), request.url
     if request.post?
       if params[:paypal].blank?
         @address.first_name = @creditcard.first_name
@@ -89,6 +97,7 @@ class AccountsController < InheritedResources::Base
   end
 
   def plan
+    add_breadcrumb I18n.t('accounts.plan.changeplan'), request.url
     if request.post?
       @subscription.plan = SubscriptionPlan.find(params[:plan_id])
 
@@ -147,6 +156,7 @@ class AccountsController < InheritedResources::Base
   end
 
   def cancel
+    add_breadcrumb I18n.t('accounts.cancel.cancelaccount'), request.url
     if request.post? and !params[:confirm].blank?
       current_account.destroy
       sign_out(:user)

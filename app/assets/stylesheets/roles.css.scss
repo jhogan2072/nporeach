@@ -2,12 +2,82 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.roles {
+.roles, .default_roles{
   div.role_list {
-    width:290px;
+    width:600px;
   
+    table {
+      margin: 0 auto;
+      margin-top: 10px;
+      margin-bottom:10px;
+      ul {
+        padding:0;
+        padding-left:20px;
+        margin-top:5px;
+        margin-bottom:5px;
+      }
+    }
     .name {width:200px;}
-    .editdelete {width:55px;}
+    .privileges {width: 250px;}
   }
 
+  .role_form {
+    ul {
+      width:800px;
+      margin-top:0;
+
+      li {
+        label {
+          text-align:left;
+          width:auto;
+        }
+      }
+      .table_container {
+        padding:0;
+        border:0
+      }
+    }
+    table {
+      border-collapse:collapse;
+      border: 1px solid #C1CAD5;
+      border-top:0;
+      border-left:0;
+      border-right:0;
+      width: 800px;
+
+      ul {
+        margin-left:10px;
+        border:0;
+        li {border:0;height:20px;}
+      }
+
+      th {
+        line-height:31px;
+        background:-webkit-gradient(linear, left top, left bottom, from(#F5F5F5), to(#DBDBDB));
+      }
+
+      td,th {
+        border: 1px solid #C1CAD5;
+        border-top:0;
+      }
+
+      .category_cell {
+        text-align:center;
+        border-left:0;
+      }
+
+      .privileges_cell {border-right:0};
+
+      .privilege_checkbox {
+        width:300px;
+        input {
+          margin-top:5px;
+          margin-bottom:5px;
+        }
+      }
+      input[type="submit"] {
+        background-color:#F1F7FE;
+      }
+    }
+  }
 }

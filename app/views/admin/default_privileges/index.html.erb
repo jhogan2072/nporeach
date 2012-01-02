@@ -1,38 +1,5 @@
 <% @page_title = t('.managedefaultprivileges') %>
-
 <div class="standard_list privilege_list">
-<table>
-  <tr class="toolbar">
-    <td>
-      <a href="<%= new_admin_default_privilege_path %>" title="<%= t('privileges.index.addprivilege') %>" class="button">
-        <%= image_tag("addperson.png") %>
-        <span><%= t('privileges.index.addprivilege') %></span>
-      </a>
-    </td>
-  </tr>
-  <tr class="headers">
-    <th class="name">Name</th>
-    <th class="description">Description</th>
-    <th class="controller">Controller</th>
-    <th class="category">Category</th>
-    <th class="defaultaction">Default Action</th>
-    <th class="menutext">Menu Text</th>
-    <th class="editdelete"></th>
-    <th class="editdelete"></th>
-  </tr>
-
-<% @default_privileges.each do |privilege| %>
-  <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
-    <td><%= privilege.name %></td>
-    <td><%= privilege.description %></td>
-    <td><%= privilege.controller %></td>
-    <td><%= privilege.category %></td>
-    <td><%= privilege.default_action %></td>
-    <td><%= privilege.menu_text %></td>
-    <td align="center"><%= link_to t('common.edit'), edit_admin_default_privilege_path(privilege) %></td>
-    <td align="center"><%= link_to t('common.delete'), privilege, confirm: t('privileges.index.suredeleteprivilege'), method: :delete %></td>
-  </tr>
-<% end %>
-</table>
+  <%= render(partial: 'shared/menubar', locals: {:indexpath => admin_default_privileges_path, :newpath => new_admin_default_privilege_path, :addimage => "addprivilege.png", :addtext => t('.adddefaultprivilege')}) %>
+  <%= render 'default_privilege_list' %>
 </div>
-

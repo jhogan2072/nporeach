@@ -1,19 +1,27 @@
-<h1><%= @page_title = 'Cancel Account' %></h1>
+<% @page_title = t('.cancelaccount') %>
+<%= render 'shared/error_messages', :target => @subscription, :model => t('accountsmodel.modelname') %>
+<%= form_tag( {:action => 'cancel'}, {:class => "standard_form"}) do %>
+<ul>
+  <li class="form_header">
+    <h2><%=t('.cancelaccount') %></h2>
+  </li>
+  <li>
+    <p><%= raw t('.thiswilldeletedata') %></p>
 
-<p>You are about to cancel your account.  This will <strong>permanently delete all your data</strong>.  Once you do this, you will no longer have access to your data, so be sure this is really what you want to do. </p>
-
-<h2>Wait!  Before you go...</h2>
-<p>
-  Instead of canceling your account, perhaps you'd like to just switch your plan.  <a href="/account/plan">Change your subscription level now</a>.
-</p>
-
-<%= form_tag :action => 'cancel' do %>
-  <fieldset>
-    <legend>Cancel Confirmation</legend>
-
+    <h3>Wait!  Before you go...</h3>
+    <p>
+      <%= t('.perhapsswitchplan') %> 
+    </p>
+    <p>
+      <a href="/account/plan">Change your subscription level now</a>
+    </p>
+  </li>
+  <li>
     <input type="checkbox" name="confirm" class="checkbox" value="1" />
     I really do want to cancel my account and delete all my data.
-  </fieldset>
 
-  <%= submit_or_cancel '/account', 'Delete my Account' %>
+  <%= submit_tag t('.deletemyaccount'), :class=> "submit" %><%= t('.or') %><a href="/account" class="inline_link"><%= t('common.cancel') %></a>
+  </li>
+  <li class="bottom"></li>
+</ul>
 <% end %>

@@ -1,10 +1,10 @@
 <% menu.each do |category, privileges| %>
 <ul id="menubar">
   <li>
-    <%= link_to image_tag(Privilege::CATEGORIES[category][0]) << content_tag("span",Privilege::CATEGORIES[category][1]), { :controller => privileges[0].controller} %> 
+    <%= link_to image_tag(Privilege::CATEGORIES[category][0]) << content_tag("span",Privilege::CATEGORIES[category][1]), link_for_privilege(privileges[0].controller) %> 
   </li>
   <li>
-    <%= hide_ul_if(Privilege::CONTROLLERS[controller_name][0] != category, id: 'submenu') do %>
+    <%= hide_ul_if(Privilege::CONTROLLERS[controller_name].nil? || Privilege::CONTROLLERS[controller_name][0] != category, id: 'submenu') do %>
       <%= render(partial: 'shared/submenus', collection: privileges) %>
     <% end %>
   </li>

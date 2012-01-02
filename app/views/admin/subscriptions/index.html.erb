@@ -1,40 +1,29 @@
 <% @page_title = t('.subscriptions') %>
+<p id="notice"><%= notice %></p>
 <% if @stats %>
-  <h1><%= t('.revenuesummary') %></h1>
-  <table id="stats">
-    <tr>
-      <th><%= t('.lastmonth') %></th>
+<div class="standard_list revenue_summary">
+  <table>
+    <tr class="section_title">
+      <td class="section_title"><h3><%= t('.revenuesummary') %></h3></td>
+    </tr>
+    <tr class="list_line_odd">
+      <td><%= t('.lastmonth') %></td>
       <td><%= number_to_currency(@stats[:last_month]) %></td>
     </tr>
-    <tr>
-      <th><%= t('.last30days') %></th>
+    <tr class="list_line_even">
+      <td><%= t('.last30days') %></td>
       <td><%= number_to_currency(@stats[:last_30]) %></td>
     </tr>
-    <tr>
-      <th><%= t('thismonth') %></th>
+    <tr class="list_line_odd">
+      <td><%= t('.thismonth') %></td>
       <td><%= number_to_currency(@stats[:this_month]) %></td>
     </tr>
   </table>
+</div>
 <% end %>
 
-<h1><%= @page_title %></h1>
-<table id="subscriptions">
-  <tr>
-    <th><%= t('.account') %></th>
-    <th><%= t('.amount') %></th>
-    <th><%= t('.created') %></th>
-    <th><%= t('.nextrenewal') %></th>
-    <th><%= t('.state') %></th>
-  </tr>
-  <% @subscriptions.each do |subscription| %>
-    <tr class="<%= 'expired' unless subscription.current? %>">
-      <td><%= link_to(h(subscription.subscriber), [:admin, subscription]) %></td>
-      <td><%= number_to_currency(subscription.amount) %> <%= "(#{subscription.discount.name})" if subscription.discount %></td>
-      <td><%= subscription.created_at.to_s(:short_day) %></td>
-      <td><%= subscription.next_renewal_at.to_s(:short_day) %></td>
-      <td><%= subscription.state %></td>
-    </tr>
-  <% end %>
-</table>
+<div class="standard_list subscriptions_list">
+  <%= render 'subscription_list' %>
+<%= will_paginate @subscriptions %>
+</div>
 
-<%= will_paginate(@subscriptions) %>

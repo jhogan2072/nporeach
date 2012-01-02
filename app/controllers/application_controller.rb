@@ -1,9 +1,21 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  layout :layout_by_resource
   #before_filter :check_authorization
 
   helper_method :current_menu
+  helper_method :sort_direction
 
+  protected
+
+  def layout_by_resource
+    if devise_controller? && resource_name == :admin
+      "superuser"
+    else
+      "application"
+    end
+  end
+  
   private
 
   def check_authorization
@@ -16,9 +28,17 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  end
+
   def current_menu
     if user_signed_in? && current_user.roles
-      @roles = current_user.roles.all
+      if current_user.admin?
+        @roles = current_account.roles.all
+      else
+        @roles = current_user.roles.all
+      end
       @privileges = []
       @roles.each do |role|
         if role.privileges.all.length > 0
@@ -30,7 +50,6 @@ class ApplicationController < ActionController::Base
       if @privileges.length > 0
         @current_menu = @privileges.uniq.group_by {|priv| priv.category}
       end
-      debugger
       return @current_menu if defined?(@current_menu)
     end
   end

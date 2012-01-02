@@ -82,7 +82,6 @@ module Saas
     end
   
     def needs_payment_info?
-      debugger
       if new_record?
         if @plan.trial_period > 0
           Saas::Config.require_payment_info_for_trials && @plan && @plan.amount.to_f + @plan.setup_amount.to_f > 0

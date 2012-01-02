@@ -1,5 +1,5 @@
-<h1><%= @page_title = t('.creatediscount') %></h1>
+<% @page_title = t('.creatediscount') %>
 
-<%= form_for [:admin, @subscription_discount] do |form| %>
+<%= form_for([:admin, @subscription_discount], :html => {:class => "standard_form", :multipart => true}) do |form| %>
   <%= render :partial => 'form', :object => form %>
 <% end %>

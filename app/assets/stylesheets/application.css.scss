@@ -19,13 +19,6 @@ a {
   &:hover {text-decoration: underline; cursor:pointer;}
 }
 
-#errorExplanation {
-    margin-top: 32px;
-    margin-bottom: 32px;
-    margin-left: 64px;
-    margin-right: 64px;
-}
-
 #topbar {
   background-image: image_url("bg_topbar.png");
   background-repeat:repeat-x;
@@ -91,7 +84,7 @@ a {
   background: #15428B;
   padding: 10px;
   padding-top:5px;
-  font-size: 1.5em;
+  font-size: 24px;
   color: white;
   text-align: left;
   height: 90px;
@@ -101,6 +94,33 @@ a {
     float: right;
     margin-right:10px;
     margin-top:18px;
+  }
+}
+
+.clear {clear:both;}
+
+#adminmenu {
+  list-style:none;
+  font-size:14px;
+  margin:0 auto;
+  display:inline-block;
+  float:right;
+  padding:0;
+
+  li {
+    float:left;
+    padding-left:20px;
+    padding-top:10px;
+    padding-right:20px;
+    padding-bottom:20px;
+
+    a {
+      color:white;
+      &:hover {
+        color:#2173AF;
+        text-decoration:none;
+      }
+    }
   }
 }
 
@@ -296,7 +316,7 @@ a {
 
       label {
         line-height:20px;
-        margin: 8px;
+        margin: 5px;
         padding:5px;
         font-weight: bold;
         display:block;
@@ -316,11 +336,11 @@ a {
         background-color:white;
         background-image: image_url("bg_inputs.png");
         background-repeat: repeat-x;
-        margin: 8px;
+        margin: 5px;
         margin-left:0;
       }
       
-      input[type="text"],input[type="password"] {
+      input[type="text"],input[type="password"],input[type="email"] {
         height:20px;
         border: 1px solid #8D9095;
         border-radius:1px;
@@ -329,16 +349,20 @@ a {
         padding: 5px;
         background-color:white;
         background-image: image_url("bg_inputs.png");
-        margin: 8px;
+        margin: 5px;
         margin-left:0;
       }
 
       input[type="checkbox"] {
+        height:20px;
         font-size:16px;
-        margin: 13px;
+        margin: 10px;
+        margin-right:0px;
         margin-left:0;
         vertical-align:middle;
       }
+
+      span.checkbox_label {margin-right:10px}
       
       input[type="checkbox"].checkbox_group {
           margin-right:0px;
@@ -353,10 +377,9 @@ a {
         border-radius:1px;
         color:#29384C;
         font-size:16px;
-        padding:5px;
         background-color:white;
         background-image: image_url("bg_inputs.png");
-        margin:8px;
+        margin:10px;
         margin-left:0;
       }
 
@@ -404,6 +427,13 @@ a {
           cursor:pointer;
         }
 
+      }
+      input[type="submit"]:disabled {
+        background:lightGrey;
+        box-shadow: inset 0px 1px 2px #666;
+        -webkit-box-shadow: inset 0px 1px 2px #666;
+        color:#C3C4BB;
+        cursor:normal;
       }
 
       a {
@@ -481,7 +511,46 @@ a {
     span {margin-left:10px;}
 }
 
+.column_header {
+    margin:0;
+    padding:0;
+    border:0;
+    border-radius:0;
+    width:auto;
+    min-width:120px;
+    min-height:31px;
+    color:black;
+    line-height:31px;
+    text-decoration:none;
+    text-align:center;
+    vertical-align:middle;
+    background:-webkit-gradient(linear, left top, left bottom, from(#F5F5F5), to(#DBDBDB));
+    //background:-moz-linear-gradient(top, #F5F5F5, #DBDBDB) repeat scroll 0 0 transparent;
+    text-shadow: white 0px 1px 0px;
+    display:block;
+    &:hover {
+      background:-webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#CBCBCB));
+      //background:-webkit-linear-gradient(top, #FFFFFF, #CBCBCB) repeat scroll 0 0 transparent;
+      //background:-moz-linear-gradient(top, #FFFFFF, #CBCBCB) repeat scroll 0 0 transparent;
+      //background:-ms-linear-gradient(top, #FFFFFF, #CBCBCB) repeat scroll 0 0 transparent;
+      color:black;
+      cursor:pointer;
+      text-decoration:none;
+    }
+    &:active {
+      background:-webkit-gradient(linear, left top, left bottom, from(#CBCBCB), to(#F5F5F5));
+      box-shadow: 0 1px 3px #C1C1C1 inset;
+      color: #515151;
+    }
+}
+
+.editdelete {
+      width:55px;
+      a {min-width:55px;}
+}
+
 .standard_list {
+  width:650px;
   margin: 0 auto;
   margin-top:30px;
   padding: 0;
@@ -494,25 +563,94 @@ a {
     margin-left:10px;
     margin-right:10px;
     margin-bottom:10px;
+    margin-top:10px;
+    border-left:0;
   }
 
-  tr.toolbar {
+  table.narrow_list {
+    margin:0 auto;
+    margin-top:10px;
+    margin-bottom:10px;
+  }
+
+
+  .toolbar {
     background-color:transparent;
-    border-bottom: 1px solid #C1CAD4;
     height:60px;
-    td {border:0;
+    width:auto;
+    padding:8px;
+    padding-bottom:0px;
+    overflow:auto;
+    clear:both;
+    border-bottom:1px solid #C1CAD5;
+
+    div.menubuttons {
+      height:52px;
+      
+      a {
+        border: 1px solid lightGrey;
+        border-bottom-color: #C3C3C3;
+        min-width:62px;
+        width:auto;
+        padding-left:3px;
+        padding-right:3px;
+        height:51px;
+        text-decoration:none;
+        text-align:center;
+        font-size:12px;
+        color:#333;
+        //background:-webkit-linear-gradient(top,#F5F5F5,#DBDBDB);
+        background:-webkit-gradient(linear, left top, left bottom, from(#F5F5F5), to(#DBDBDB));
+        //background:-moz-linear-gradient(top, #F5F5F5, #DBDBDB) repeat scroll 0 0 transparent;
+        //-webkit-box-shadow: 0 2px 3px rgba(0,0,0,0.4);
+        text-shadow: white 0px 1px 0px;
+        display:inline-block;
+        &:hover {
+          background:-webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#CBCBCB));
+          //background:-webkit-linear-gradient(top, #FFFFFF, #CBCBCB) repeat scroll 0 0 transparent;
+          //background:-moz-linear-gradient(top, #FFFFFF, #CBCBCB) repeat scroll 0 0 transparent;
+          //background:-ms-linear-gradient(top, #FFFFFF, #CBCBCB) repeat scroll 0 0 transparent;
+          box-shadow: 0 2px 3px rgba(0,0,0,0.5);
+          //-webkit-box-shadow: 0 2px 3px rgba(0,0,0,0.5);
+          color:black;
+          cursor:pointer;
+          text-decoration:none;
+        }
+        &:active {
+          background:-webkit-gradient(linear, left top, left bottom, from(#CBCBCB), to(#F5F5F5));
+          box-shadow: 0 1px 3px #C1C1C1 inset;
+          color: #515151;
+        }
+        img {padding-top:3px;}
+      }
+      a.rightbutton {float:right;}
+      form {
+        line-height:52px;
+        display:inline-block;
+        padding-right:10px;
+        padding-left:10px;
+        float:right;
+      }
     }
   }
 
   tr.headers {
-    background-color:#F1F7FE;
-    border: 1px solid #C1CAD4;
-    border-left:0;
     th {
-      border-right: 1px solid #C1CAD4;
-      padding:5px;
-      margin:8px;
-      margin-left:0
+      border: 1px solid #C1CAD4;
+      padding:0px;
+
+      a.current {
+        background-repeat: no-repeat;
+        background-position: 95%;
+        background-color:#DBDBDB;
+      }
+      a.asc {
+        background-image: image_url("up_arrow.png");
+      }
+      a.desc {
+        background-image: image_url("down_arrow.png");
+      }
+
     }
   }
 
@@ -524,10 +662,60 @@ a {
   }
   td {
     border: 1px solid #C1CAD4;
-    border-left:0;
     padding:5px;
     margin:8px;
     margin-left:0
   }
 }
+
+#notice {
+  color: green;
+  margin:5px;
+  margin-left:10px;
+}
+
+.field_with_errors {
+  padding: 0;
+  background-color: red;
+  display:inline-block;
+  padding-left:5px;
+}
+
+#error_explanation {
+  width: 800px;
+  margin: 0 auto;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+
+  h2 {
+    text-align: left;
+    font-weight: bold;
+    padding: 5px 5px 5px 15px;
+    font-size: 16px;
+    margin: -7px;
+    margin-bottom: 0px;
+    background-color: #D8000C;
+    color: #fff;
+  }
+
+  ul {
+    margin:5px;
+    width:750px;
+    border:0;
+    padding-left:10px;
+    font-size: 16px;
+    background-color:#F0F0F0;
+    list-style-type: square;
+
+    li {
+      background-color:inherit;
+      border:0;
+      padding:4px;
+    }
+  }
+}
+
 

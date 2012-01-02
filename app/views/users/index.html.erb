@@ -1,37 +1,7 @@
 <% @page_title = t('.manageusers') %>
+<p id="notice"><%= notice %></p>
 <div class="standard_list user_list">
-<table id="users">
-  <tr class="toolbar">
-    <td>
-      <a href="<%= new_user_path %>" title="<%= t('.adduser') %>" class="button">
-        <%= image_tag("addperson.png") %>
-        <span><%= t('.adduser') %></span>
-      </a>
-    </td>
-  </tr>
-  <tr class="headers">
-    <th class="name"><%= t('.name') %></th>
-    <th class="email"><%= t('.email') %></th>
-    <th class="address"><%= t('.address') %></th>
-    <th class="city"><%= t('.city') %></th>
-    <th class="state"><%= t('.state') %></th>
-    <th class="zip"><%= t('.zip') %></th>
-    <th class:"phone"><%= t('.homephone') %></th>
-    <th class="editdelete"></th>
-    <th class="editdelete"></th>
-  </tr>
-  <% current_account.users.each do |user| %>
-    <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
-      <td class="name"><%=user.full_name %></td>
-      <td><%=h user.email %></td>
-      <td><%=h user.address %></td>
-      <td><%=h user.city %></td>
-      <td align="center"><%=h user.state %></td>
-      <td align="center"><%=h user.zip %></td>
-      <td align="center"><%=h user.home_phone %></td>
-      <td align="center"><%= link_to(t('common.edit'), edit_user_path(user)) %></td>
-      <td align="center"><%= link_to(t('common.delete'), user, :method => 'delete', :confirm => t('.suredeleteuser')) unless user == current_user %></td>
-    </tr>
-  <% end %>
-</table>
+<%= render(partial: 'shared/menubar', locals: {:indexpath => users_path, :newpath => new_user_path, :addimage => "addperson.png", :addtext => t('.adduser')}) %>
+<%= render 'user_list' %>
+<%= will_paginate @users %>
 </div>

@@ -1,26 +1,7 @@
 <% @page_title = t('.manageroles') %>
+<p id="notice"><%= notice %></p>
 
 <div class="standard_list role_list">
-<table>
-  <tr class="toolbar">
-    <td>
-      <a href="<%= new_role_path %>" title="<%= t('.addrole') %>" class="button">
-        <%= image_tag("addperson.png") %>
-        <span><%= t('.addrole') %></span>
-      </a>
-    </td>
-  </tr>
-  <tr class="headers">
-  <th class="name"><%= t('common.name') %></th>
-    <th class="editdelete"></th>
-    <th class="editdelete"></th>
-  </tr>
-  <% current_account.roles.each do |role| %>
-    <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
-      <td class="name"><%=role.name %></td>
-      <td align="center"><%= link_to(t('common.edit'), edit_role_path(role)) %></td>
-      <td align="center"><%= link_to(t('common.delete'), role, :method => 'delete', :confirm => t('.suredeleterole')) %></td>
-  </tr>
-  <% end %>
-</table>
+  <%= render(partial: 'shared/menubar', locals: {:indexpath => roles_path, :newpath => new_role_path, :addimage => "addperson.png", :addtext => t('.addrole')}) %>
+  <%= render 'role_list' %>
 </div>

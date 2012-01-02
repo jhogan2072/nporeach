@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111221193359) do
+ActiveRecord::Schema.define(:version => 20111230224043) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name",        :null => false
@@ -49,8 +49,8 @@ ActiveRecord::Schema.define(:version => 20111221193359) do
   end
 
   create_table "default_grants", :force => true do |t|
-    t.integer  "privilege_id"
-    t.integer  "role_id"
+    t.integer  "default_privilege_id"
+    t.integer  "default_role_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

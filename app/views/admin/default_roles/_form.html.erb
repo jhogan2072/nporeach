@@ -1,28 +1,21 @@
-<%= form_for [:admin, @default_role] do |f| %>
-  <% if @default_role.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@default_role.errors.count, "error") %> prohibited this default_role from being saved:</h2>
-
-      <ul>
-      <% @default_role.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div>
-    <% Privilege.all.each do |privilege| %>
-      <%= check_box_tag 'default_role[privilege_ids][]', privilege.id, @default_role.privileges.include?(privilege) %>
-      <%= privilege.name %>
-    <% end %>
-    <%= hidden_field_tag 'default_role[privilege_ids][]','' %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<%= form_for([:admin, @default_role], :html => {:class => "standard_form role_form", :multipart => true}) do |f| %>
+<%= render 'shared/error_messages', :target => @default_role, :model => t('defaultrolemodel.modelname') %>
+  <ul>
+    <li class="form_header">
+      <h2><%= t('.defineadefaultrole') %></h2>
+    </li>
+    <li>
+      <%= f.label t('common.name') %>
+      <%= f.text_field :name %>
+    </li>
+    <li class="table_container">
+      <table>
+        <%= render(partial: 'default_privilege_table', locals: {:privhash => @default_privileges}) %>
+      </table>
+    </li>
+    <li>
+      <%= f.submit %>
+    </li>
+    <li class="bottom"></li>
+  </ul>
 <% end %>

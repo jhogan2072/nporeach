@@ -1,26 +1,38 @@
-<h1><%= @page_title = t('.editsubscription') %></h1>
-
-<p>
-  <%= t('.changesmade') %>
-</p>
-
-<%= form_for @subscription, :url => resource_path do |form| %>
-  <%= form.error_messages %>
-  <fieldset>
+<% @page_title = t('.editsubscription') %>
+<%= form_for(@subscription, :html => {:class => "standard_form"}, :url => resource_path) do |form| %>
+<%= render 'shared/error_messages', :target => @subscription, :model => t('subscriptionmodel.modelname') %>
+  <ul>
+    <li class="form_header">
+      <h2><%= t('.editsubscription') %> - <%= @subscription.subscriber %></h2>
+    </li>
+    <li>
+      <p>
+        <%= t('.changesmade') %>
+      </p>
+    </li>
+    <li>
     <%= form.label :amount %>
     <%= form.text_field :amount %>
-
-    <%= form.label :next_renewal_at, 'Renewal date' %>
-    <%= form.text_field :next_renewal_at %>
-
+    </li>
+    <li>
+    <%= form.label :next_renewal_at, t('.renewaldate') %>
+    <%= form.text_field :next_renewal_at, value: (@subscription.next_renewal_at.blank? ? '' : @subscription.next_renewal_at.strftime('%m/%d/%Y')) %>
+    </li>
+    <li>
     <%= form.label :state %>
     <%= form.text_field :state %>
-
+    </li>
+    <li>
     <%= form.label :plan_id %>
     <%= form.select :plan_id, SubscriptionPlan.all(:order => 'amount desc').collect {|p| [p.to_s, p.id]} %>
-
+    </li>
+    <li>
     <%= form.label :subscription_discount_id %>
     <%= form.select :subscription_discount_id, SubscriptionDiscount.all(:order => 'name').collect {|d| ["#{d.name} (#{d.code}) - #{discount_label(d)}", d.id]}, :include_blank => true %>
-  </fieldset>
-  <%= submit_tag %>
+    </li>
+    <li>
+      <%= submit_tag %>
+    </li>
+    <li class="bottom"></li>
+  </ul>
 <% end %>

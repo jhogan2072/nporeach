@@ -1,4 +1,10 @@
 <% @page_title = t('.newuser') %>
+<% if current_account.reached_user_limit? %>
 
+  <p>
+  <%= t('.maxuserspart1') %><a href="/account/plan"><%= t('.upgradeyouraccount') %></a><%= t('.maxuserspart2') %>
+  </p>
+
+<% else %>
 <%= render 'form' %>
-
+<% end %>

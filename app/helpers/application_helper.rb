@@ -20,6 +20,12 @@ module ApplicationHelper
     content_tag("ul", attributes, &block)
   end
 
+  def header_link(link_text, link_to_controller, link_to_action, column )
+    css_class = (column == sort_column) ? "current #{sort_direction}" : nil
+    direction = (column == sort_column && sort_direction == "asc") ? "desc" : "asc"
+    link_to(link_text, url_for(params.merge(:controller => link_to_controller, :action => link_to_action, :sort => column, :direction => direction, :page => nil)), :class => (css_class.nil? ?  "" : css_class + " ") + "column_header", remote: true) 
+  end
+
   def page_title(pagetitle)
     unless current_account.nil?
       unless pagetitle.nil?
@@ -38,6 +44,15 @@ module ApplicationHelper
       retval = true if (privilege & current_privileges > 0)
     end
     return retval
+  end
+
+  def link_for_privilege(priv_controller)
+  debugger
+    if priv_controller == "accounts"
+      url_for :action => 'show', :controller => 'accounts'
+    else
+      url_for :controller => priv_controller
+    end
   end
 
 end

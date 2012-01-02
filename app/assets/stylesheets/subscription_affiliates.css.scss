@@ -1,0 +1,14 @@
+.subscription_affiliates {
+  p {margin-left:10px};
+  div.subscription_affiliates_list {
+    width:850px;
+  
+    .name {width:200px;}
+    .affiliateurl {width:450px;}
+    .rate {
+      width:55px;
+      text-align:center;
+      a {min-width:55px;}
+    }
+  }
+}

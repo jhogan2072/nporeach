@@ -1,0 +1,19 @@
+<table id="roles">
+  <tr class="headers">
+    <th class="name"><%= header_link(t('common.name'), "roles", "index", "name") %></th>
+    <th class="privileges"><a href="#" class="column_header"><%= t('privileges.privileges') %></a></th>
+    <th class="editdelete"><a href="#" class="column_header"></a></th>
+    <th class="editdelete"><a href="#" class="column_header"></a></th>
+  </tr>
+  <% @roles.each do |role| %>
+    <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+      <td class="name"><%=link_to role.name, edit_role_path(role) %></td>
+      <td class="privileges"><ul><% role.privileges.each_with_index do |privilege, i| %>
+          <li><%= h(privilege.name)%></li>
+        <% end %></ul>
+      </td>
+      <td align="center"><%= link_to(t('common.edit'), edit_role_path(role)) %></td>
+      <td align="center"><%= link_to(t('common.delete'), role, :method => 'delete', :confirm => t('.suredeleterole')) %></td>
+  </tr>
+  <% end %>
+</table>

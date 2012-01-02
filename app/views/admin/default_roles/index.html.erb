@@ -1,23 +1,7 @@
-<h1>Listing default roles</h1>
+<% @page_title = t('.managedefaultroles') %>
+<p id="notice"><%= notice %></p>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @default_roles.each do |role| %>
-  <tr>
-    <td><%= role.name %></td>
-    <td><%= link_to 'Show', [:admin, role] %></td>
-    <td><%= link_to 'Edit', edit_admin_default_role_path(role) %></td>
-    <td><%= link_to 'Destroy', [:admin, role], confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Role', new_admin_default_role_path %>
+<div class="standard_list role_list">
+  <%= render(partial: 'shared/menubar', locals: {:indexpath => admin_default_roles_path, :newpath => new_admin_default_role_path, :addimage => "addperson.png", :addtext => t('.adddefaultrole')}) %>
+  <%= render 'default_role_list' %>
+</div>

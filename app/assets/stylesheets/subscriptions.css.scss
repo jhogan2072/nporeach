@@ -1,0 +1,38 @@
+.subscriptions {
+  div.transaction_payment_list {
+    width:500px;
+    th.column_header {display:inline-block;}
+  }
+  div.subscriptions_list {
+    width:1050px;
+  
+    .account {width:300px;}
+    .amount {
+      width:75px;
+      a {min-width:0}
+    }
+    .discount {
+      width:75px;
+      a {min-width:0}
+    }
+    .created {
+      width:75px;
+      a {min-width:0}
+    }
+    .nextrenewal {
+      width:75px;
+    }
+    .state {
+      width:40px;
+      a {min-width:0}
+    }
+  }
+  div.revenue_summary {
+    width: 300px;
+    padding-right:600px;
+  }
+  .section_title {
+    border:0;
+  }
+  .headers {line-height:31px;}
+}

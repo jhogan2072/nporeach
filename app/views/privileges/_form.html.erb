@@ -1,16 +1,5 @@
 <%= form_for(@privilege, :html => {:class => "standard_form", :multipart => true}) do |f| %>
-  <% if @privilege.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@privilege.errors.count, "error") %><%= t('.preventprivilegesave') %> </h2>
-
-      <ul>
-      <% @privilege.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+<%= render 'shared/error_messages', :target => @privilege, :model => t('privilegemodel.modelname') %>
   <ul>
     <li class="form_header">
       <h2><%= t('.manageprivilegeinformation') %></h2>
@@ -26,7 +15,7 @@
     <li>
       <%= f.label t('.objectmanaged') %>
       <% controllers_array = Privilege::CONTROLLERS.map {|priv_controller| [priv_controller.first, priv_controller.last[1]] } %>
-      <%= f.collection_select :controller, controllers_array, :first, :last, prompt: t('.objectmanaged') %>
+      <%= f.collection_select :controller, controllers_array, :first, :last, prompt: t('.selectaresource') %>
     </li>
     <li>
       <%= f.label :operations %>

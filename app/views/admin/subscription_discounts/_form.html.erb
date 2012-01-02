@@ -1,32 +1,46 @@
-<%= form.error_messages %>
-<fieldset>
-
-  <%= form.label :name %>
-  <%= form.text_field :name %>
-
-  <%= form.label :code %>
-  <%= form.text_field :code %>
-
-  <%= form.label :amount %>
-  <%= form.text_field :amount %>
-
-  <%= form.label :percent %>
-  <%= form.check_box :percent %>
-
-  <%= form.label :start_on %>
-  <%= form.text_field :start_on %>
-
-  <%= form.label :end_on %>
-  <%= form.text_field :end_on %>
-
-  <%= form.label :apply_to_recurring %>
-  <%= form.check_box :apply_to_recurring %>
-
-  <%= form.label :apply_to_setup %>
-  <%= form.check_box :apply_to_setup %>
-
-  <%= form.label :trial_period_extension %>
-  <%= form.text_field :trial_period_extension %>
-
-</fieldset>
-<%= submit_tag %>
+<%= render 'shared/error_messages', :target => @subscription_discount, :model => t('subscriptiondiscountmodel.modelname') %>
+  <ul>
+    <li class="form_header">
+      <h2><%= t('.managesubscriptiondiscounts') %></h2>
+    </li>
+    <li>
+      <%= form.label :name %>
+      <%= form.text_field :name %>
+    </li>
+    <li>
+      <%= form.label :code %>
+      <%= form.text_field :code %>
+    </li>
+    <li>
+      <%= form.label :amount %>
+      <%= form.text_field :amount %>
+    </li>
+    <li>
+      <%= form.label :percent %>
+      <%= form.check_box :percent %>
+    </li>
+    <li>
+      <%= form.label :start_on %>
+      <%= form.text_field :start_on %>
+    </li>
+    <li>
+      <%= form.label :end_on %>
+      <%= form.text_field :end_on %>
+    </li>
+    <li>
+      <%= form.label :apply_to_recurring %>
+      <%= form.check_box :apply_to_recurring %>
+    </li>
+    <li>
+      <%= form.label :apply_to_setup %>
+      <%= form.check_box :apply_to_setup %>
+    </li>
+    <li>
+      <%= form.label :trial_period_extension %>
+      <%= form.text_field :trial_period_extension %>
+    </li>
+    <li>
+      <%= form.submit %>
+    </li>
+    <li class="bottom"></li>
+  </ul>

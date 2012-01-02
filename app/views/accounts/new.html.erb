@@ -32,8 +32,14 @@
     </li>
     <%= account.fields_for :admin do |admin| %>
     <li>
+      <%= admin.label t('users.form.name') %>
+      <%= admin.text_field :first_name, :size => "15" %>
+      <%= admin.text_field :last_name, :size => "15" %>
+      <%= admin.text_field :middle_name, :size => "3" %>
+    </li>
+    <li>
       <%= admin.label :email %>
-      <%= admin.text_field :email, size:50 %>
+      <%= admin.email_field :email, size:50 %>
     </li>
     <li>
       <%= admin.label :password %>
@@ -48,7 +54,7 @@
   </ul>
   
   <% if @account.needs_payment_info? %>
-    <%= render :partial => "shared/credit_card_form" %>
+    <%= render :partial => "shared/credit_card_form", :locals => {:signup => true } %>
   <% end %>
   
   <ul>

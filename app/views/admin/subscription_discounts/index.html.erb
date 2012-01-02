@@ -1,16 +1,5 @@
-<h1><%= @page_title = t('.discounts') %></h1>
-<%= link_to(t('addnewdiscount'), :action => 'new') %>
-<table id="discounts">
-  <tr>
-    <th><%= t('.name') %></th>
-    <th><%= t('.code') %></th>
-    <th><%= t('.amount') %></th>
-  </tr>
-  <% @subscription_discounts.each do |discount| %>
-    <tr>
-      <td><%= link_to(h(discount.name), [:admin, discount]) %></td>
-      <td><%= link_to(h(discount.code), [:admin, discount]) %></td>
-      <td><%= discount_label(discount) %></td>
-    </tr>
-  <% end %>
-</table>
+<% @page_title = t('.discounts') %>
+<div class="standard_list subscription_discount_list">
+  <%= render(partial: 'shared/menubar', locals: {:indexpath => admin_subscription_discounts_path, :newpath => new_admin_subscription_discount_path, :addimage => "addprivilege.png", :addtext => t('.addnewdiscount')}) %>
+  <%= render 'subscription_discount_list' %>
+</div>

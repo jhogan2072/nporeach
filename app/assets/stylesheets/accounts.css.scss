@@ -5,6 +5,10 @@
 .accounts {
 
   margin: 0;
+  p {
+      margin: 10px;
+    }
+ 
 
   .genericmessage {
       margin-top: 32px;
@@ -94,4 +98,46 @@
     }
 
   }
+  .standard_list {
+    table {width: 630px;}
+  }
+  .standard_form {
+    li{
+      min-height:40px;
+
+      .creditexpmonth {
+        width:60px;;
+      }
+      .creditexpyear {
+        width:100px;;
+      }
+
+      h3 {margin-left:50px}
+      
+      .submit {
+        display:inline-block;
+      }
+
+      .inline_link {
+        line-height:20px;
+        margin:5px;
+        padding:5px;
+        width: 60px;
+        display:inline-block;
+      }
+      
+      .inline {
+        margin-left:10px;
+        margin-right: 10px;
+        display:inline-block;
+      }
+      span {
+        line-height:40px;
+      }
+    }
+    .bottom {
+      min-height:0px;
+    }
+  }
+  .section_title { border:0 }
 }

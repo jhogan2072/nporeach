@@ -5,7 +5,8 @@ class SubscriptionPlan < ActiveRecord::Base
   
   # renewal_period is the number of months to bill at a time
   # default is 1
-  validates_numericality_of :renewal_period, :trial_period, :only_integer => true, :greater_than => 0
+  validates_numericality_of :renewal_period, :only_integer => true, :greater_than => 0
+  validates_numericality_of :trial_period, :only_integer => true, :greater_than_or_equal_to => 0
   validates_presence_of :name
   
   attr_accessor :discount
@@ -14,9 +15,9 @@ class SubscriptionPlan < ActiveRecord::Base
     "#{self.name} - #{number_to_currency(self.amount)} / month"
   end
   
-  def to_param
-    self.name
-  end
+  #def to_param
+  #  self.name
+  #end
   
   def amount(include_discount = true)
     include_discount && @discount && @discount.apply_to_recurring? ? self[:amount] - @discount.calculate(self[:amount]) : self[:amount]
@@ -32,6 +33,14 @@ class SubscriptionPlan < ActiveRecord::Base
   
   def revenues
     @revenues ||= subscriptions.calculate(:sum, :amount, :group => 'subscriptions.state')
+  end
+
+  def self.search(search)
+    if search #&& column_name && self.column_names.include?(column_name)
+      where('name LIKE ?', "%#{search}%")
+    else
+      scoped
+    end
   end
   
 end

@@ -1,0 +1,26 @@
+<div class="toolbar">
+  <div class="menubuttons">
+    <a href="<%= newpath %>" title="<%= addtext %>"><%= image_tag(addimage) %>
+      <br/><%= addtext %>
+    </a>
+    <%= form_tag indexpath, :method => :get do %>
+      <%= hidden_field_tag :direction, params[:direction] %>
+      <%= hidden_field_tag :sort, params[:sort] %>
+      <%= search_field_tag :search, params[:search] %>
+      <%= submit_tag "Search", :name => nil %>
+    <% end %>
+    <a href="#" title="<%= t('common.print') %>" class="rightbutton"><%= image_tag("print.png") %>
+      <br/><%= t('common.print') %>
+    </a>
+    <a href="#" title="<%= t('common.emaillist') %>" class="rightbutton"><%= image_tag("email.png") %>
+      <br/><%= t('common.emaillist') %>
+    </a>
+    <a href="#" title="<%= t('common.export') %>" class="rightbutton"><%= image_tag("export.png") %>
+      <br/><%= t('common.export') %>
+    </a>
+    <a href="#" title="<%= t('common.fields') %>" class="rightbutton"><%= image_tag("fields.png") %>
+      <br/><%= t('common.fields') %>
+    </a>
+  </div>
+</div>
+

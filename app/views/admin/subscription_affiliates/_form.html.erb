@@ -1,18 +1,25 @@
 <p>
   <%= t('.rateispercentage') %>
 </p>
-
-<%= form.error_messages %>
-<fieldset>
-
-  <%= form.label :name %>
-  <%= form.text_field :name %>
-
-  <%= form.label :token %>
-  <%= form.text_field :token %>
-
-  <%= form.label :rate %>
-  <%= form.text_field :rate %>
-
-</fieldset>
-<%= submit_tag %>
+<%= render 'shared/error_messages', :target => @subscription_affiliate, :model => t('subscriptionaffiliatemodel.modelname') %>
+  <ul>
+    <li class="form_header">
+      <h2><%= t('.managesubscriptionaffiliates') %></h2>
+    </li>
+    <li>
+      <%= form.label :name %>
+      <%= form.text_field :name %>
+    </li>
+    <li>
+      <%= form.label :token %>
+      <%= form.text_field :token %>
+    </li>
+    <li>
+      <%= form.label :rate %>
+      <%= form.text_field :rate %>
+    </li>
+    <li>
+      <%= form.submit %>
+    </li>
+    <li class="bottom"></li>
+  </ul>

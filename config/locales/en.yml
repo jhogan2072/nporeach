@@ -2,6 +2,13 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  activerecord:
+    errors:
+      template:
+        header:
+          one: "1 error prohibited this %{model} from being saved:"
+          other: "%{count} errors prohibited this %{model} from being saved:"
+
   helpers:
     submit:
       create: "Create %{model}"
@@ -13,6 +20,12 @@ en:
     new: "New"
     name: "Name"
     description: "Description"
+    print: "Print"
+    emaillist: "Email List"
+    export: "Export"
+    fields: "Fields"
+    cancel: "Cancel"
+    savechanges: "Save Changes"
 
   subscriptionplandesc1: "Try Arts Helper for 30 days absolutely free"
   subscriptionplandesc2: "Choose this option if you're unsure about committing for a full year"
@@ -23,19 +36,43 @@ en:
     onlypictures: "--- you can only upload pictures"
     
   accountmodel:
+    modelname: "account"
     domainnotavailable: "The domain is not available, please choose another"
     adminmissing: "You must define an administrator for this account"
 
+  usermodel:
+    modelname: "user"
+
+  rolemodel:
+    modelname: "role"
+  
+  defaultrolemodel:
+    modelname: "default_role"
+
   privilegemodel:
+    modelname: "privilege"
     administration: "Administration"
     privileges: "Privileges"
     roles: "Roles"
+    accounts: "Accounts"
     users: "Users"
     schedules: "Schedules"
     registrations: "Registrations"
     payments: "Payments"
     employees: "Employees"
     students: "Students"
+
+  subscriptionmodel:
+    modelname: "subscription"
+
+  subscriptionplanmodel:
+    modelname: "subscription plan"
+
+  subscriptiondiscountmodel:
+    modelname: "subscription discount"
+
+  subscriptionaffiliatemodel:
+    modelname: "subscription affiliate"
 
   accountscontroller:
     accountupdated: "Your account has been updated."
@@ -60,29 +97,55 @@ en:
       payments: "Payments"
 
   admin:
+    default_roles:
+      default_roles: "Default Roles"
+      index:
+        managedefaultroles: "Manage Default Roles"
+        adddefaultrole: "Add Role"
+      form:
+        defineadefaultrole: "Define a Default Role"
+      edit:
+        editingdefaultrole: "Editing a Default Role"
+      new:
+        newdefaultrole: "New Default Role"
+
     default_privileges:
+      default_privileges: "Default Privileges"
       edit:
         editingdefaultprivilege: "Editing a Default Privilege"
       index:
+        adddefaultprivilege: "Add Default Privilege"
         managedefaultprivileges: "Manage Default Privileges"
       new:
         newdefaultprivilege: "New Default Privilege"
+
     subscription_affiliates:
+      subscription_affiliates: "Subscription Affiliates"
       accounts:
         show: "View Account"
         index: "Accounts"
       form:
         rateispercentage: "The rate is a percentage, so 0.1 is a 10% affiliate fee."
+        managesubscriptionaffiliates: "Manage Subscription Affiliates"
       edit:
         editaffiliate: "Edit Affiliate"
       new:
         createaffiliate: "Create Affiliate"
+        newaffiliate: "New Affiliate"
       index:
         affiliates: "Affiliates"
         addnewaffiliate: "Add New Affiliate"
       show:
         viewaffiliate: "View Affiliate"
+      subscription_affiliate_list:
+        affiliateurl: "Affiliate URL"
+        rate: "Rate"
+        suredeletesubscriptionaffiliate: "Are you sure you want to delete this affiliate?"
+
     subscription_discounts:
+      subscription_discounts: "Subscription Discounts"
+      form:
+        managesubscriptiondiscounts: "Manage Subscription Discounts"
       edit:
         editdiscount: "Edit Discount"
       index:
@@ -93,37 +156,54 @@ en:
         amount: "Amount"
       new:
         creatediscount: "Create Discount"
+        newdiscount: "New Discount"
       show:
         viewdiscount: "View discount"
+      subscription_discount_list:
+        suredeletesubscriptiondiscount: "Are you sure you want to delete this discount?"
+
     subscription_plans:
+      subscription_plans: "Subscription Plans"
+      form:
+        managesubcriptionplans: "Manage Subscription Plans"
       edit:
         editplan: "Edit Plan"
       index:
-        plans: "Plans"
-        addnewplan: "Add a new plan"
+        plans: "Subscription Plans"
+        addnewplan: "Add New Plan"
       new:
-        createplan: "Create Plan"
+        createplan: "Create Subscription Plan"
+        newplan: "New Subscription Plan"
       show:
         viewplan: "View Plan"
         revenuepermonth: "Revenue per Month"
+      subscription_plan_list:
+        amount: "Amount"
+        suredeletesubscriptionplan: "Are you sure you want to delete this plan?"
 
     subscriptions:
       edit:
         editsubscription: "Edit Subscription"
         changesmade: "Changes made to the assigned plan or the assigned discount (or both) will override any changes made to the amount."
+        renewaldate: "Renewal Date"
       index:
         subscriptions: "Subscriptions"
         revenuesummary: "Revenue Summary"
         lastmonth: "Last Month"
         last30days: "Last 30 Days"
         thismonth: "This Month"
+      subscription_list:
         account: "Account"
         amount: "Amount"
         created: "Created"
         nextrenewal: "Next Renewal"
+        plan: "Plan"
+        discount: "Discount"
         state: "State"
+        charge: "Charge"
       show:
         viewsubscription: "View Subscription"
+        transactions: "Transactions"
         usethisform: "Use this form to make a one-time charge against the card on file for the subscription.  A transaction will happen as soon as you submit this form.  Amounts should be entered as dollars and cents, without the dollar sign or commas: e.g., 1.50 to charge $1.50."
         chargesubscription: "Charge Subscription"
         errorswhilecharging: "Errors encountered while charging the card:"
@@ -135,6 +215,11 @@ en:
         pleaseenter: "Please enter a number greater than 0"
         areyousure: "Are you sure you want to charge  + %{charge} + ?"
 
+  admins:
+    sessions:
+      new:
+        adminlogin: "Administrative Login"
+
   content:
     index:
       headertext1: "Music and Art School Management Software that thinks like you do"
@@ -142,6 +227,7 @@ en:
 
   users:
     edituser: "Edit User"
+    edituserroles: "Edit User Roles"
     newuser: "New User"
     users: "Users"
     missingpassword: "Please enter a password"
@@ -149,10 +235,20 @@ en:
       preventusersave: " prohibited this user from being saved:"
       manageuserinformation: "Manage User Information"
       name: "Name (first, last, middle)"
+      password: "Password"
+      confirmpassword: "Password confirmation"
+      admin: "Account Administrator"
       updateinformation: "Update information"
     index:
       manageusers: "Manage Users"
       adduser: "Add User"
+    new:
+      upgradeyouraccount: "upgrade your account"
+      maxuserspart1: "You have reached the maximum number of users you can have with your account level.  You can either delete some of your users or "
+      maxuserspart2: " to be able to create a new user."
+    user:
+      suredeleteuser: "Are you sure you want to delete this user?"
+    user_list:
       name: "Name"
       email: "Email"
       address: "Address"
@@ -160,7 +256,6 @@ en:
       state: "State"
       zip: "Zip"
       homephone: "Home Phone"
-      suredeleteuser: "Are you sure you want to delete this user?"
 
     edit:
       editinguser: "Editing a User"
@@ -169,7 +264,9 @@ en:
     passwords:
       changeyourpassword: "Change your password"
       changepassword: "Change Password"
-    roles:
+      resetuserspassword: "Reset this user's password"
+    edit_roles:
+      manageuserroles: "Manage User Roles"
       updateroles: "Update Roles"
     sessions:
       new:
@@ -180,16 +277,18 @@ en:
     newrole: "New Role"
     editrole: "Edit Role"
     form:
-      manageroleinformation: "Manage Role Information:"
+      manageroleinformation: "Define a Role:"
       preventrolesave: "  prevented this role from being saved:"
+      rolename: "Role Name"
     edit:
       editingrole: "Editing a Role"
     index:
       manageroles: "Manage Roles"
       addrole: "Add Role"
-      suredeleterole: "Are you sure you want to delete this role?"
     new:
       newrole: "Creating a new Role"
+    role_list:
+      suredeleterole: "Are you sure you want to delete this role?"
 
   privileges:
     privileges: "Privileges"
@@ -197,40 +296,74 @@ en:
     editprivilege: "Edit Privilege"
     form:
       objectmanaged: "Resource Managed"
+      selectaresource: "Select a Resource"
       selectaction: "Select an activity"
       manageprivilegeinformation: "Defining a Privilege"
       preventprivilegesave: " prevented this privilege from being saved:"
     edit:
       editingprivilege: "Editing a Privilege"
     index:
-      menutext: "Menu Text"
       manageprivileges: "Manage Privileges"
       addprivilege: "Add Privilege"
-      suredeleteprivilege: "Are you sure you want to delete this privilege?"
     new:
       newprivilege: "Creating a new Privilege"
+    privilege_list:
+      menutext: "Menu Text"
+      suredeleteprivilege: "Are you sure you want to delete this privilege?"
 
   accounts:
+    accounts: "Accounts"
     new:
       setupyouraccount: "Step 1: Set up your account"
       discount: "Discount Code"
       enteradmininfo: "Step 2: Designate an administrator"
-      step2desc: "Enter an email and password for the administrator account. This user will be responsible for managing your account, adding additional users, etc."
+      step2desc: "Enter a name, email and password for the administrator account. This user will be responsible for managing your account, adding additional users, etc."
       business_name: "Business Name"
       createaccount: "Step %{stepno}: Create your account" 
       createanaccount: "Create An Account"
       createmyaccount: "Create my account"
+    edit:
+      editorganization: "Edit Organization"
+      organizationname: "Organization Name"
+    billing:
+      billinginformation: "Billing Information"
+      editbillinginformation: "Edit Billing Information"
+      viewchangebilling: "View/Change Billing Information"
+      currentplan: "Current Plan:"
+      clicktochange: "Click the plan name to change plans"
+      thankyoufortrying: "Thank you for trying Arts Helper!"
+      trialwillexpirein: "  Your trial account will expire in "
+      willhavenoaccess: ", at which time you will no longer have access to your account.  To maintain access to your account, enter your credit card information below.  Your first charge will happen on "
+      trialhasexpired: "  Your trial account has expired.  To regain access to your account, enter your credit card information below.  Your first charge will happen immediately, and you will be billed monthly thereafter."
+      or: "or"
     siteaddress:
       customerlogin: "Customer Login"
       enteraddress: "Enter your site address and we'll connect you to your account"
       login: "Log In"
       siteaddressexplain_html: "Every account has a unique site address which looks like &lt;yourname&gt;.artshelper.com, where &lt;yourname&gt; is replaced by a unique word for your business. This is the address you'll use to login to your account once it has been created.  Please enter just the first part of the address in the field above (e.g. yourname)."
+    plan:
+      changeplan: "Change Plan"
+      chooseanewplan: "Select a new pricing plan"
+      nextrenewal: "You can change your plan level at any time.  The position limits and other features of the new plan that you select will be effective as soon as you make the change, but your bill amount will not change until your next bill date.  Your next bill date is "
+      pricingplan: "Pricing Plan"
     plans:
       plans: "Pricing Plans"
       plansintro: "If you've never experienced Arts Helper, choose the Try It Free option and give it a test drive for 30 days.  When you're ready, just return to this page and choose from one of our convenient pricing options"
       hereareourplans: "Choose from one of our convenient pricing plans"
     thanks:
       accountcreated: "Account Created - Thank You!"
+    cancel:
+      cancelaccount: "Cancel Account"
+      deletemyaccount: "Delete My Account"
+      thiswilldeletedata: "You are about to cancel your account.  This will <strong>permanently delete all your data</strong>.  Once you do this, you will no longer have access to your data, so be sure this is really what you want to do. "
+      perhapsswitchplan: "Instead of canceling your account, perhaps you'd like to just switch your plan."
+    show:
+      chooseanoption: "Choose from one of the following actions"
+      manageaccountinformation: "Manage Account Information"
+      editaccountinformation: "Modify Organization Name"
+      changebillingplan: "Change Billing Plan"
+      editpaymentinfo: "Edit Payment Information"
+      cancelplan: "Cancel your subscription"
   
   portlets:
     default_portlet:
@@ -243,7 +376,8 @@ en:
   shared:
     credit_card_form:
       paywithcard: "Pay with a credit card"
-      enterpaymentinfo: "Step %{stepno}: Enter your payment information"
+      stepnumber: "Step %{stepno}: "
+      enterpaymentinfo: "Enter your payment information"
       nameoncard: "Name on Card (First, Last)"
       cardnumber: "Card Number (no spaces)"
       type: "Type"

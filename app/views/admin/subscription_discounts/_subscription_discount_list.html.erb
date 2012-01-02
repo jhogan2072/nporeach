@@ -1,0 +1,18 @@
+<table id="subscription_discounts" class="narrow_list">
+  <tr class="headers">
+    <th class="name"><%= header_link(t('common.name'), "subscription_discounts", "index", "name") %></th>
+    <th class="code"><%= header_link(t('.code'), "subscription_discounts", "index", "code") %></th>
+    <th class="amount"><%= header_link(t('.amount'), "subscription_discounts", "index", "amount") %></th>
+    <th class="editdelete"><a href="#" class="column_header"></a></th>
+    <th class="editdelete"><a href="#" class="column_header"></a></th>
+  </tr>
+  <% @subscription_discounts.each do |subscription_discount| %>
+    <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+      <td class="name"><%=link_to subscription_discount.name, edit_admin_subscription_discount_path(subscription_discount) %></td>
+      <td class="code"><%= link_to(h(subscription_discount.code), [:admin, subscription_discount]) %></td>
+      <td class="amount"><%= discount_label(subscription_discount) %></td>
+      <td align="center"><%= link_to(t('common.edit'), edit_admin_subscription_discount_path(subscription_discount)) %></td>
+      <td align="center"><%= link_to(t('common.delete'), [:admin, subscription_discount], :method => 'delete', :confirm => t('.suredeletesubscriptiondiscount')) %></td>
+  </tr>
+  <% end %>
+</table>

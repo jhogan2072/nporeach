@@ -1,0 +1,18 @@
+<table id="subscription_affiliates">
+  <tr class="headers">
+    <th class="name"><%= header_link(t('common.name'), "subscription_affiliates", "index", "name") %></th>
+    <th class="affiliateurl"><%= header_link(t('.affiliateurl'), "subscription_affiliates", "index", "token") %></th>
+    <th class="rate"><%= header_link(t('.rate'), "subscription_affiliates", "index", "rate") %></th>
+    <th class="editdelete"><a href="#" class="column_header"></a></th>
+    <th class="editdelete"><a href="#" class="column_header"></a></th>
+  </tr>
+  <% @subscription_affiliates.each do |subscription_affiliate| %>
+    <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+      <td class="name"><%=link_to subscription_affiliate.name, edit_admin_subscription_affiliate_path(subscription_affiliate) %></td>
+      <td class="affiliateurl"><%= plans_url(:host => Saas::Config.base_domain, :ref => subscription_affiliate.token) %></td>
+      <td class="rate"><%= number_to_percentage(subscription_affiliate.rate * 100, :precision => 0) %></td>
+      <td align="center"><%= link_to(t('common.edit'), edit_admin_subscription_affiliate_path(subscription_affiliate)) %></td>
+      <td align="center"><%= link_to(t('common.delete'), [:admin, subscription_affiliate], :method => 'delete', :confirm => t('.suredeletesubscriptionaffiliate')) %></td>
+  </tr>
+  <% end %>
+</table>

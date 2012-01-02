@@ -1,5 +1,6 @@
 class Admin::AccountsController < ApplicationController
   include Saas::ControllerHelpers
+  layout 'superuser'
   
   protected
   

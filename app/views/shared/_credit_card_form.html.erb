@@ -1,37 +1,12 @@
-  <% if @creditcard.errors.any? %>
-    <div class="errorExplanation">
-      <h2><%= t('.paymentinfoerrors') %></h2>
-      <ul>
-        <%= raw(@creditcard.errors.full_messages.map {|m| content_tag('li', h(m))}) %>
-      </ul>
-    </div>
-  <% end %>
-
-  <% if @address.errors.any? %>
-    <div class="errorExplanation">
-      <h2><%= t('addresserrors') %></h2>
-      <ul>
-        <%= raw(@address.errors.full_messages.map {|m| content_tag('li', h(m))}) %>
-      </ul>
-    </div>
-  <% end %>
-
-  <% if @subscription && @subscription.errors.any? %>
-    <div class="errorExplanation">
-      <h2><%= t('.paymenterrors') %></h2>
-      <ul>
-        <%= raw(@subscription.errors.full_messages.map {|m| content_tag('li', h(m))}) %>
-      </ul>
-    </div>
-  <% end %>
-
-
+<%= render 'shared/error_messages', :target => @creditcard, :model => t('accountsmodel.modelname') %>
+<%= render 'shared/error_messages', :target => @address, :model => t('accountsmodel.modelname') %>
+<%= render 'shared/error_messages', :target => @subscription, :model => t('accountsmodel.modelname') %>
 <ul>
   <li class="form_header">
-    <h2><%= t('shared.credit_card_form.enterpaymentinfo', stepno: 3) %></h2>
+    <h2><%= signup==true ? t('shared.credit_card_form.stepnumber', stepno: 3) : "" %><%= t('shared.credit_card_form.enterpaymentinfo') %></h2>
   </li>
   <% if @subscription %>
-    <h2><input type="radio" name="paypal" value=" " <%= 'checked="checked"' unless @subscription.paypal? %>><%= t('.paywithcard') %>
+    <li><input type="radio" name="paypal" value=" " <%= 'checked="checked"' unless @subscription.paypal? %>><%= t('.paywithcard') %></li>
   <% end %>
   <li>
     <label><%= t('shared.credit_card_form.nameoncard') %></label>
@@ -48,8 +23,8 @@
   </li>
   <li>
     <label><%= t('shared.credit_card_form.expiration') %></label>
-    <%= select :creditcard, :month, (1 .. 12) %>
-    <%= select :creditcard, :year, (Time.now.year .. 10.years.from_now.year) %>
+    <%= select(:creditcard, :month, (1 .. 12), {}, {:class => "creditexpmonth"}) %>
+    <%= select :creditcard, :year, (Time.now.year .. 10.years.from_now.year),{}, {:class => "creditexpyear"} %>
   </li>
   <li>
     <label><%= t('shared.credit_card_form.cvv') %></label>
@@ -84,11 +59,8 @@
     <label><%= t('shared.credit_card_form.phone') %></label>
     <%= text_field :address ,:phone %>
   </li>
+<% if @subscription %>
+  <li><input type="radio" name="paypal" value="true" <%= 'checked="checked"' if @subscription.paypal? %>> Pay with PayPal </li>
+<% end %>
   <li class="bottom"></li>
 </ul>
-
-<% if @subscription %>
-  <fieldset>
-    <h2><input type="radio" name="paypal" value="true" <%= 'checked="checked"' if @subscription.paypal? %>> Pay with PayPal </h2>
-  </fieldset>
-<% end %>

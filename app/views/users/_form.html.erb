@@ -1,16 +1,5 @@
 <%= form_for(@user, :html => {:class => "standard_form wide_form", :multipart => true}) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %><%= t('.preventusersave') %></h2>
-
-      <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+<%= render 'shared/error_messages', :target => @user, :model => t('usermodel.modelname') %>
   <ul>
     <li class="form_header">
       <h2><%= t('.manageuserinformation') %></h2>
@@ -50,22 +39,30 @@
       <%= f.text_field :mobile_phone %>
     </li>
     <li>
-      <%= f.label :email %>
-      <%= f.text_field :email %>
+      <%= f.label t('users.user_list.email') %>
+      <%= f.email_field :email %>
     </li>
-     <% if action_name == "new" %>
+     <% if action_name == "new" || action_name == "create" %>
     <li>
-      <%= f.label :password %>
+      <%= f.label t('.password') %>
       <%= f.password_field :password %>
     </li>
     <li>
-        <%= f.label :password_confirmation %>
+        <%= f.label t('.confirmpassword') %>
         <%= f.password_field :password_confirmation %>
     </li>
     <% end %>
     <li>
-      <%= f.label :admin %>
+      <%= f.label t('.admin') %>
       <%= f.check_box :admin %>
+    </li>
+    <li>
+      <%= f.label t('roles.roles') %>
+      <% Role.all.each do |role| %>
+        <%= check_box_tag 'user[role_ids][]', role.id, @user.roles.include?(role) %>
+        <%= content_tag("span", role.name, :class => "checkbox_label") %>
+      <% end %>
+      <%= hidden_field_tag 'user[role_ids][]', '' %>
     </li>
     <li>
       <%= f.submit %>

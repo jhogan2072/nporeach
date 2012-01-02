@@ -1,5 +1,5 @@
-<h1><%= @page_title = t('.createaffiliate') %></h1>
+<% @page_title = t('.createaffiliate') %>
 
-<%= form_for [:admin, @subscription_affiliate] do |form| %>
+<%= form_for([:admin, @subscription_affiliate], :html => {:class => "standard_form", :multipart => true}) do |form| %>
   <%= render :partial => 'form', :object => form %>
 <% end %>

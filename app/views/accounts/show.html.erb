@@ -1,8 +1,20 @@
-Hi, <%= @account.name %>!
-
-<ul>
-  <li><%= link_to('Edit account', edit_account_url) %></li>
-  <li><%= link_to('Change plan', plan_account_url) %></li>
-  <li><%= link_to('Billing info', billing_account_url) %></li>
-  <li><%= link_to('Cancel plan', cancel_account_url) %></li>
-</ul>
+<% @page_title = t('.manageaccountinformation') %>
+<div class="standard_list">
+  <table>
+    <tr class="section_title">
+      <td class="section_title"><h3><%= t('.chooseanoption') %></h3></td>
+    </tr>
+    <tr class="list_line_odd">
+      <td><%= link_to(t('.editaccountinformation'), edit_account_url) %></td>
+    </tr>
+    <tr class="list_line_even">
+      <td><%= link_to(t('.changebillingplan'), plan_account_url) %></td>
+    </tr>
+    <tr class="list_line_odd">
+      <td><%= link_to(t('.editpaymentinfo'), billing_account_url) %></td>
+    </tr>
+    <tr class="list_line_even">
+      <td><%= link_to(t('.cancelplan'), cancel_account_url) %></td>
+    </tr>
+  </table>
+</div>

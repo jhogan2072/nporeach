@@ -1,7 +1,17 @@
-<h1>Change account settings</h1>
-
-<%= form_for @account, :url => { :action => 'update' }, :html => { :method => :put } do |f| %>
-  <%= f.error_messages %>
-  <%= f.text_field :name %>
-  <%= submit_or_cancel :action => 'show' %>
+<% @page_title = t('accounts.show.editaccountinformation') %>
+<%= form_for @account, :url => { :action => 'update' }, :html => { :method => :put, :class => "standard_form" } do |f| %>
+<%= render 'shared/error_messages', :target => @account, :model => t('accountmodel.modelname') %>
+  <ul>
+    <li class="form_header">
+      <h2><%= t('accounts.show.editaccountinformation') %></h2>
+    </li>
+    <li>
+      <%= f.label t('.organizationname') %>
+      <%= f.text_field :name %>
+    </li>
+    <li>
+      <%= f.submit %>
+    </li>
+    <li class="bottom"></li>
+  </ul>
 <% end %>

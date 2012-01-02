@@ -3,6 +3,7 @@ class Account < ActiveRecord::Base
   has_many :users, :dependent => :destroy
   has_many :roles, :dependent => :destroy
   has_one :admin, :class_name => "User", :conditions => { :admin => true }
+  after_create :create_roles_and_privileges
   accepts_nested_attributes_for :admin
 
   #
@@ -43,6 +44,28 @@ class Account < ActiveRecord::Base
   end
 
   protected
+    def create_roles_and_privileges
+      DefaultPrivilege.all.each do |default_privilege|
+        privilege = self.privileges.new
+        privilege.update_attributes(default_privilege.attributes)
+        grant = privilege.grants.new
+
+      end
+      DefaultRole.all.each do |default_role|
+        role = self.roles.new
+        role.update_attributes(default_role.attributes)
+        default_role.default_grants.all.each do |default_grant|
+          grant = role.grants.new
+          grant.privilege_id = Privilege.where("name = ? and account_id = ?", default_grant.default_privilege.name, self.id).first!.id
+          grant.role_id = role.id
+          grant.save!
+       end
+      end
+      # Handle the unlikely case that we can't find a matching privilege for a default_privilege, i.e. the previous insertion failed
+      rescue ActiveRecord::RecordNotFound
+        logger.error("Unable to create a default grant for the #{self.name} account - could be a general database problem.")
+        # TODO: email the sysadmin notifying them of this condition, as it is probably a bad one
+    end
   
     def valid_domain?
       conditions = new_record? ? ['full_domain = ?', self.full_domain] : ['full_domain = ? and id <> ?', self.full_domain, self.id]

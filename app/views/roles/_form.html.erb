@@ -1,32 +1,20 @@
-<%= form_for(@role, :html => {:class => "standard_form", :multipart => true}) do |f| %>
-  <% if @role.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@role.errors.count, "error") %><%= t('.preventrolesave') %></h2>
-
-      <ul>
-      <% @role.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+<%= form_for(@role, :html => {:class => "standard_form role_form", :multipart => true}) do |f| %>
+<%= render 'shared/error_messages', :target => @role, :model => t('rolemodel.modelname') %>
   <ul>
     <li class="form_header">
       <h2><%= t('.manageroleinformation') %></h2>
     </li>
     <li>
-      <%= f.label :name %><br />
+      <%= f.label t('.rolename') %>
       <%= f.text_field :name %>
     </li>
-    <li>
-      <%= f.label :privileges %>
-      <% current_account.privileges.all.each do |privilege| %>
-        <%= check_box_tag 'role[privilege_ids][]', privilege.id, @role.privileges.include?(privilege), :class => "checkbox_group" %>
-        <%= privilege.name %>
-      <% end %>
-      <%= hidden_field_tag 'role[privilege_ids][]','' %>
+    <li class="table_container">
+    <% if @privileges %>
+      <table>
+        <%= render(partial: 'privilege_table', locals: {:privhash => @privileges}) %>
+      </table>
     </li>
+    <% end %>
     <li>
       <%= f.submit %>
     </li>
