@@ -36,6 +36,9 @@ class User < ActiveRecord::Base
     return fullname
   end
 
+  def can?(controller, action)
+    roles.includes(:privileges).for(controller, action).any?
+  end
   protected
     # Checks whether a password is needed or not. For validations only.
     # Passwords are always required if it's a new record, or if the password
@@ -44,8 +47,6 @@ class User < ActiveRecord::Base
       !persisted? || !password.nil? || !password_confirmation.nil?
     end
 
-    def can?(controller, action)
-      roles.includes(:privileges).for(controller, action).any?
-    end
+
 
 end

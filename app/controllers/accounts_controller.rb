@@ -183,7 +183,7 @@ class AccountsController < InheritedResources::Base
     end
     
     def build_plan
-      redirect_to :action => "plans" unless @plan = SubscriptionPlan.find_by_name(params[:plan])
+      redirect_to :action => "plans" unless @plan = SubscriptionPlan.find(params[:plan])
       @plan.discount = @discount
       @account.plan = @plan
     end

@@ -9,7 +9,6 @@ Account	app/models/account.rb	/^class Account < ActiveRecord::Base$/;"	c
 AccountTest	test/unit/account_test.rb	/^class AccountTest < ActiveSupport::TestCase$/;"	c
 AccountsController	app/controllers/accounts_controller.rb	/^class AccountsController < InheritedResources::Base$/;"	c
 AccountsControllerTest	test/functional/accounts_controller_test.rb	/^class AccountsControllerTest < ActionController::TestCase$/;"	c
-AccountsHelper	app/helpers/accounts_helper.rb	/^module AccountsHelper$/;"	m
 AccountsHelperTest	test/unit/helpers/accounts_helper_test.rb	/^class AccountsHelperTest < ActionView::TestCase$/;"	c
 ActionView	vendor/plugins/country_select/lib/country_select.rb	/^module ActionView$/;"	m
 ActiveMerchant	vendor/plugins/active_merchant_extensions/lib/active_merchant_extensions.rb	/^module ActiveMerchant #:nodoc:$/;"	m
@@ -41,7 +40,6 @@ Assignment	app/models/assignment.rb	/^class Assignment < ActiveRecord::Base$/;"	
 AssignmentTest	test/unit/assignment_test.rb	/^class AssignmentTest < ActiveSupport::TestCase$/;"	c
 AssignmentsController	app/controllers/assignments_controller.rb	/^class AssignmentsController < InheritedResources::Base$/;"	c
 AssignmentsControllerTest	test/functional/assignments_controller_test.rb	/^class AssignmentsControllerTest < ActionController::TestCase$/;"	c
-AssignmentsHelper	app/helpers/assignments_helper.rb	/^module AssignmentsHelper$/;"	m
 AssignmentsHelperTest	test/unit/helpers/assignments_helper_test.rb	/^class AssignmentsHelperTest < ActionView::TestCase$/;"	c
 AuthorizeNetCimGateway	vendor/plugins/active_merchant_extensions/lib/gateways/authorize_net_cim.rb	/^    class AuthorizeNetCimGateway < Gateway$/;"	c	class:ActiveMerchant.Billing
 Base	vendor/plugins/saas/lib/saas.rb	/^  module Base$/;"	m	class:Saas
@@ -82,7 +80,6 @@ Grant	app/models/grant.rb	/^class Grant < ActiveRecord::Base$/;"	c
 GrantTest	test/unit/grant_test.rb	/^class GrantTest < ActiveSupport::TestCase$/;"	c
 GrantsController	app/controllers/grants_controller.rb	/^class GrantsController < InheritedResources::Base$/;"	c
 GrantsControllerTest	test/functional/grants_controller_test.rb	/^class GrantsControllerTest < ActionController::TestCase$/;"	c
-GrantsHelper	app/helpers/grants_helper.rb	/^module GrantsHelper$/;"	m
 GrantsHelperTest	test/unit/helpers/grants_helper_test.rb	/^class GrantsHelperTest < ActionView::TestCase$/;"	c
 Helpers	vendor/plugins/country_select/lib/country_select.rb	/^  module Helpers$/;"	m	class:ActionView
 InstanceMethods	vendor/plugins/saas/lib/saas.rb	/^  module InstanceMethods$/;"	m
@@ -101,33 +98,31 @@ PictureTest	test/unit/picture_test.rb	/^class PictureTest < ActiveSupport::TestC
 Portlet	app/models/portlet.rb	/^class Portlet < ActiveRecord::Base$/;"	c
 PortletCategoriesController	app/controllers/portlet_categories_controller.rb	/^class PortletCategoriesController < InheritedResources::Base$/;"	c
 PortletCategoriesControllerTest	test/functional/portlet_categories_controller_test.rb	/^class PortletCategoriesControllerTest < ActionController::TestCase$/;"	c
-PortletCategoriesHelper	app/helpers/portlet_categories_helper.rb	/^module PortletCategoriesHelper$/;"	m
 PortletCategoriesHelperTest	test/unit/helpers/portlet_categories_helper_test.rb	/^class PortletCategoriesHelperTest < ActionView::TestCase$/;"	c
 PortletCategory	app/models/portlet_category.rb	/^class PortletCategory < ActiveRecord::Base$/;"	c
 PortletCategoryTest	test/unit/portlet_category_test.rb	/^class PortletCategoryTest < ActiveSupport::TestCase$/;"	c
 PortletTest	test/unit/portlet_test.rb	/^class PortletTest < ActiveSupport::TestCase$/;"	c
 PortletsController	app/controllers/portlets_controller.rb	/^class PortletsController < InheritedResources::Base$/;"	c
 PortletsControllerTest	test/functional/portlets_controller_test.rb	/^class PortletsControllerTest < ActionController::TestCase$/;"	c
-PortletsHelper	app/helpers/portlets_helper.rb	/^module PortletsHelper$/;"	m
 PortletsHelperTest	test/unit/helpers/portlets_helper_test.rb	/^class PortletsHelperTest < ActionView::TestCase$/;"	c
 Privilege	app/models/privilege.rb	/^class Privilege < ActiveRecord::Base$/;"	c
 PrivilegeTest	test/unit/privilege_test.rb	/^class PrivilegeTest < ActiveSupport::TestCase$/;"	c
 PrivilegesController	app/controllers/privileges_controller.rb	/^class PrivilegesController < InheritedResources::Base$/;"	c
 PrivilegesControllerTest	test/functional/privileges_controller_test.rb	/^class PrivilegesControllerTest < ActionController::TestCase$/;"	c
-PrivilegesHelper	app/helpers/privileges_helper.rb	/^module PrivilegesHelper$/;"	m
 PrivilegesHelperTest	test/unit/helpers/privileges_helper_test.rb	/^class PrivilegesHelperTest < ActionView::TestCase$/;"	c
 RemoveActionFromPrivilege	db/migrate/20111217134939_remove_action_from_privilege.rb	/^class RemoveActionFromPrivilege < ActiveRecord::Migration$/;"	c
 RemoveMenuItemIdFromPrivileges	db/migrate/20111218232242_remove_menu_item_id_from_privileges.rb	/^class RemoveMenuItemIdFromPrivileges < ActiveRecord::Migration$/;"	c
+RenameDefaultPrivilege	db/migrate/20111230224043_rename_default_privilege.rb	/^class RenameDefaultPrivilege < ActiveRecord::Migration$/;"	c
 RenameSaasAdmin	db/migrate/20111216113937_rename_saas_admin.rb	/^class RenameSaasAdmin < ActiveRecord::Migration$/;"	c
 Response	vendor/plugins/active_merchant_extensions/lib/active_merchant_extensions.rb	/^    class Response$/;"	c	class:ActiveMerchant.Billing
 Role	app/models/role.rb	/^class Role < ActiveRecord::Base$/;"	c
 RoleTest	test/unit/role_test.rb	/^class RoleTest < ActiveSupport::TestCase$/;"	c
 RolesController	app/controllers/roles_controller.rb	/^class RolesController < InheritedResources::Base$/;"	c
 RolesControllerTest	test/functional/roles_controller_test.rb	/^class RolesControllerTest < ActionController::TestCase$/;"	c
-RolesHelper	app/helpers/roles_helper.rb	/^module RolesHelper$/;"	m
 RolesHelperTest	test/unit/helpers/roles_helper_test.rb	/^class RolesHelperTest < ActionView::TestCase$/;"	c
 Saas	vendor/plugins/saas/lib/saas.rb	/^module Saas$/;"	m
 SaasGenerator	vendor/plugins/saas/lib/generators/saas/saas_generator.rb	/^class SaasGenerator < Rails::Generators::Base$/;"	c
+SimpleSearch	lib/simple_search.rb	/^module SimpleSearch$/;"	m
 Subscription	app/models/subscription.rb	/^class Subscription < ActiveRecord::Base$/;"	c
 SubscriptionAddress	app/models/subscription_address.rb	/^class SubscriptionAddress$/;"	c
 SubscriptionAffiliate	app/models/subscription_affiliate.rb	/^class SubscriptionAffiliate < ActiveRecord::Base$/;"	c
@@ -139,7 +134,6 @@ User	app/models/user.rb	/^class User < ActiveRecord::Base$/;"	c
 UserTest	test/unit/user_test.rb	/^class UserTest < ActiveSupport::TestCase$/;"	c
 UsersController	app/controllers/users_controller.rb	/^class UsersController < InheritedResources::Base$/;"	c
 UsersControllerTest	test/functional/users_controller_test.rb	/^class UsersControllerTest < ActionController::TestCase$/;"	c
-UsersHelper	app/helpers/users_helper.rb	/^module UsersHelper$/;"	m
 UsersHelperTest	test/unit/helpers/users_helper_test.rb	/^class UsersHelperTest < ActionView::TestCase$/;"	c
 []	vendor/plugins/saas/lib/extensions/active_merchant.rb	/^  def [](key)$/;"	f	class:ActiveMerchant
 active?	vendor/plugins/saas/lib/saas.rb	/^    def active?$/;"	f	class:InstanceMethods.qualifies_for?
@@ -201,6 +195,15 @@ check_percentage	app/models/subscription_discount.rb	/^    def check_percentage$
 check_user_limit	app/controllers/users_controller.rb	/^    def check_user_limit$/;"	f	class:UsersController
 clear_billing_info	app/models/subscription.rb	/^    def clear_billing_info$/;"	f
 collection	app/controllers/admin/accounts_controller.rb	/^    def collection$/;"	f	class:Admin
+collection	app/controllers/admin/default_privileges_controller.rb	/^    def collection$/;"	f	class:Admin
+collection	app/controllers/admin/default_roles_controller.rb	/^  def collection$/;"	f	class:Admin
+collection	app/controllers/admin/subscription_affiliates_controller.rb	/^    def collection$/;"	f	class:Admin
+collection	app/controllers/admin/subscription_discounts_controller.rb	/^    def collection$/;"	f	class:Admin
+collection	app/controllers/admin/subscription_plans_controller.rb	/^    def collection$/;"	f	class:Admin
+collection	app/controllers/admin/subscriptions_controller.rb	/^    def collection$/;"	f	class:Admin
+collection	app/controllers/privileges_controller.rb	/^    def collection$/;"	f	class:PrivilegesController
+collection	app/controllers/roles_controller.rb	/^    def collection$/;"	f	class:RolesController
+collection	app/controllers/users_controller.rb	/^    def collection$/;"	f	class:UsersController
 complete_paypal	app/models/subscription.rb	/^  def complete_paypal(token)$/;"	f
 copy_config_file	vendor/plugins/saas/lib/generators/saas/saas_generator.rb	/^  def copy_config_file$/;"	f	class:SaasGenerator
 country_options_for_select	vendor/plugins/country_select/lib/country_select.rb	/^      def country_options_for_select(selected = nil, priority_countries = nil)$/;"	f	class:ActionView.Helpers.FormOptionsHelper
@@ -208,11 +211,17 @@ country_select	vendor/plugins/country_select/lib/country_select.rb	/^      def c
 country_select	vendor/plugins/country_select/lib/country_select.rb	/^      def country_select(object, method, priority_countries = nil, options = {}, html_options = {})$/;"	f	class:ActionView.Helpers.FormOptionsHelper
 create	app/controllers/accounts_controller.rb	/^  def create$/;"	f	class:AccountsController
 create	app/controllers/admin/default_privileges_controller.rb	/^  def create$/;"	f	class:Admin
+create	app/controllers/admin/default_roles_controller.rb	/^  def create$/;"	f	class:Admin
+create	app/controllers/admin/subscription_affiliates_controller.rb	/^  def create$/;"	f	class:Admin
+create	app/controllers/admin/subscription_discounts_controller.rb	/^  def create$/;"	f	class:Admin
+create	app/controllers/admin/subscription_plans_controller.rb	/^  def create$/;"	f	class:Admin
 create	app/controllers/privileges_controller.rb	/^  def create$/;"	f	class:PrivilegesController
+create	app/controllers/roles_controller.rb	/^  def create$/;"	f	class:RolesController
 create	app/controllers/users_controller.rb	/^  def create$/;"	f	class:UsersController
 create_migration_file	vendor/plugins/saas/lib/generators/saas/saas_generator.rb	/^  def create_migration_file$/;"	f	class:SaasGenerator
 create_profile	vendor/plugins/active_merchant_extensions/lib/gateways/paypal.rb	/^      def create_profile(money, credit_card, options = {})$/;"	f	class:ActiveMerchant.Billing.PaypalGateway
 create_profile	vendor/plugins/active_merchant_extensions/lib/gateways/paypal_express_recurring.rb	/^      def create_profile(token, options = {})$/;"	f	class:ActiveMerchant.Billing.PaypalExpressRecurringGateway
+create_roles_and_privileges	app/models/account.rb	/^    def create_roles_and_privileges$/;"	f	class:Account
 current?	app/models/subscription.rb	/^  def current?$/;"	f
 current_account	vendor/plugins/saas/lib/saas.rb	/^      def current_account(raise_on_not_found = true)$/;"	f	class:InstanceMethods.AppControllerStuff
 current_menu	app/controllers/application_controller.rb	/^  def current_menu$/;"	f	class:ApplicationController
@@ -227,7 +236,15 @@ down	db/migrate/20111207014931_add_devise_to_users.rb	/^  def self.down$/;"	F	cl
 down	db/migrate/20111218213040_add_category_to_privileges.rb	/^  def down$/;"	f	class:AddCategoryToPrivileges
 down	db/migrate/20111218232242_remove_menu_item_id_from_privileges.rb	/^  def down$/;"	f	class:RemoveMenuItemIdFromPrivileges
 down	db/migrate/20111221193359_add_account_id_to_roles.rb	/^  def down$/;"	f	class:AddAccountIdToRoles
+down	db/migrate/20111230224043_rename_default_privilege.rb	/^  def down$/;"	f	class:RenameDefaultPrivilege
 down	vendor/plugins/saas/lib/generators/saas/templates/migration.rb	/^  def self.down$/;"	F
+edit	app/controllers/accounts_controller.rb	/^  def edit$/;"	f	class:AccountsController
+edit	app/controllers/admin/default_privileges_controller.rb	/^  def edit$/;"	f	class:Admin
+edit	app/controllers/admin/default_roles_controller.rb	/^  def edit$/;"	f	class:Admin
+edit	app/controllers/admin/subscription_affiliates_controller.rb	/^  def edit$/;"	f	class:Admin
+edit	app/controllers/admin/subscription_discounts_controller.rb	/^  def edit$/;"	f	class:Admin
+edit	app/controllers/admin/subscription_plans_controller.rb	/^  def edit$/;"	f	class:Admin
+edit	app/controllers/admin/subscriptions_controller.rb	/^  def edit$/;"	f	class:Admin
 edit	app/controllers/privileges_controller.rb	/^  def edit$/;"	f	class:PrivilegesController
 edit	app/controllers/roles_controller.rb	/^  def edit$/;"	f	class:RolesController
 edit	app/controllers/users_controller.rb	/^  def edit$/;"	f	class:UsersController
@@ -245,12 +262,14 @@ get_profile_details	vendor/plugins/active_merchant_extensions/lib/gateways/paypa
 get_profile_details	vendor/plugins/active_merchant_extensions/lib/gateways/paypal_express_recurring.rb	/^      def get_profile_details(profile_id)$/;"	f	class:ActiveMerchant.Billing.PaypalExpressRecurringGateway
 has_privilege	app/helpers/application_helper.rb	/^  def has_privilege(privilege, current_privileges)$/;"	f	class:ApplicationHelper
 has_subscription	vendor/plugins/saas/lib/saas.rb	/^    def has_subscription(limits = {})$/;"	f	class:Saas.ClassMethods
+header_link	app/helpers/application_helper.rb	/^  def header_link(link_text, link_to_controller, link_to_action, column )$/;"	f	class:ApplicationHelper
 hide_ul_if	app/helpers/application_helper.rb	/^  def hide_ul_if(condition, attributes = {}, &block)$/;"	f	class:ApplicationHelper
 home_url	vendor/plugins/saas/lib/saas.rb	/^    def home_url(path = nil)$/;"	f	class:InstanceMethods
 included	vendor/plugins/saas/lib/saas.rb	/^    def self.included(base)$/;"	F	class:InstanceMethods.AppControllerStuff
 included	vendor/plugins/saas/lib/saas.rb	/^    def self.included(base)$/;"	F	class:InstanceMethods.ControllerHelpers
 included	vendor/plugins/saas/lib/saas.rb	/^    def self.included(base)$/;"	F	class:Saas.Base
-index	app/controllers/admin/subscriptions_controller.rb	/^  def index$/;"	f	class:Admin
+layout_by_resource	app/controllers/application_controller.rb	/^  def layout_by_resource$/;"	f	class:ApplicationController
+link_for_privilege	app/helpers/application_helper.rb	/^  def link_for_privilege(priv_controller)$/;"	f	class:ApplicationHelper
 load_billing	app/controllers/accounts_controller.rb	/^    def load_billing$/;"	f	class:AccountsController
 load_discount	app/controllers/accounts_controller.rb	/^    def load_discount$/;"	f	class:AccountsController
 load_subscription	app/controllers/accounts_controller.rb	/^    def load_subscription$/;"	f	class:AccountsController
@@ -262,6 +281,11 @@ name	vendor/plugins/active_merchant_extensions/lib/gateways/paypal_express_recur
 needs_payment_info?	app/models/subscription.rb	/^  def needs_payment_info?$/;"	f
 needs_payment_info?	vendor/plugins/saas/lib/saas.rb	/^    def needs_payment_info?$/;"	f	class:InstanceMethods.qualifies_for?
 new	app/controllers/accounts_controller.rb	/^  def new$/;"	f	class:AccountsController
+new	app/controllers/admin/default_privileges_controller.rb	/^  def new$/;"	f	class:Admin
+new	app/controllers/admin/default_roles_controller.rb	/^  def new$/;"	f	class:Admin
+new	app/controllers/admin/subscription_affiliates_controller.rb	/^  def new$/;"	f	class:Admin
+new	app/controllers/admin/subscription_discounts_controller.rb	/^  def new$/;"	f	class:Admin
+new	app/controllers/admin/subscription_plans_controller.rb	/^  def new$/;"	f	class:Admin
 new	app/controllers/privileges_controller.rb	/^  def new$/;"	f	class:PrivilegesController
 new	app/controllers/roles_controller.rb	/^  def new$/;"	f	class:RolesController
 new	app/controllers/users_controller.rb	/^  def new$/;"	f	class:UsersController
@@ -280,6 +304,8 @@ plan_id	app/models/subscription.rb	/^  def plan_id$/;"	f	class:Subscription
 plan_id=	app/models/subscription.rb	/^  def plan_id=(a_plan_id)$/;"	f	class:Subscription
 plan_paypal	app/controllers/accounts_controller.rb	/^  def plan_paypal$/;"	f	class:AccountsController
 plans	app/controllers/accounts_controller.rb	/^  def plans$/;"	f	class:AccountsController
+populate_privileges	app/controllers/admin/default_roles_controller.rb	/^  def populate_privileges$/;"	f	class:Admin
+populate_privileges	app/controllers/roles_controller.rb	/^    def populate_privileges$/;"	f	class:RolesController
 purchase	vendor/plugins/active_merchant_extensions/lib/gateways/authorize_net_cim.rb	/^      def purchase(money, billing_id)$/;"	f	class:ActiveMerchant.Billing.AuthorizeNetCimGateway
 purge_paypal	app/models/subscription.rb	/^  def purge_paypal$/;"	f
 qualifies_for?	vendor/plugins/saas/lib/saas.rb	/^    def qualifies_for?(plan)$/;"	f	class:InstanceMethods
@@ -288,9 +314,18 @@ redirect_url	app/controllers/accounts_controller.rb	/^    def redirect_url$/;"	f
 redirect_url	vendor/plugins/active_merchant_extensions/lib/gateways/paypal_express_recurring.rb	/^      def redirect_url$/;"	f	class:ActiveMerchant.Billing.PaypalExpressRecurringGateway
 redirect_url_for	vendor/plugins/active_merchant_extensions/lib/gateways/paypal_express_recurring.rb	/^      def redirect_url_for(token)$/;"	f	class:ActiveMerchant.Billing.PaypalExpressRecurringGateway
 resource	app/controllers/accounts_controller.rb	/^    def resource$/;"	f	class:AccountsController
-resource	app/controllers/admin/subscription_plans_controller.rb	/^    def resource$/;"	f	class:Admin
 resource_class	config/initializers/devise.rb	/^      def resource_class$/;"	f	class:Devise.Controllers.InternalHelpers
 revenues	app/models/subscription_plan.rb	/^  def revenues$/;"	f	class:SubscriptionPlan
+search	app/models/default_privilege.rb	/^  def self.search(search)$/;"	F	class:DefaultPrivilege
+search	app/models/default_role.rb	/^  def self.search(search)$/;"	F	class:DefaultRole
+search	app/models/privilege.rb	/^  def self.search(search)$/;"	F	class:Privilege
+search	app/models/role.rb	/^  def self.search(search)$/;"	F	class:Role
+search	app/models/subscription.rb	/^  def self.search(search)$/;"	F
+search	app/models/subscription_affiliate.rb	/^    def self.search(search)$/;"	F	class:SubscriptionAffiliate
+search	app/models/subscription_discount.rb	/^    def self.search(search)$/;"	F
+search	app/models/subscription_plan.rb	/^  def self.search(search)$/;"	F	class:SubscriptionPlan
+search	app/models/user.rb	/^  def self.search(search)$/;"	F	class:User
+search	lib/simple_search.rb	/^  def self.search(search)$/;"	F	class:SimpleSearch
 send_receipt	app/models/subscription_payment.rb	/^    def send_receipt$/;"	f	class:SubscriptionPayment
 send_welcome_email	vendor/plugins/saas/lib/saas.rb	/^      def send_welcome_email$/;"	f	class:InstanceMethods.qualifies_for?
 set_affiliate_cookie	vendor/plugins/saas/lib/saas.rb	/^      def set_affiliate_cookie$/;"	f	class:InstanceMethods.AppControllerStuff
@@ -302,7 +337,18 @@ setup_agreement	vendor/plugins/active_merchant_extensions/lib/gateways/paypal_ex
 setup_amount	app/models/subscription_plan.rb	/^  def setup_amount(include_discount = true)$/;"	f	class:SubscriptionPlan
 setup_environment	app/models/subscription_notifier.rb	/^  def setup_environment(obj)$/;"	f	class:SubscriptionNotifier
 setup_receipt	app/models/subscription_notifier.rb	/^  def setup_receipt(subscription_payment)$/;"	f	class:SubscriptionNotifier
+show	app/controllers/admin/subscriptions_controller.rb	/^  def show$/;"	f	class:Admin
 siteaddress	app/controllers/accounts_controller.rb	/^  def siteaddress$/;"	f	class:AccountsController
+sort_column	app/controllers/admin/default_privileges_controller.rb	/^    def sort_column$/;"	f	class:Admin
+sort_column	app/controllers/admin/default_roles_controller.rb	/^    def sort_column$/;"	f	class:Admin
+sort_column	app/controllers/admin/subscription_affiliates_controller.rb	/^    def sort_column$/;"	f	class:Admin
+sort_column	app/controllers/admin/subscription_discounts_controller.rb	/^    def sort_column$/;"	f	class:Admin
+sort_column	app/controllers/admin/subscription_plans_controller.rb	/^    def sort_column$/;"	f	class:Admin
+sort_column	app/controllers/admin/subscriptions_controller.rb	/^    def sort_column$/;"	f	class:Admin
+sort_column	app/controllers/privileges_controller.rb	/^    def sort_column$/;"	f	class:PrivilegesController
+sort_column	app/controllers/roles_controller.rb	/^    def sort_column$/;"	f	class:RolesController
+sort_column	app/controllers/users_controller.rb	/^    def sort_column$/;"	f	class:UsersController
+sort_direction	app/controllers/application_controller.rb	/^  def sort_direction$/;"	f	class:ApplicationController
 source_root	vendor/plugins/saas/lib/generators/saas/saas_generator.rb	/^  def self.source_root$/;"	F	class:SaasGenerator
 start_paypal	app/models/subscription.rb	/^  def start_paypal(return_url, cancel_url)$/;"	f
 stats	app/models/subscription_payment.rb	/^  def self.stats$/;"	F	class:SubscriptionPayment
@@ -316,7 +362,6 @@ test_homepage	test/performance/browsing_test.rb	/^  def test_homepage$/;"	f	clas
 thanks	app/controllers/accounts_controller.rb	/^  def thanks$/;"	f	class:AccountsController
 to_activemerchant	app/models/subscription_address.rb	/^  def to_activemerchant$/;"	f	class:SubscriptionAddress
 to_country_select_tag	vendor/plugins/country_select/lib/country_select.rb	/^      def to_country_select_tag(priority_countries, options, html_options)$/;"	f	class:ActionView.Helpers.InstanceTag
-to_param	app/models/subscription_plan.rb	/^  def to_param$/;"	f	class:SubscriptionPlan
 to_s	app/models/account.rb	/^  def to_s$/;"	f	class:Account
 to_s	app/models/subscription_plan.rb	/^  def to_s$/;"	f	class:SubscriptionPlan
 token	vendor/plugins/active_merchant_extensions/lib/active_merchant_extensions.rb	/^      def token$/;"	f	class:ActiveMerchant.Billing.Response
@@ -333,10 +378,16 @@ up	db/migrate/20111207014931_add_devise_to_users.rb	/^  def self.up$/;"	F	class:
 up	db/migrate/20111218213040_add_category_to_privileges.rb	/^  def up$/;"	f	class:AddCategoryToPrivileges
 up	db/migrate/20111218232242_remove_menu_item_id_from_privileges.rb	/^  def up$/;"	f	class:RemoveMenuItemIdFromPrivileges
 up	db/migrate/20111221193359_add_account_id_to_roles.rb	/^  def up$/;"	f	class:AddAccountIdToRoles
+up	db/migrate/20111230224043_rename_default_privilege.rb	/^  def up$/;"	f	class:RenameDefaultPrivilege
 up	vendor/plugins/saas/lib/generators/saas/templates/migration.rb	/^  def self.up$/;"	F	class:CreateSaasTables
 update	app/controllers/accounts_controller.rb	/^  def update$/;"	f	class:AccountsController
 update	app/controllers/admin/default_privileges_controller.rb	/^  def update$/;"	f	class:Admin
+update	app/controllers/admin/default_roles_controller.rb	/^  def update$/;"	f	class:Admin
+update	app/controllers/admin/subscription_affiliates_controller.rb	/^  def update$/;"	f	class:Admin
+update	app/controllers/admin/subscription_discounts_controller.rb	/^  def update$/;"	f	class:Admin
+update	app/controllers/admin/subscription_plans_controller.rb	/^  def update$/;"	f	class:Admin
 update	app/controllers/privileges_controller.rb	/^  def update$/;"	f	class:PrivilegesController
+update	app/controllers/roles_controller.rb	/^  def update$/;"	f	class:RolesController
 update	app/controllers/users_controller.rb	/^  def update$/;"	f	class:UsersController
 update	vendor/plugins/active_merchant_extensions/lib/gateways/authorize_net_cim.rb	/^      def update(billing_id, creditcard, options = {})$/;"	f	class:ActiveMerchant.Billing.AuthorizeNetCimGateway
 update	vendor/plugins/active_merchant_extensions/lib/gateways/bogus.rb	/^      def update(identification, creditcard, options = {})$/;"	f	class:ActiveMerchant.Billing.BogusGateway

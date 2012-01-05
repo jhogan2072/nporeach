@@ -5,7 +5,7 @@ class Role < ActiveRecord::Base
   has_many :assignments, :dependent => :destroy
   has_many :users, :through => :assignments
   scope :for, lambda{|controller, action|
-        where("privileges.controller = ? AND ? & grants.operation > 0", 
+        where("privileges.controller = ? AND ? & privileges.operations > 0", 
         controller, Privilege::OPERATION_MAPPINGS[action])
   }
   validates :name, :uniqueness => {:scope => :account_id}, presence: true

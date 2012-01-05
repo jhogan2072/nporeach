@@ -1,5 +1,5 @@
 <div id="banner_no_screenshot">
-  <h1><%= t('.createanaccount') %></h1>
+  <h1><%= t('.createanaccount') %> - <%= @account.plan.name %><%= t('.plan') %></h1>
 </div>
 <%= form_for @account, :url => { :action => 'create' }, :html => {:class => "standard_form wide_form", :multipart => true} do |account| %>
   <%= hidden_field_tag 'plan', params[:plan] %>

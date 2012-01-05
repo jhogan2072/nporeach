@@ -314,6 +314,7 @@ en:
   accounts:
     accounts: "Accounts"
     new:
+      plan: " Plan"
       setupyouraccount: "Step 1: Set up your account"
       discount: "Discount Code"
       enteradmininfo: "Step 2: Designate an administrator"

@@ -13,3 +13,9 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+# Ignore the Gemfile and the development.rb file (which differ between Windows and Mac)
+/Gemfile
+/Gemfile.lock
+/config/environments/development.rb
+/nbproject

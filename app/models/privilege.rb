@@ -2,7 +2,7 @@ class Privilege < ActiveRecord::Base
   belongs_to :account
   has_many :grants
   has_many :roles, :through => :grants
-  validates_uniqueness_of :controller, :scope => :account_id
+  validates_uniqueness_of :controller, :scope => [:account_id, :operations]
   validates :name, :uniqueness => {:scope => :account_id}, presence: true
 
   attr_protected :account_id
@@ -34,6 +34,7 @@ class Privilege < ActiveRecord::Base
 
 
   OPERATION_MAPPINGS = {
+    "dashboard" => Privilege::OPERATIONS["read"],
     "show" => Privilege::OPERATIONS["read"],
     "index" => Privilege::OPERATIONS["read"],
     "new" => Privilege::OPERATIONS["create"],

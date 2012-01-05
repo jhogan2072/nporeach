@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   layout :layout_by_resource
-  #before_filter :check_authorization
+  before_filter :check_authorization
 
   helper_method :current_menu
   helper_method :sort_direction
@@ -19,8 +19,9 @@ class ApplicationController < ActionController::Base
   private
 
   def check_authorization
+    debugger
     if user_signed_in?
-      unless current_admin
+      unless admin?
         unless current_user.can?(controller_name, action_name) 
           redirect_to :back, :error => I18n.t('notauthorized')
         end
