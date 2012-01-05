@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div id="banner_no_screenshot">
   <h1><%= t('.createanaccount') %> - <%= @account.plan.name %><%= t('.plan') %></h1>
 </div>
@@ -74,3 +75,81 @@
   </ul>
   
 <% end %>
+=======
+<div id="banner_no_screenshot">
+  <h1><%= t('.createanaccount') %></h1>
+</div>
+<%= form_for @account, :url => { :action => 'create' }, :html => {:class => "standard_form wide_form", :multipart => true} do |account| %>
+  <%= hidden_field_tag 'plan', params[:plan] %>
+  <%= account.error_messages %>  
+
+  <ul>
+    <li class="form_header">
+      <h2><%= t('.setupyouraccount') %></h2>
+    </li>
+    <li>
+      <%= account.label :name, t('.business_name') %>
+      <%= account.text_field :name, size:50 %>
+    </li>
+    <li>
+      <%= account.label :domain %>
+      <%= account.text_field :domain, :class => "rightjustify" %>.<%= Saas::Config.base_domain %>
+      <p><%= t('accounts.siteaddress.siteaddressexplain_html') %></p>
+    </li>
+    <li>
+      <label><%= t('.discount') %></label>
+      <%= text_field_tag :discount, params[:discount] %>
+    </li>
+    <li class="bottom"></li>
+  </ul>
+
+  <ul>  
+    <li class="form_header">
+      <h2><%= t('.enteradmininfo') %></h2>
+      <p><%= t('.step2desc') %></p>
+    </li>
+    <%= account.fields_for :admin do |admin| %>
+    <li>
+      <%= admin.label t('users.form.name') %>
+      <%= admin.text_field :first_name, :size => "15" %>
+      <%= admin.text_field :last_name, :size => "15" %>
+      <%= admin.text_field :middle_name, :size => "3" %>
+    </li>
+    <li>
+      <%= admin.label :email %>
+      <%= admin.email_field :email, size:50 %>
+    </li>
+    <li>
+      <%= admin.label :password %>
+      <%= admin.password_field :password %>
+    </li>
+    <li>
+      <%= admin.label :password_confirmation %>
+      <%= admin.password_field :password_confirmation %>
+    </li>
+    <li class="bottom"></li>
+    <% end %>
+  </ul>
+  
+  <% if @account.needs_payment_info? %>
+    <%= render :partial => "shared/credit_card_form", :locals => {:signup => true } %>
+  <% end %>
+  
+  <ul>
+    <li class="form_header">
+      <h2><%= t('.createaccount', stepno: (@account.needs_payment_info?) ? 4 : 3) %></h2>
+    </li>
+    <li>
+      <%= image_submit_tag("btn_createaccount.png") %>
+    </li>
+    <%= content_tag(:p) do %>
+      Your card will be charged <%= number_to_currency(@account.plan.setup_amount) + ' now and ' if  @account.plan.setup_amount? && !@account.plan.trial_period? %> <%= number_to_currency(@account.plan.amount) %> 
+      <%= @account.plan.renewal_period == 1 ? 'every month' : "every #{@account.plan.renewal_period} months" %>.
+    <% end if @account.needs_payment_info? %>
+
+
+    <li class="bottom"></li>
+  </ul>
+  
+<% end %>
+>>>>>>> ab03e1ae8b940231fb0ce62338184acad42dd6fb

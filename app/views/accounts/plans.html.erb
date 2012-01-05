@@ -6,7 +6,6 @@
     <h2><%= t('.hereareourplans') %></h2>
     <p><%= t('.plansintro') %></p>
     <ul>
-      <% debugger %>
       <%= raw(@plans.map {|p| content_tag(:li, link_to(p, new_account_url(:plan => p, :discount => params[:discount]))) << content_tag(:p, p.description)}.join) %>
     </ul>
   </div>
