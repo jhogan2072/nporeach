@@ -22,8 +22,7 @@ class Account < ActiveRecord::Base
   
   validates_format_of :domain, :with => /\A[a-zA-Z][a-zA-Z0-9]*\Z/
   validates_exclusion_of :domain, :in => %W( support blog www billing help api ), :message => I18n.t('accountmodel.domainnotavailable')
-  #validates_presence_of :admin, :on => :create, :message => I18n.t('accountmodel.adminmissing')
-  validates :admin, :presence => {:on => :create, :message => I18n.t('accountmodel.adminmissing')}
+  validates_presence_of :admin, :on => :create, :message => I18n.t('accountmodel.adminmissing')
   validates_associated :admin, :on => :create
   validate :valid_domain?
   

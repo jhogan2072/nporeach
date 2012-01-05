@@ -48,7 +48,6 @@ group :production do
   gem 'mysql2'
 end
 
-
 group :development do
-  gem 'ruby-debug-ide19'
+  gem 'ruby-debug19', require: 'ruby-debug'
 end
