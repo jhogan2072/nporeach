@@ -18,4 +18,8 @@
 /Gemfile
 /Gemfile.lock
 /config/environments/development.rb
+
+#Netbeans project files
 /nbproject
+
+*.swp
