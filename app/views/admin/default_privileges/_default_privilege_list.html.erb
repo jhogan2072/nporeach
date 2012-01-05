@@ -8,7 +8,6 @@
     <th class="editdelete"><a href="#" class="column_header"></a></th>
   </tr>
   <% @default_privileges.each do |privilege| %>
-  <% debugger %>
     <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
       <td class="name"><%=link_to privilege.name, edit_admin_default_privilege_path(privilege) %></td>
       <td class="description"><%= privilege.description %></td>
