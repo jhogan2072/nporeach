@@ -47,7 +47,6 @@ module ApplicationHelper
   end
 
   def link_for_privilege(priv_controller)
-  debugger
     if priv_controller == "accounts"
       url_for :action => 'show', :controller => 'accounts'
     else

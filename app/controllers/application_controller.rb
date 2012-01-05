@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   layout :layout_by_resource
-  #before_filter :check_authorization
+  before_filter :check_authorization
 
   helper_method :current_menu
   helper_method :sort_direction

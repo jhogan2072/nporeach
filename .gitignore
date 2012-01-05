@@ -13,3 +13,14 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+# Ignore the Gemfile and the development rb file (these are different on Windows and on Mac for debugging)
+# This means of course that we have to keep them in sync
+/config/environments/development.rb
+/Gemfile
+/Gemfile.lock
+
+#Netbeans project files
+/nbproject
+
+*.swp

@@ -30,7 +30,6 @@ protected
     def collection
       @stats = SubscriptionPayment.stats if params[:page].blank?
       @subscriptions ||= end_of_association_chain.search(params[:search]).order(sort_column + ' ' + sort_direction).paginate(:include => :subscriber, :per_page => 15, :page => params[:page])
-      debugger
     end
 
   private

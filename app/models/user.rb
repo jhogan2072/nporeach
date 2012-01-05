@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true
   validates :last_name, :first_name, presence: true
   validates :email, :uniqueness => {:scope => :account_id}, format: { with: /\A[^@]+@[^@]+\z/ }, :if => :email?
-  validates_presence_of     :password, :if => :password_required?
+  validates :password, presence: true, :if => :password_required?
   validates_confirmation_of :password, :if => :password_required?
   validates_length_of       :password, :within => 6..128, :allow_blank => true
 
@@ -36,6 +36,10 @@ class User < ActiveRecord::Base
     return fullname
   end
 
+  def can?(controller, action)
+    roles.includes(:privileges).for(controller, action).any? unless is_default_action(controller, action)
+  end
+
   protected
     # Checks whether a password is needed or not. For validations only.
     # Passwords are always required if it's a new record, or if the password
@@ -44,8 +48,9 @@ class User < ActiveRecord::Base
       !persisted? || !password.nil? || !password_confirmation.nil?
     end
 
-    def can?(controller, action)
-      roles.includes(:privileges).for(controller, action).any?
+    def is_default_action(controller, action)
+      contr_action = controller + "#" + action
+      return Privilege::DEFAULT_ACTIONS.include?(contr_action)
     end
 
 end

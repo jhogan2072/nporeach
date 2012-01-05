@@ -32,7 +32,6 @@ class Privilege < ActiveRecord::Base
     "delete" => 8,
   }
 
-
   OPERATION_MAPPINGS = {
     "show" => Privilege::OPERATIONS["read"],
     "index" => Privilege::OPERATIONS["read"],
@@ -44,6 +43,8 @@ class Privilege < ActiveRecord::Base
     "billing" => Privilege::OPERATIONS["update"],
     "cancel" => Privilege::OPERATIONS["update"]
   }
+
+  DEFAULT_ACTIONS = ["users#new", "users#create", "users#destroy" ]
 
   def self.search(search)
     if search #&& column_name && self.column_names.include?(column_name)
