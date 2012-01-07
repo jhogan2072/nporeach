@@ -13,3 +13,13 @@ two:
   full_domain: MyString
   logo_url: MyString
   deleted_at: 2011-12-05 16:18:25
+
+localhost:
+  name: My first account
+  description: Description for my first account
+  full_domain: test.host
+  
+otherhost:
+  name: Another account
+  description: Description for another account
+  full_domain: other.host

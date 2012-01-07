@@ -32,6 +32,7 @@ class Privilege < ActiveRecord::Base
     "delete" => 8,
   }
 
+  GLOBAL_PRIVILEGES = ["sessions#new", "sessions#create", "sessions#destroy", "accounts#dashboard"]
 
   OPERATION_MAPPINGS = {
     "dashboard" => Privilege::OPERATIONS["read"],

@@ -102,11 +102,11 @@ module Saas
       def valid_payment_info?
         if needs_payment_info?
           unless @creditcard && @creditcard.valid?
-            errors.add(:base, "Invalid payment information")
+            errors.add(:base, I18n.t('saas.invalidpaymentinformation'))
           end
 
           unless @address && @address.valid?
-            errors.add(:base, "Invalid address")
+            errors.add(:base, I18n.t('saas.invalidaddress'))
           end
         end
       end

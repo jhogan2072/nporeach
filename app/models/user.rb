@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true
   validates :last_name, :first_name, presence: true
   validates :email, :uniqueness => {:scope => :account_id}, format: { with: /\A[^@]+@[^@]+\z/ }, :if => :email?
-  validates_presence_of     :password, :if => :password_required?
+  validates :password, presence: true, :if => :password_required?
   validates_confirmation_of :password, :if => :password_required?
   validates_length_of       :password, :within => 6..128, :allow_blank => true
 
@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
   end
 
   def can?(controller, action)
-    roles.includes(:privileges).for(controller, action).any?
+    is_global_privilege(controller, action) || roles.includes(:privileges).for(controller, action).any?
   end
   
   protected
@@ -48,4 +48,7 @@ class User < ActiveRecord::Base
       !persisted? || !password.nil? || !password_confirmation.nil?
     end
 
+    def is_global_privilege(controller, action)
+      Privilege::GLOBAL_PRIVILEGES.include?(controller + "#" + action)
+    end
 end

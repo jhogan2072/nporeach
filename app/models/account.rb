@@ -22,9 +22,8 @@ class Account < ActiveRecord::Base
   
   validates_format_of :domain, :with => /\A[a-zA-Z][a-zA-Z0-9]*\Z/
   validates_exclusion_of :domain, :in => %W( support blog www billing help api ), :message => I18n.t('accountmodel.domainnotavailable')
-  #validates_presence_of :admin, :on => :create, :message => I18n.t('accountmodel.adminmissing')
   validates :admin, :presence => {:on => :create, :message => I18n.t('accountmodel.adminmissing')}
-  validates_associated :admin, :on => :create
+  validates_associated :admin, {:on => :create, :message => I18n.t('accountmodel.adminnotvalid')}
   validate :valid_domain?
   
   attr_accessible :name, :domain, :admin_attributes
@@ -70,7 +69,7 @@ class Account < ActiveRecord::Base
   
     def valid_domain?
       conditions = new_record? ? ['full_domain = ?', self.full_domain] : ['full_domain = ? and id <> ?', self.full_domain, self.id]
-      self.errors.add(:domain, 'is not available') if self.full_domain.blank? || self.class.count(:conditions => conditions) > 0
+      self.errors.add(:domain, I18n.t('accountmodel.isnotavailable')) if self.full_domain.blank? || self.class.count(:conditions => conditions) > 0
     end
     
 end

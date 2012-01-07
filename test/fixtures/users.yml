@@ -1,6 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
+account_admin:
   last_name: MyString
   first_name: MyString
   middle_name: MyString
@@ -12,19 +12,17 @@ one:
   work_phone: MyString
   mobile_phone: MyString
   email: MyString
-  crypted_password: MyString
-  password_salt: MyString
-  persistence_token: MyString
-  last_login_at: 2011-12-05 18:51:42
-  current_login_at: 2011-12-05 18:51:42
-  last_login_ip: MyString
-  current_login_ip: MyString
-  single_access_token: MyString
+  encrypted_password: dd1fc6247a60092c811a90d410026f39b9f1a2ad20ed0461e132efbafa47a11a6dab59f517492065f5f465b830306268f9e7da53d8a33366db2c2e54eea3b420
+  password_salt: ha0TkGgPI618i1d_7ZRZ
+  last_sign_in_at: 2011-12-05 18:51:42
+  current_sign_in_at: 2011-12-05 18:51:42
+  last_sign_in_ip: MyString
+  current_sign_in_ip: MyString
   account_id: 1
   customer_id: 1
   admin: false
 
-two:
+account_user:
   last_name: MyString
   first_name: MyString
   middle_name: MyString
@@ -36,14 +34,13 @@ two:
   work_phone: MyString
   mobile_phone: MyString
   email: MyString
-  crypted_password: MyString
-  password_salt: MyString
-  persistence_token: MyString
-  last_login_at: 2011-12-05 18:51:42
-  current_login_at: 2011-12-05 18:51:42
-  last_login_ip: MyString
-  current_login_ip: MyString
-  single_access_token: MyString
+  encrypted_password: dd1fc6247a60092c811a90d410026f39b9f1a2ad20ed0461e132efbafa47a11a6dab59f517492065f5f465b830306268f9e7da53d8a33366db2c2e54eea3b420
+  password_salt: ha0TkGgPI618i1d_7ZRZ
+  last_sign_in_at: 2011-12-05 18:51:42
+  current_sign_in_at: 2011-12-05 18:51:42
+  last_sign_in_ip: MyString
+  current_sign_in_ip: MyString
   account_id: 1
   customer_id: 1
   admin: false
+
