@@ -1,17 +1,8 @@
-<h1><%= @page_title = t('.accounts') %></h1>
-<table id="accounts">
-  <tr>
-    <th>Name</th>
-    <th>Domain</th>
-    <th>Created</th>
-  </tr>
-  <% @accounts.each do |account| %>
-    <tr>
-      <td><%= link_to(h(account.name), [:admin, account]) %></td>
-      <td><%= account.full_domain %></td>
-      <td><%= account.created_at.to_s(:short_day) %></td>
-    </tr>
-  <% end %>
-</table>
-
+<% @page_title = t('.accounts') %>
+<p id="notice"><%= notice %></p>
+<div class="standard_list account_list">
+  <%= render(partial: 'shared/menubar', locals: {:indexpath => admin_accounts_path, :newpath => "#", :addimage => "addperson.png", :addtext => t('.addaccount')}) %>
+  <%= render 'account_list' %>
 <%= will_paginate(@accounts) %>
+</div>
+

@@ -12,6 +12,7 @@
     <%= link_to image_tag("ahlogo.png", :border => 0 ), root_url %>
     <% if admin_signed_in? %>
     <ul id="adminmenu">
+      <li><%= link_to "Accounts", admin_accounts_path %></li>
       <li><%= link_to "Default Roles", admin_default_roles_path %></li>
       <li><%= link_to "Default Privileges", admin_default_privileges_path %></li>
       <li><%= link_to "Subscriptions", admin_subscriptions_path %></li>

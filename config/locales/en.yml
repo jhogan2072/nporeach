@@ -103,6 +103,20 @@ en:
       payments: "Payments"
 
   admin:
+    accounts:
+      accounts: "Accounts"
+      form:
+        accountinformation: "Account Information"
+        admininfo: "Administrator Information"
+      index:
+        addaccount: "Add Account"
+      account_list:
+        domain: "Domain"
+        suredeleteaccount: "Are you sure you want to delete this account?"
+      new:
+        newaccount: "New Account"
+      edit:
+        editaccount: "Editing an Account"
     default_roles:
       default_roles: "Default Roles"
       index:

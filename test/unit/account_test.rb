@@ -69,14 +69,16 @@ class AccountTest < ActiveSupport::TestCase
 
   test "default roles and privileges are created" do
     account = Account.create(name: 'bar', domain: 'foo', admin_attributes: valid_user, plan: subscription_plans(:free))
+    default_role = DefaultRole.create(default_roles(:one).attributes)
+    default_privilege = DefaultPrivilege.create(default_privileges(:one).attributes)
     assert account.valid?
     assert_not_nil account.roles
     roles = account.roles.scoped
     assert_not_nil DefaultRole.first
-#    assert_not_nil roles.where("name = ?", DefaultRole.first.name)
-#    assert_not_nil account.privileges
-#    privileges = account.privileges.scoped
-#    assert_not_nil privileges.where("name = ?", DefaultPrivilege.first.name)
+    assert_not_nil roles.where("name = ?", DefaultRole.first.name)
+    assert_not_nil account.privileges
+    privileges = account.privileges.scoped
+    assert_not_nil privileges.where("name = ?", DefaultPrivilege.first.name)
   end
 
 end

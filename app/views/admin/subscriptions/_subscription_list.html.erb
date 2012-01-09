@@ -15,7 +15,7 @@
    </tr>
   <% @subscriptions.each do |subscription| %>
     <tr class="<%= cycle('list_line_odd', 'list_line_even') %><%=' expired' unless subscription.current? %>">
-      <td class="account"><%= link_to(h(subscription.subscriber), [:admin, subscription]) %></td>
+      <td class="account"><%= link_to(h(subscription.subscriber), edit_admin_account_path(subscription.subscriber)) %></td>
       <td class="amount"><%= number_to_currency(subscription.amount) %> <%= "(#{subscription.discount.name})" if subscription.discount %></td>
       <td class="created"><%= subscription.created_at.strftime '%m/%d/%Y' %></td>
       <td class="nextnenewal"><%= subscription.next_renewal_at.strftime '%m/%d/%Y' %></td>

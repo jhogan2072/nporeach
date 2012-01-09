@@ -22,6 +22,17 @@ class ActiveSupport::TestCase
     }.merge(attributes)
   end
   
+  def invalid_card(attributes = {})
+    { :first_name => 'Joe', 
+      :last_name => 'Doe',
+      :month => 2, 
+      :year => Time.now.year + 1, 
+      :number => '2', 
+      :type => 'bogus', 
+      :verification_value => '123' 
+    }.merge(attributes)
+  end
+
   def valid_card(attributes = {})
     { :first_name => 'Joe', 
       :last_name => 'Doe',

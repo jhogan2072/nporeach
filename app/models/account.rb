@@ -43,6 +43,14 @@ class Account < ActiveRecord::Base
     name.blank? ? full_domain : "#{name} (#{full_domain})"
   end
 
+  def self.search(search)
+    if search #&& column_name && self.column_names.include?(column_name)
+      where('name LIKE ?', "%#{search}%")
+    else
+      scoped
+    end
+  end
+
   protected
     def create_roles_and_privileges
       DefaultPrivilege.all.each do |default_privilege|
