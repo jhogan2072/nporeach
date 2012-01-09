@@ -1,0 +1,54 @@
+<%= render 'shared/error_messages', :target => @account, :model => t('accountmodel.modelname') %>
+  <ul>
+    <li class="form_header">
+      <h2><%= t('.accountinformation') %></h2>
+    </li>
+    <li>
+      <%= form.label :name %>
+      <%= form.text_field :name, size:50 %>
+    </li>
+    <li>
+      <%= form.label :domain %>
+      <%= form.text_field :domain, :class => "rightjustify" %>.<%= Saas::Config.base_domain %>
+    </li>
+    <li>
+      <label><%= t('.discount') %></label>
+      <%= text_field_tag :discount, params[:discount] %>
+    </li>
+    <li class="bottom"></li>
+  </ul>
+
+  <ul>  
+    <li class="form_header">
+      <h2><%= t('.admininfo') %></h2>
+    </li>
+    <%= form.fields_for :admin do |admin| %>
+    <li>
+      <%= admin.label t('users.form.name') %>
+      <%= admin.text_field :first_name, :size => "15" %>
+      <%= admin.text_field :last_name, :size => "15" %>
+      <%= admin.text_field :middle_name, :size => "3" %>
+    </li>
+    <li>
+      <%= admin.label :email %>
+      <%= admin.email_field :email, size:50 %>
+    </li>
+    <li class="bottom"></li>
+    <% end %>
+  </ul>
+  
+  <% if @account.needs_payment_info? %>
+    <%= render :partial => "shared/credit_card_form", :locals => {:signup => false } %>
+  <% end %>
+  
+  <ul>
+    <li class="form_header">
+      <h2><%= t('common.savechanges') %></h2>
+    </li>
+    <li>
+      <%= form.submit %>
+    </li>
+
+    <li class="bottom"></li>
+  </ul>
+

@@ -1,0 +1,3 @@
+<%= form_for(@account, :url => resource_path, :html => {:class => "standard_form wide_form", :multipart => true}) do |form| %>
+  <%= render :partial => 'form', :object => form %>
+<% end %>

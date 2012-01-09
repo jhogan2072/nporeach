@@ -1,0 +1,19 @@
+<table id="accounts">
+  <tr class="headers">
+    <th class="name"><%= header_link(t('common.name'), "accounts", "index", "name") %></th>
+    <th class="domain"><%= header_link(t('.domain'), "accounts", "index", "full_domain") %></th>
+    <th class="created"><%= header_link(t('.created'), "accounts", "index", "created_at") %></th>
+    <th class="editdelete"><a href="#" class="column_header"></a></th>
+    <th class="editdelete"><a href="#" class="column_header"></a></th>
+  </tr>
+  <% @accounts.each do |account| %>
+    <tr>
+      <td class="name"><%= link_to(h(account.name), edit_admin_account_path(account)) %></td>
+      <td class="domain"><%= account.full_domain %></td>
+      <td class="created"><%= account.created_at.strftime '%m/%d/%Y' %></td>
+      <td align="center"><%= link_to(t('common.edit'), edit_admin_account_path(account)) %></td>
+      <td align="center"><%= link_to(t('common.delete'), [:admin, account], :method => 'delete', :confirm => t('.suredeleteaccount')) %></td>
+    </tr>
+  <% end %>
+</table>
+
