@@ -6,6 +6,8 @@ end
 
 Conservatory::Application.routes.draw do
 
+  get "ajax/users"
+
   resources :assignments
   resources :privileges
   resources :roles
