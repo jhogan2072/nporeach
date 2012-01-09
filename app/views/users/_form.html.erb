@@ -58,11 +58,15 @@
     </li>
     <li>
       <%= f.label t('roles.roles') %>
-      <% Role.all.each do |role| %>
+      <div class="checkbox_container">
+      <% current_account.roles.each do |role| %>
+        <div>
         <%= check_box_tag 'user[role_ids][]', role.id, @user.roles.include?(role) %>
         <%= content_tag("span", role.name, :class => "checkbox_label") %>
+        </div>
       <% end %>
       <%= hidden_field_tag 'user[role_ids][]', '' %>
+      </div>
     </li>
     <li>
       <%= f.submit %>
