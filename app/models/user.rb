@@ -10,9 +10,9 @@ class User < ActiveRecord::Base
   validates_length_of       :password, :within => 6..128, :allow_blank => true
 
   # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable, :lockable, :registerable and :timeoutable
-  devise :database_authenticatable, :recoverable, :rememberable, :trackable, :encryptable, :authentication_keys => [:email, :account_id]
-
+  # :token_authenticatable, :confirmable, :lockable, :registerable
+  devise :database_authenticatable, :timeoutable, :recoverable, :rememberable, :trackable, :encryptable, :authentication_keys => [:email, :account_id]
+  
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
   attr_protected :account_id

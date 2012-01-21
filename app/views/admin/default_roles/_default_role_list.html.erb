@@ -1,14 +1,14 @@
 <table id="default_roles">
   <tr class="headers">
     <th class="name"><%= header_link(t('common.name'), "default_roles", "index", "name") %></th>
-    <th class="privileges"><a href="#" class="column_header"><%= t('default_privileges.default_privileges') %></a></th>
+    <th class="privileges"><a href="#" class="column_header"><%= t('privileges.privileges') %></a></th>
     <th class="editdelete"><a href="#" class="column_header"></a></th>
     <th class="editdelete"><a href="#" class="column_header"></a></th>
   </tr>
   <% @default_roles.each do |role| %>
     <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
       <td class="name"><%=link_to role.name, edit_admin_default_role_path(role) %></td>
-      <td class="privileges"><ul><% role.default_privileges.each_with_index do |privilege, i| %>
+      <td class="privileges"><ul><% role.privileges.each_with_index do |privilege, i| %>
           <li><%= h(privilege.name)%></li>
         <% end %></ul>
       </td>

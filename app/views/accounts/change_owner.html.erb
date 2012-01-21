@@ -1,0 +1,24 @@
+<% @page_title = t('.changeowner') %>
+<%= form_for(@account, :url => change_owner_account_path, :html => {:class => "standard_form", :multipart => true}) do |f| %>
+<%= render 'shared/error_messages', :target => @account, :model => t('usermodel.modelname') %>
+  <ul>
+    <li class="form_header">
+      <h2><%= t('.changeowner') %></h2>
+    </li>
+    <li>
+      <%= f.label t('.currentowner') %>
+      <%= content_tag("span", current_account.owner.full_name) %>
+      <%= f.hidden_field :current_owner_id, value: @account.owner.id %>
+    </li>
+    <li>
+      <%=  f.label t('.newowner') %>
+      <%= f.text_field :owner_full_name, value: "", placeholder: t('.typelastname') %>
+      <%= f.hidden_field :owner_id, value: "" %>
+      <p><%= t('.warning') %></p>
+    </li>
+    <li>
+      <%= f.submit t('.updateowner')%>
+    </li>
+    <li class="bottom"></li>
+  </ul>
+<% end %>

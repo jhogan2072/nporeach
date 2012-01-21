@@ -1,7 +1,0 @@
-one:
-  name: First Default Privilege
-  description: First Default Privilege Description
-  controller: accounts
-  category: ADMINISTRATION
-  menu_text: Accounts
-  operations: 4

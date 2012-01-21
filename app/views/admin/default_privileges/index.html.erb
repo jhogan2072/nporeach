@@ -1,5 +1,0 @@
-<% @page_title = t('.managedefaultprivileges') %>
-<div class="standard_list privilege_list">
-  <%= render(partial: 'shared/menubar', locals: {:indexpath => admin_default_privileges_path, :newpath => new_admin_default_privilege_path, :addimage => "addprivilege.png", :addtext => t('.adddefaultprivilege')}) %>
-  <%= render 'default_privilege_list' %>
-</div>

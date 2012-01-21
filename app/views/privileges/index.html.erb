@@ -1,6 +1,0 @@
-<% @page_title = t('.manageprivileges') %>
-
-<div class="standard_list privilege_list">
-  <%= render(partial: 'shared/menubar', locals: {:indexpath => privileges_path, :newpath => new_privilege_path, :addimage => "addprivilege.png", :addtext => t('.addprivilege')}) %>
-  <%= render 'privilege_list' %>
-</div>

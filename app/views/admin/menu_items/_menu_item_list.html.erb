@@ -1,0 +1,22 @@
+<table id="menu_items" class="narrow_list">
+  <tr class="headers">
+    <th class="name"><%= header_link(t('common.name'), "menu_items", "index", "name") %></th>
+    <th class="help_text"><%= header_link(t('.help_text'), "menu_items", "index", "help_text") %></th>
+    <th class="category"><%= header_link(t('.category'), "menu_items", "index", "category") %></th>
+    <th class="controller"><%= header_link(t('admin.privileges.form.controller'), "menu_items", "index", "controller") %></th>
+    <th class="action"><%= header_link(t('.action'), "menu_items", "index", "action") %></th>
+    <th class="editdelete"><a href="#" class="column_header"></a></th>
+    <th class="editdelete"><a href="#" class="column_header"></a></th>
+  </tr>
+  <% @menu_items.each do |menu_item| %>
+    <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+      <td class="name"><%= link_to menu_item.name, edit_admin_menu_item_path(menu_item) %></td>
+      <td class="help_text"><%= menu_item.help_text %></td>
+      <td class="category"><%= menu_item.category %></td>
+      <td class="controller"><%= menu_item.controller %></td>
+      <td class="action"><%= menu_item.action %></td>
+      <td align="center"><%= link_to(t('common.edit'), edit_admin_menu_item_path(menu_item)) %></td>
+      <td align="center"><%= link_to(t('common.delete'), [:admin, menu_item], :method => 'delete', :confirm => t('.suredeletemenu_item')) %></td>
+  </tr>
+  <% end %>
+</table>

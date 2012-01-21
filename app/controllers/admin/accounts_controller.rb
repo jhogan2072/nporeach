@@ -2,7 +2,7 @@ class Admin::AccountsController < ApplicationController
   include Saas::ControllerHelpers
   respond_to :js, :only => :index
   helper_method :sort_column
-  add_breadcrumb I18n.t('layouts.application.home'), :admin_subscriptions_path
+  add_breadcrumb I18n.t('layouts.application.home'), :root_path
   add_breadcrumb I18n.t('admin.accounts.accounts'), :admin_accounts_path
   layout 'superuser'
   

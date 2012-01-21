@@ -1,1 +1,1 @@
-  <li><%= link_to content_tag("span", submenus.menu_text), link_for_privilege(submenus.controller), :title => submenus.menu_text, :class => (controller_name == submenus.controller)? "current" : "" %></li>
+  <li><%= submenu_url(submenus, active_action) %></li>

@@ -1,12 +1,18 @@
-<h2>Forgot your password?</h2>
-
-<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
+<% @page_title = t('.forgotyourpassword') %>
+<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, :class => "standard_form" }) do |f| %>
   <%= devise_error_messages! %>
-
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
-
-  <div><%= f.submit "Send me reset password instructions" %></div>
+  <ul>
+    <li class="form_header">
+      <h2><%= t('.forgotyourpassword') %></h2>
+    </li>
+    <li>
+      <%= f.label t('users.user_list.email') %>
+      <%= f.email_field :email %>
+    </li>
+    <li>
+      <%= f.submit t('.sendmeinstructions') %>
+      <%= render :partial => "devise/shared/links" %>
+    </li>
+    <li class="bottom"></li>
+  </ul>
 <% end %>
-
-<%= render :partial => "devise/shared/links" %>

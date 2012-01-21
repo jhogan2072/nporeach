@@ -1,6 +1,6 @@
 class AccountsController < InheritedResources::Base
   before_filter :authenticate_user!, :except => [ :new, :create, :plans, :canceled, :thanks, :siteaddress, :loginredirect]
-  before_filter :authorized?, :except => [ :new, :create, :plans, :canceled, :thanks, :siteaddress, :loginredirect]
+  #before_filter :authorized?, :except => [ :new, :create, :plans, :canceled, :thanks, :siteaddress, :loginredirect]
   before_filter :build_user, :only => [:new, :create]
   before_filter :load_billing, :only => [ :new, :create, :billing, :paypal ]
   before_filter :load_subscription, :only => [ :billing, :plan, :paypal, :plan_paypal ]
@@ -11,7 +11,23 @@ class AccountsController < InheritedResources::Base
   
   # ssl_required :billing, :cancel, :new, :create
   # ssl_allowed :plans, :thanks, :canceled, :paypal
-  
+
+  def change_owner
+    @account = current_account
+    if request.post? || request.put?
+      #Make the change to the users involved
+      previous_owner = User.find(params[:account][:current_owner_id])
+      new_owner = User.find(params[:account][:owner_id])
+      if
+        previous_owner.update_attribute(:owner, false) && new_owner.update_attribute(:owner, true)
+        flash[:notice] = I18n.t('accountscontroller.accountupdated') + " - " + I18n.t('accountscontroller.newowneris') + ": " + params[:account][:owner_full_name]
+        redirect_to root_url
+      else
+        render :action => 'change_owner'
+      end
+    end
+  end
+
   # The siteaddress action just redirects to a page that will prompt the user for their site address then redirect them to their login page
   def siteaddress
     render :layout => 'public' # Uncomment if your "public" site has a different layout than the one used for logged-in users
@@ -179,7 +195,7 @@ class AccountsController < InheritedResources::Base
     end
     
     def build_user
-      build_resource.admin = User.new unless build_resource.admin
+      build_resource.owner = User.new unless build_resource.owner
     end
     
     def build_plan
@@ -208,8 +224,8 @@ class AccountsController < InheritedResources::Base
       end
     end
     
-    def authorized?
-      redirect_to new_user_session_url unless self.action_name == 'dashboard' || admin?
-    end 
+#    def authorized?
+#      redirect_to new_user_session_url unless self.action_name == 'dashboard' || owner?
+#    end 
 
 end

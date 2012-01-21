@@ -1,0 +1,18 @@
+<table id="privileges">
+  <tr class="headers">
+    <th class="name"><%= header_link(t('common.name'), "privileges", "index", "name") %></th>
+    <th class="description"><%= header_link(t('common.description'), "privileges", "index", "description") %></th>
+    <th class="controller"><%= header_link(t('privileges.form.controller'), "privileges", "index", "controller") %></th>
+    <th class="editdelete"><a href="#" class="column_header"></a></th>
+    <th class="editdelete"><a href="#" class="column_header"></a></th>
+  </tr>
+  <% @privileges.each do |privilege| %>
+    <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+      <td class="name"><%=link_to privilege.name, edit_admin_privilege_path(privilege) %></td>
+      <td class="description"><%= privilege.description %></td>
+      <td class="controller"><%= privilege.controller %></td>
+      <td align="center"><%= link_to(t('common.edit'), edit_admin_privilege_path(privilege)) %></td>
+      <td align="center"><%= link_to(t('common.delete'), [:admin, privilege], :method => 'delete', :confirm => t('.suredeleteprivilege')) %></td>
+  </tr>
+  <% end %>
+</table>

@@ -1,5 +1,4 @@
 <% @page_title = t('.accounts') %>
-<p id="notice"><%= notice %></p>
 <div class="standard_list account_list">
   <%= render(partial: 'shared/menubar', locals: {:indexpath => admin_accounts_path, :newpath => "#", :addimage => "addperson.png", :addtext => t('.addaccount')}) %>
   <%= render 'account_list' %>

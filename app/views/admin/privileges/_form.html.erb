@@ -1,0 +1,34 @@
+<%= form_for([:admin, @privilege], :html => {:class => "standard_form", :multipart => true}) do |f| %>
+<%= render 'shared/error_messages', :target => @privilege, :model => t('privilegemodel.modelname') %>
+  <ul>
+    <li class="form_header">
+      <h2><%= t('.manageprivilegeinformation') %></h2>
+    </li>
+    <li>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </li>
+    <li>
+      <%= f.label :description %>
+      <%= f.text_area :description, :cols => 30, :rows => 3 %>
+    </li>
+    <li>
+      <%= f.label :category %>
+      <%= f.select :category, Privilege::CATEGORIES.keys, prompt: t('.selectacategory') %>
+    </li>
+    <li>
+      <%= f.label t('.controller') %>
+      <%= f.select :controller, Privilege::CONTROLLER_ACTIONS.keys, prompt: t('.selectacontroller') %>
+    </li>
+    <li>
+      <%= f.label :actions %>
+      <div class="checkbox_container" id="privilege_actions">
+        <%= render :partial => 'actions', :locals => {:privilege => @privilege} %>
+      </div>
+    </li>
+    <li>
+      <%= f.submit %>
+    </li>
+    <li class="bottom"></li>
+  </ul>
+<% end %>

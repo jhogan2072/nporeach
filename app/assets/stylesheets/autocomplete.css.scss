@@ -1,0 +1,49 @@
+// Place all the styles related to the ajax controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.ui-corner-all {
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+}
+.ui-widget-content {
+    border: 1px solid #DDD;
+    background-color: #E3E9F2;
+    color: #333;
+    border-image: initial;
+}
+.ui-widget {
+    width: 200px;
+}
+.ui-menu {
+    list-style: none;
+    padding: 2px;
+    margin: 0;
+    display: block;
+    float: left;
+}
+.ui-menu-item {
+    margin-left: 5px;
+}
+.ui-corner-all {
+    text-decoration:none;
+}
+.ui-state-hover {
+    border: 1px solid #FBCB09;
+    background: #FDF5CE;
+    font-weight: bold;
+    color: #C77405;
+    outline: none;
+    border-image: initial;
+    width:200px;
+}
+.ui-menu .ui-menu-item a.ui-state-hover, .ui-menu .ui-menu-item a.ui-state-active {
+    font-weight: normal;
+    margin: -1px;
+}
+.ui-menu .ui-menu-item a {
+    text-decoration: none;
+    display: block;
+    padding: .2em .4em;
+    line-height: 1.5;
+    zoom: 1;
+}

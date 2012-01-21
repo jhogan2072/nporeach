@@ -6,10 +6,13 @@ end
 
 Conservatory::Application.routes.draw do
 
-  get "ajax/users"
+  namespace :admin do resources :menu_items end
 
+  match '/autocomplete/users' => "autocomplete#users"
+
+  match '/account_settings/edit_all' => 'account_settings#edit_all'
+  match '/account_settings/update_all' => 'account_settings#update_all'
   resources :assignments
-  resources :privileges
   resources :roles
   resources :portlets
   resources :portlet_categories
@@ -43,12 +46,12 @@ Conservatory::Application.routes.draw do
   #
   # Account / User Management Routes
   #
-  resources :users
+  resources :users, :except => :show
 
   resource :account do 
     member do
       get :dashboard, :thanks, :plans, :canceled
-      match :billing, :paypal, :plan, :plan_paypal, :cancel
+      match :billing, :paypal, :plan, :plan_paypal, :cancel, :change_owner
     end
   end
 
@@ -58,14 +61,16 @@ Conservatory::Application.routes.draw do
   namespace "admin" do
 
     root :to => "subscriptions#index"
-
+    match '/privileges/update_actions', :controller=>'privileges', :action => 'update_actions'
+    
     resources :subscriptions do
       member do
         post :charge
       end
     end
 
-    resources :default_privileges
+    resources :settings
+    resources :privileges
     resources :default_roles
     resources :accounts
     resources :subscription_plans, :path => 'plans'

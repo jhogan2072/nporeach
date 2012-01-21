@@ -15,7 +15,7 @@ class SubscriptionNotifier < ActionMailer::Base
   
   def welcome(account)
     @subscriber = account
-    mail(:to => account.admin.email, :subject => "Welcome to #{Saas::Config.app_name}!")
+    mail(:to => account.owner.email, :subject => "Welcome to #{Saas::Config.app_name}!")
   end
   
   def trial_expiring(subscription)

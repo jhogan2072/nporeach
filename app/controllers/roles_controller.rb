@@ -5,24 +5,24 @@ class RolesController < InheritedResources::Base
   helper_method :sort_column
 
   def create
-    @privileges = populate_privileges
+    @privileges = Privilege.privileges_by_category
     create! { roles_url }
   end
 
   def update
-    @privileges = populate_privileges
+    @privileges = Privilege.privileges_by_category
     update! {roles_url}
   end
 
   def edit
     add_breadcrumb I18n.t('roles.editrole'), request.url
-    @privileges = populate_privileges
+    @privileges = Privilege.privileges_by_category
     edit!
   end
 
   def new
     add_breadcrumb I18n.t('roles.newrole'), request.url
-    @privileges = populate_privileges
+    @privileges = Privilege.privileges_by_category
     new!
   end
 
@@ -33,16 +33,6 @@ protected
 
     def collection
      @roles ||= end_of_association_chain.search(params[:search]).order(sort_column + ' ' + sort_direction).paginate(:per_page => 15, :page => params[:page])
-    end
-
-    def populate_privileges
-      priv_array = []
-      if current_account.privileges.all.length > 0
-        current_account.privileges.all.each do |priv|
-          priv_array << priv
-        end
-      end
-      return priv_array.group_by {|priv| priv.category}
     end
 
   private

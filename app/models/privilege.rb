@@ -1,11 +1,10 @@
 class Privilege < ActiveRecord::Base
-  belongs_to :account
+  has_many :default_grants
+  has_many :default_roles, :through => :default_grants
+  validates :name, uniqueness: true, presence: true
   has_many :grants
   has_many :roles, :through => :grants
-  validates_uniqueness_of :controller, :scope => [:account_id, :operations]
-  validates :name, :uniqueness => {:scope => :account_id}, presence: true
-
-  attr_protected :account_id
+  validates_uniqueness_of :controller, :scope => :actions
 
   CATEGORIES = {
     "ADMINISTRATION" => ["registrations.png",I18n.t('privilegemodel.administration')], 
@@ -16,36 +15,31 @@ class Privilege < ActiveRecord::Base
     "STUDENTS" => ["students.png", I18n.t('privilegemodel.students')],
   }
   
-#This maps controllers to categories.  It is used by the privileges_controller to automatically populate category for the user based on the controller they've picked
-#The second field in the array corresponds to the translated name for the controller that the user sees in the drop-down
-  CONTROLLERS = {
-    "accounts" => ["ADMINISTRATION", I18n.t('privilegemodel.accounts')],
-    "users" => ["ADMINISTRATION", I18n.t('privilegemodel.users')],
-    "privileges" => ["ADMINISTRATION", I18n.t('privilegemodel.privileges')],
-    "roles" => ["ADMINISTRATION", I18n.t('privilegemodel.roles')],
+  CONTROLLER_ACTIONS = {
+    "account_settings" => {"edit_all" => 1, "update_all" => 2},
+    "accounts" => {"show" => 1, "edit" => 2, "update" => 4, "destroy" => 8, "change_owner" => 16, "plans" => 32, "plan" => 64, "billing" => 128, "paypal" => 256, "plan_paypal" => 512, "cancel" => 1024},
+    "roles" => {"index" => 1, "new" => 2, "create" => 4, "edit" => 8, "update" => 16, "destroy" => 32},
+    "users" => {"index" => 1, "new" => 2, "create" => 4, "edit" => 8, "update" => 16, "destroy" => 32}
   }
-
-  OPERATIONS = {
-    "read" => 1,
-    "create" => 2,
-    "update" => 4,
-    "delete" => 8,
+  
+  ROOT_MENU_ACTIONS = {
+    "account_settings" => "edit_all",
+    "accounts" => "show",
+    "roles" => "index",
+    "users" => "index"
   }
-
+  
   GLOBAL_PRIVILEGES = ["sessions#new", "sessions#create", "sessions#destroy", "accounts#dashboard"]
 
-  OPERATION_MAPPINGS = {
-    "dashboard" => Privilege::OPERATIONS["read"],
-    "show" => Privilege::OPERATIONS["read"],
-    "index" => Privilege::OPERATIONS["read"],
-    "new" => Privilege::OPERATIONS["create"],
-    "create" => Privilege::OPERATIONS["create"],
-    "update" => Privilege::OPERATIONS["update"],
-    "destroy" => Privilege::OPERATIONS["delete"],
-    "plan" => Privilege::OPERATIONS["update"],
-    "billing" => Privilege::OPERATIONS["update"],
-    "cancel" => Privilege::OPERATIONS["update"]
-  }
+  def self.privileges_by_category
+    priv_array = []
+    if self.all.length > 0
+      self.all.each do |priv|
+        priv_array << priv
+      end
+    end
+    return priv_array.group_by {|priv| priv.category}
+  end
 
   def self.search(search)
     if search #&& column_name && self.column_names.include?(column_name)

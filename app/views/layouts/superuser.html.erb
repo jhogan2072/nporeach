@@ -13,21 +13,26 @@
     <% if admin_signed_in? %>
     <ul id="adminmenu">
       <li><%= link_to "Accounts", admin_accounts_path %></li>
+      <li><%= link_to "Menu Items", admin_menu_items_path %></li>
       <li><%= link_to "Default Roles", admin_default_roles_path %></li>
-      <li><%= link_to "Default Privileges", admin_default_privileges_path %></li>
+      <li><%= link_to "Privileges", admin_privileges_path %></li>
       <li><%= link_to "Subscriptions", admin_subscriptions_path %></li>
       <li><%= link_to "Subscription Plans", admin_subscription_plans_path %></li>
       <li><%= link_to "Subscription Discounts", admin_subscription_discounts_path %></li>
       <li><%= link_to "Subscription Affiliates", admin_subscription_affiliates_path %></li>
+      <li><%= link_to "Settings", admin_settings_path %></li>
       <li><%= link_to "Sign Out", destroy_admin_session_path, {method: :delete} %></li>
     </ul>
     <% end %>
   </div>
   <div id="main">
-  <div id="breadcrumbs">
-    <%= render_breadcrumbs(:class => "breadcrumbs") %>
-  </div>
-    <%= yield %> 
+    <div id="breadcrumbs">
+      <%= render_breadcrumbs(:class => "breadcrumbs") %>
     </div>
+    <% flash.each do |key, value| %>
+      <div class="flash <%= key %>"><%= value %></div>
+    <% end %>
+    <%= yield %> 
+  </div>
 </body>
 </html>

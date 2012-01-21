@@ -1,14 +1,20 @@
 // Place all the styles related to the Privileges controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.privileges, .default_privileges {
+.privileges {
   div.privilege_list {
-    width:900px;
+    width:850px;
   
     .name {width:150px;}
-    .description {width:300px;}
-    .controller {width:170px;}
-    .menutext {width:60px;}
+    .description {width:350px;}
+    .controller {width:100px;}
+    .menutext {width:100px;}
     .editdelete {width:55px;}
+  }
+  div.checkbox_container {
+    display:inline-block;
+    width: 300px;
+
+    div {float:left}
   }
 }

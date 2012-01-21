@@ -1,0 +1,19 @@
+<% @page_title = t('.editaccountsetting') %>
+
+<%= form_tag({:action => :update_all, :method => :put}, :class => "standard_form") do %>
+  <%= render 'shared/error_messages', :target => @account_setting, :model => t('accountsettingmodel.modelname') %>
+  <ul>
+    <li class="form_header">
+      <h2><%= t('.editaccountsetting') %></h2>
+    </li>
+    <% for account_setting in @account_settings %>
+      <%= fields_for "account_settings[]", account_setting do |f| %>
+        <%= render :partial => "fields", :locals => {:f => f, :account_setting => account_setting, :setting => Setting.find(account_setting.setting_id)} %>
+      <% end %>
+    <% end %>
+    <li>
+      <%= submit_tag %>
+    </li>
+    <li class="bottom"></li>
+  </ul>
+<% end %>

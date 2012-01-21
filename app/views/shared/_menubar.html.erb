@@ -1,7 +1,7 @@
 <div class="toolbar">
   <div class="menubuttons">
     <a href="<%= newpath %>" title="<%= addtext %>"><%= image_tag(addimage) %>
-      <br/><%= addtext %>
+      <span><%= addtext %></span>
     </a>
     <%= form_tag indexpath, :method => :get do %>
       <%= hidden_field_tag :direction, params[:direction] %>
@@ -10,16 +10,16 @@
       <%= submit_tag "Search", :name => nil %>
     <% end %>
     <a href="#" title="<%= t('common.print') %>" class="rightbutton"><%= image_tag("print.png") %>
-      <br/><%= t('common.print') %>
+      <span><%= t('common.print') %></span>
     </a>
     <a href="#" title="<%= t('common.emaillist') %>" class="rightbutton"><%= image_tag("email.png") %>
-      <br/><%= t('common.emaillist') %>
+      <span><%= t('common.emaillist') %></span>
     </a>
     <a href="#" title="<%= t('common.export') %>" class="rightbutton"><%= image_tag("export.png") %>
-      <br/><%= t('common.export') %>
+      <span><%= t('common.export') %></span>
     </a>
     <a href="#" title="<%= t('common.fields') %>" class="rightbutton"><%= image_tag("fields.png") %>
-      <br/><%= t('common.fields') %>
+      <span><%= t('common.fields') %></span>
     </a>
   </div>
 </div>

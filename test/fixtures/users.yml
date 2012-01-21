@@ -1,6 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-account_admin:
+account_owner:
   last_name: MyString
   first_name: MyString
   middle_name: MyString
@@ -20,7 +20,7 @@ account_admin:
   current_sign_in_ip: MyString
   account_id: 1
   customer_id: 1
-  admin: false
+  owner: true
 
 account_user:
   last_name: MyString
@@ -42,5 +42,5 @@ account_user:
   current_sign_in_ip: MyString
   account_id: 1
   customer_id: 1
-  admin: false
+  owner: false
 

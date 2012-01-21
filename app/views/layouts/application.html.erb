@@ -17,15 +17,18 @@
     <% end %>
 
     <% if user_signed_in? && current_menu %>
-      <%= render(partial: 'shared/menu', locals: {:menu => current_menu}) %>
+      <%= render(partial: 'shared/menu', locals: {:menu => current_menu, :active_action => active_menu_action}) %>
     <% end %>
   </div>
   <div class="clear"></div>
   <div id="main">
-  <div id="breadcrumbs">
-    <%= render_breadcrumbs(:class => "breadcrumbs") %>
-  </div>
-    <%= yield %> 
+    <div id="breadcrumbs">
+      <%= render_breadcrumbs(:class => "breadcrumbs") %>
     </div>
+    <% flash.each do |key, value| %>
+      <div class="flash <%= key %>"><%= value %></div>
+    <% end %>
+    <%= yield %>
+  </div>
 </body>
 </html>

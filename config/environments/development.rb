@@ -28,9 +28,19 @@ Conservatory::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address              => "smtp.gmail.com",
+    :port                 => 587,
+    :domain               => 'artshelper.com',
+    :user_name            => 'john.hogan@gmail.com',
+    :password             => 'thunder1',
+    :authentication       => 'plain',
+    :enable_starttls_auto => true  }
+
 # Always run remote debugger in development mode
-require 'ruby-debug'
-Debugger.start_remote
-Debugger.settings[:autoeval] = true
-puts "=> Debugger enabled"
+#require 'ruby-debug'
+#Debugger.start_remote
+#Debugger.settings[:autoeval] = true
+#puts "=> Debugger enabled"
 end

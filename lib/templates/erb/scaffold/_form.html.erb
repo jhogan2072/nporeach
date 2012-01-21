@@ -1,0 +1,18 @@
+<%%= form_for(@<%= singular_table_name %>, :html => {:class => "standard_form", :multipart => true}) do |f| %>
+<%%= render 'shared/error_messages', :target => @<%= singular_table_name %>, :model => t('<%= singular_table_name %>model.modelname') %>
+<ul>
+  <li class="form_header">
+    <h2><%%= t('.placeheaderhere') %></h2>
+  </li>
+<% attributes.each do |attribute| -%>
+  <li>
+    <%%= f.label :<%= attribute.name %> %>
+    <%%= f.<%= attribute.field_type %> :<%= attribute.name %> %>
+  </li>
+<% end -%>
+  <li>
+    <%%= f.submit %>
+  </li>
+  <li class="bottom"></li>
+</ul>
+<%% end %>

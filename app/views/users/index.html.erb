@@ -1,5 +1,4 @@
 <% @page_title = t('.manageusers') %>
-<p id="notice"><%= notice %></p>
 <div class="standard_list user_list">
 <%= render(partial: 'shared/menubar', locals: {:indexpath => users_path, :newpath => new_user_path, :addimage => "addperson.png", :addtext => t('.adduser')}) %>
 <%= render 'user_list' %>

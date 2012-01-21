@@ -1,10 +1,10 @@
 class Account < ActiveRecord::Base
-  has_many :privileges, :dependent => :destroy
+  has_many :account_settings, :dependent => :destroy
   has_many :users, :dependent => :destroy
   has_many :roles, :dependent => :destroy
-  has_one :admin, :class_name => "User", :conditions => { :admin => true }
+  has_one :owner, :class_name => "User", :conditions => { :owner => true }
   after_create :create_roles_and_privileges
-  accepts_nested_attributes_for :admin
+  accepts_nested_attributes_for :owner
 
   #
   # Set up the account to own subscriptions. An alternative would be to
@@ -18,15 +18,15 @@ class Account < ActiveRecord::Base
   # The model with "has_subscription" needs to provide an email attribute.
   # But ours is stored in the user model, so we delegate
   #
-  delegate :email, :to => :admin
+  delegate :email, :to => :owner
   
   validates_format_of :domain, :with => /\A[a-zA-Z][a-zA-Z0-9]*\Z/
   validates_exclusion_of :domain, :in => %W( support blog www billing help api ), :message => I18n.t('accountmodel.domainnotavailable')
-  validates :admin, :presence => {:on => :create, :message => I18n.t('accountmodel.adminmissing')}
-  validates_associated :admin, {:on => :create, :message => I18n.t('accountmodel.adminnotvalid')}
+  validates :owner, :presence => {:on => :create, :message => I18n.t('accountmodel.adminmissing')}
+  validates_associated :owner, {:on => :create, :message => I18n.t('accountmodel.adminnotvalid')}
   validate :valid_domain?
   
-  attr_accessible :name, :domain, :admin_attributes
+  attr_accessible :name, :domain, :owner_attributes
   
   acts_as_paranoid
   
@@ -53,21 +53,15 @@ class Account < ActiveRecord::Base
 
   protected
     def create_roles_and_privileges
-      DefaultPrivilege.all.each do |default_privilege|
-        privilege = self.privileges.new
-        privilege.update_attributes(default_privilege.attributes)
-        grant = privilege.grants.new
-
-      end
       DefaultRole.all.each do |default_role|
         role = self.roles.new
         role.update_attributes(default_role.attributes)
         default_role.default_grants.all.each do |default_grant|
           grant = role.grants.new
-          grant.privilege_id = Privilege.where("name = ? and account_id = ?", default_grant.default_privilege.name, self.id).first!.id
+          grant.privilege_id = default_grant.privilege_id
           grant.role_id = role.id
           grant.save!
-       end
+        end
       end
       # Handle the unlikely case that we can't find a matching privilege for a default_privilege, i.e. the previous insertion failed
       rescue ActiveRecord::RecordNotFound

@@ -1,0 +1,5 @@
+<% @page_title = t('.menu_items') %>
+<div class="standard_list menu_item_list">
+  <%= render(partial: 'shared/menubar', locals: {:indexpath => admin_menu_items_path, :newpath => new_admin_menu_item_path, :addimage => "addprivilege.png", :addtext => t('.addnewmenu_item')}) %>
+  <%= render 'menu_item_list' %>
+</div>

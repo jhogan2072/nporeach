@@ -44,7 +44,7 @@ class UsersController < InheritedResources::Base
     end
     
     def authorized?
-      redirect_to new_user_session_url unless (user_signed_in? && self.action_name == 'index') || admin?
+      redirect_to new_user_session_url unless (user_signed_in? && self.action_name == 'index') || owner?
     end
     
     def check_user_limit

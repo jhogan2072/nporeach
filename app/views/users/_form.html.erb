@@ -53,10 +53,6 @@
     </li>
     <% end %>
     <li>
-      <%= f.label t('.admin') %>
-      <%= f.check_box :admin %>
-    </li>
-    <li>
       <%= f.label t('roles.roles') %>
       <div class="checkbox_container">
       <% current_account.roles.each do |role| %>

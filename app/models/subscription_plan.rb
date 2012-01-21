@@ -7,7 +7,7 @@ class SubscriptionPlan < ActiveRecord::Base
   # default is 1
   validates_numericality_of :renewal_period, :only_integer => true, :greater_than => 0
   validates_numericality_of :trial_period, :only_integer => true, :greater_than_or_equal_to => 0
-  validates_presence_of :name
+  validates :name, presence: true
   
   attr_accessor :discount
 

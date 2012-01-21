@@ -13,7 +13,7 @@ namespace :saas do
       end
     end
 
-    account = Account.create(:name => 'Test Account', :domain => 'test', :plan => SubscriptionPlan.first, :admin_attributes => { :name => 'Test', :password => 'tester', :password_confirmation => 'tester', :email => 'test@example.com' })
+    account = Account.create(:name => 'Test Account', :domain => 'test', :plan => SubscriptionPlan.first, :owner_attributes => { :name => 'Test', :password => 'tester', :password_confirmation => 'tester', :email => 'test@example.com' })
     SaasAdmin.create(:email => 'admin@example.com', :password => 'password', :password_confirmation => 'password')
 
     puts <<-EOF

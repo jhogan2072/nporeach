@@ -5,8 +5,7 @@ one:
   description: MyString
   controller: MyString
   menu_text: MyString
-  account_id: 1
-  operations: 1
+  actions: 1
   category: MyString
 
 two:
@@ -14,6 +13,5 @@ two:
   description: MyString
   controller: MyString
   menu_text: MyString
-  account_id: 1
-  operations: 1
+  actions: 1
   category: MyString

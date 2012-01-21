@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111230224043) do
+ActiveRecord::Schema.define(:version => 20120119192944) do
+
+  create_table "account_settings", :force => true do |t|
+    t.integer  "account_id"
+    t.integer  "setting_id"
+    t.string   "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "accounts", :force => true do |t|
     t.string   "name",        :null => false
@@ -49,19 +57,8 @@ ActiveRecord::Schema.define(:version => 20111230224043) do
   end
 
   create_table "default_grants", :force => true do |t|
-    t.integer  "default_privilege_id"
+    t.integer  "privilege_id"
     t.integer  "default_role_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "default_privileges", :force => true do |t|
-    t.string   "name"
-    t.string   "description"
-    t.string   "controller"
-    t.string   "category"
-    t.string   "menu_text"
-    t.integer  "operations"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -75,6 +72,16 @@ ActiveRecord::Schema.define(:version => 20111230224043) do
   create_table "grants", :force => true do |t|
     t.integer  "privilege_id"
     t.integer  "role_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "menu_items", :force => true do |t|
+    t.string   "name"
+    t.string   "help_text"
+    t.string   "category"
+    t.string   "controller"
+    t.string   "action"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -105,12 +112,10 @@ ActiveRecord::Schema.define(:version => 20111230224043) do
     t.string   "name"
     t.string   "description"
     t.string   "controller"
+    t.string   "category"
+    t.integer  "actions"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "menu_text"
-    t.integer  "account_id"
-    t.integer  "operations"
-    t.string   "category"
   end
 
   create_table "roles", :force => true do |t|
@@ -118,6 +123,14 @@ ActiveRecord::Schema.define(:version => 20111230224043) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "account_id"
+  end
+
+  create_table "settings", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "default_value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "subscription_affiliates", :force => true do |t|
@@ -213,7 +226,7 @@ ActiveRecord::Schema.define(:version => 20111230224043) do
     t.string   "current_sign_in_ip"
     t.integer  "account_id"
     t.integer  "customer_id"
-    t.boolean  "admin",                :default => false
+    t.boolean  "owner",                :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "confirmation_token"

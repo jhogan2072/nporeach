@@ -1,32 +1,32 @@
 class Admin::DefaultRolesController < ApplicationController
   include Saas::ControllerHelpers
-  add_breadcrumb I18n.t('layouts.application.home'), :admin_subscriptions_path
+  add_breadcrumb I18n.t('layouts.application.home'), :root_path
   add_breadcrumb I18n.t('admin.default_roles.default_roles'), :admin_default_roles_path
   respond_to :js, :only => :index
   helper_method :sort_column
   layout 'superuser'
 
   def create
-    @default_privileges = populate_privileges
+    @privileges = populate_privileges
     create! { admin_default_roles_url }
   end
 
   def update
-    @default_privileges = populate_privileges
+    @privileges = populate_privileges
     update! {admin_default_roles_url}
   end
 
   def edit
     @default_role = DefaultRole.find(params[:id])
     add_breadcrumb I18n.t('admin.default_roles.edit.editingdefaultrole'), request.url
-    @default_privileges = populate_privileges
+    @privileges = populate_privileges
     edit!
   end
 
   def new
     @default_role = DefaultRole.new
     add_breadcrumb I18n.t('admin.default_roles.new.newdefaultrole'), request.url
-    @default_privileges = populate_privileges
+    @privileges = populate_privileges
     new!
   end
 
@@ -37,8 +37,8 @@ class Admin::DefaultRolesController < ApplicationController
 
   def populate_privileges
     priv_array = []
-    if DefaultPrivilege.all.length > 0
-        DefaultPrivilege.all.each do |priv|
+    if Privilege.all.length > 0
+        Privilege.all.each do |priv|
         priv_array << priv
       end
     end

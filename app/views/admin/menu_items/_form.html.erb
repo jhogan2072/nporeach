@@ -1,0 +1,32 @@
+<%= form_for([:admin, @menu_item], :html => {:class => "standard_form", :multipart => true}) do |f| %>
+<%= render 'shared/error_messages', :target => @admin_menu_item, :model => t('menuitemmodel.modelname') %>
+<ul>
+  <li class="form_header">
+    <h2><%= t('.managemenu_items') %></h2>
+  </li>
+  <li>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </li>
+  <li>
+    <%= f.label :help_text %>
+    <%= f.text_field :help_text %>
+  </li>
+  <li>
+    <%= f.label :category %>
+    <%= f.text_field :category %>
+  </li>
+  <li>
+    <%= f.label :controller %>
+    <%= f.text_field :controller %>
+  </li>
+  <li>
+    <%= f.label :action %>
+    <%= f.text_field :action %>
+  </li>
+  <li>
+    <%= f.submit %>
+  </li>
+  <li class="bottom"></li>
+</ul>
+<% end %>

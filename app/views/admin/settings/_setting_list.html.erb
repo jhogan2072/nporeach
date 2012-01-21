@@ -1,0 +1,18 @@
+<table id="settings">
+  <tr class="headers">
+    <th class="name"><%= header_link(t('common.name'), "settings", "index", "name") %></th>
+    <th class="description"><%= header_link(t('common.description'), "settings", "index", "description") %></th>
+    <th class="default_value"><%= header_link(t('.default_value'), "settings", "index", "default_value") %></th>
+    <th class="editdelete"><a href="#" class="column_header"></a></th>
+    <th class="editdelete"><a href="#" class="column_header"></a></th>
+  </tr>
+  <% @settings.each do |setting| %>
+    <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+      <td class="name"><%=link_to setting.name, edit_admin_setting_path(setting) %></td>
+      <td class="description"><%= setting.description %></td>
+      <td class="default_value"><%= setting.default_value %></td>
+      <td align="center"><%= link_to(t('common.edit'), edit_admin_setting_path(setting)) %></td>
+      <td align="center"><%= link_to(t('common.delete'), [:admin, setting], :method => 'delete', :confirm => t('.suredeletesetting')) %></td>
+  </tr>
+  <% end %>
+</table>

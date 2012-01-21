@@ -1,6 +1,6 @@
 class DefaultRole < ActiveRecord::Base
   has_many :default_grants, :dependent => :destroy
-  has_many :default_privileges, :through => :default_grants
+  has_many :privileges, :through => :default_grants
   validates :name, uniqueness: true, presence: true
 
   def self.search(search)

@@ -142,7 +142,7 @@ module Saas
     def self.included(base)
       base.send :before_filter, :set_affiliate_cookie
       base.send :before_filter, :set_mailer_url_options
-      base.send :helper_method, :current_account, :admin?
+      base.send :helper_method, :current_account, :owner?
     end
 
     protected
@@ -155,10 +155,10 @@ module Saas
         @current_account
       end
 
-      # Whether a user is the admin for the account loaded by the
+      # Whether a user is the owner for the account loaded by the
       # current subdomain
-      def admin?
-        user_signed_in? && current_user.admin?
+      def owner?
+        user_signed_in? && current_user.owner?
       end
 
       def set_affiliate_cookie

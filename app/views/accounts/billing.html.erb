@@ -23,22 +23,22 @@
 
   <% if @subscription.state == 'trial' %>
   <li>
-    <label for="next_renewal">Trial expiration date:</label>
+    <label for="next_renewal"><%= t('.trialexpirationdate') %>:</label>
     <span id="next_renewal"><%= @subscription.next_renewal_at.strftime '%m/%d/%Y' %></span>
   </li>
   <% else %>
     <% if @subscription.amount > 0 %>
   <li>
-      <label>Next charge date:</label>
-      <%= @subscription.next_renewal_at.to_s(:long_day) %>
+      <label><%= t('.nextchargedate') %>:</label>
+      <span><%= @subscription.next_renewal_at.strftime '%m/%d/%Y' %></span>
   </li>
   <li>
-      <label>Next charge amount:</label>
-      <%= number_to_currency @subscription.amount %>
+      <label><%= t('.nextchargeamount') %>:</label>
+      <span><%= number_to_currency @subscription.amount %></span>
   </li>
   <li>
-      <label>Current payment method:</label>
-      <%= @subscription.paypal? ? 'PayPal' : "#{@subscription.card_number} / #{@subscription.card_expiration}" %>
+      <label><%= t('.currentpaymentmethod') %>:</label>
+      <span><%= @subscription.paypal? ? 'PayPal' : "#{@subscription.card_number} / #{@subscription.card_expiration}" %></span>
   </li>
     <% end %>
   <% end %>

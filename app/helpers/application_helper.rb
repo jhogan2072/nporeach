@@ -1,8 +1,4 @@
 module ApplicationHelper
-  def flash_notices
-    raw([:notice, :error, :alert].collect {|type| content_tag('div', flash[type], :id => type) if flash[type] }.join)
-  end
-  
   # Render a submit button and cancel link
   def submit_or_cancel(cancel_url = session[:return_to] ? session[:return_to] : url_for(:action => 'index'), label = 'Save Changes')
     raw(content_tag(:div, submit_tag(label) + ' or ' +
@@ -14,10 +10,27 @@ module ApplicationHelper
   end
 
   def hide_ul_if(condition, attributes = {}, &block)
-    if condition
+    if condition || (controller_name == 'accounts' && action_name == 'dashboard')
       attributes["style"] = "display: none"
     end
     content_tag("ul", attributes, &block)
+  end
+
+  def is_current(active_action, submenus)
+    if active_action.nil?
+      return (controller_name == submenus.controller)
+    else
+      return (controller_name == submenus.controller && action_name == submenus.action)
+    end
+  end
+
+  def submenu_url(submenus, active_action)
+    link_to(content_tag("span", submenus.name),
+      url_for(:controller => submenus.controller,
+      :action => submenus.action),
+      :title => submenus.name,
+      :alt => submenus.help_text,
+      :class => (is_current(active_action, submenus))? "current" : "")
   end
 
   def header_link(link_text, link_to_controller, link_to_action, column )
@@ -46,12 +59,20 @@ module ApplicationHelper
     return retval
   end
 
-  def link_for_privilege(priv_controller)
-    if priv_controller == "accounts"
-      url_for :action => 'show', :controller => 'accounts'
+  def privilege_div(controller_name, current_privileges)
+    if controller_name
+      retval = ""
+      Privilege::CONTROLLER_ACTIONS[controller_name].each_pair do |key, value|
+        retval += content_tag("div", check_box_tag('allowed_actions[]', value, has_privilege(value, current_privileges), :class => "checkbox_group") + content_tag("span", key, :class => "checkbox_label"))
+      end
+      return retval.html_safe
     else
-      url_for :controller => priv_controller
+      content_tag("div", content_tag("label", "Please choose a controller"), :class => "checkbox_group")
     end
+  end
+
+  def link_for_privilege(priv_controller)
+      url_for :action => Privilege::ROOT_MENU_ACTIONS[priv_controller], :controller => priv_controller
   end
 
 end

@@ -1,6 +1,6 @@
 class Admin::SubscriptionAffiliatesController < ApplicationController
   include Saas::ControllerHelpers
-  add_breadcrumb I18n.t('layouts.application.home'), :admin_subscriptions_path
+  add_breadcrumb I18n.t('layouts.application.home'), :root_path
   add_breadcrumb I18n.t('admin.subscription_affiliates.subscription_affiliates'), :admin_subscription_affiliates_path
   respond_to :js, :only => :index
   helper_method :sort_column

@@ -30,24 +30,24 @@
       <h2><%= t('.enteradmininfo') %></h2>
       <p><%= t('.step2desc') %></p>
     </li>
-    <%= account.fields_for :admin do |admin| %>
+    <%= account.fields_for :owner do |owner| %>
     <li>
-      <%= admin.label t('users.form.name') %>
-      <%= admin.text_field :first_name, :size => "15" %>
-      <%= admin.text_field :last_name, :size => "15" %>
-      <%= admin.text_field :middle_name, :size => "3" %>
+      <%= owner.label t('users.form.name') %>
+      <%= owner.text_field :first_name, :size => "15" %>
+      <%= owner.text_field :last_name, :size => "15" %>
+      <%= owner.text_field :middle_name, :size => "3" %>
     </li>
     <li>
-      <%= admin.label :email %>
-      <%= admin.email_field :email, size:50 %>
+      <%= owner.label :email %>
+      <%= owner.email_field :email, size:50 %>
     </li>
     <li>
-      <%= admin.label :password %>
-      <%= admin.password_field :password %>
+      <%= owner.label :password %>
+      <%= owner.password_field :password %>
     </li>
     <li>
-      <%= admin.label :password_confirmation %>
-      <%= admin.password_field :password_confirmation %>
+      <%= owner.label :password_confirmation %>
+      <%= owner.password_field :password_confirmation %>
     </li>
     <li class="bottom"></li>
     <% end %>

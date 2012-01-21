@@ -6,7 +6,7 @@
     <h2><%= signup==true ? t('shared.credit_card_form.stepnumber', stepno: 3) : "" %><%= t('shared.credit_card_form.enterpaymentinfo') %></h2>
   </li>
   <% if @subscription %>
-    <li><input type="radio" name="paypal" value=" " <%= 'checked="checked"' unless @subscription.paypal? %>><%= t('.paywithcard') %></li>
+    <li><input type="radio" name="paypal" value=" " <%= 'checked="checked"' unless @subscription.paypal? %>/><%= t('.paywithcard') %></li>
   <% end %>
   <li>
     <label><%= t('shared.credit_card_form.nameoncard') %></label>
@@ -60,7 +60,7 @@
     <%= text_field :address ,:phone %>
   </li>
 <% if @subscription %>
-  <li><input type="radio" name="paypal" value="true" <%= 'checked="checked"' if @subscription.paypal? %>> Pay with PayPal </li>
+  <li><input type="radio" name="paypal" value="true" <%= 'checked="checked"' if @subscription.paypal? %>/> Pay with PayPal </li>
 <% end %>
   <li class="bottom"></li>
 </ul>
