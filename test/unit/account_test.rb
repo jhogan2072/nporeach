@@ -1,9 +1,6 @@
 require 'test_helper'
 
 class AccountTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
 
   test 'account should be invalid with a missing owner' do
     account = Account.new(domain: accounts(:localhost).name, description: accounts(:localhost).description, plan: subscription_plans(:basic))

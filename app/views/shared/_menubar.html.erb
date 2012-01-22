@@ -15,7 +15,7 @@
     <a href="#" title="<%= t('common.emaillist') %>" class="rightbutton"><%= image_tag("email.png") %>
       <span><%= t('common.emaillist') %></span>
     </a>
-    <a href="#" title="<%= t('common.export') %>" class="rightbutton"><%= image_tag("export.png") %>
+    <a href="<%= url_for(:format => 'xls') %>" title="<%= t('common.export') %>" class="rightbutton"><%= image_tag("export.png") %>
       <span><%= t('common.export') %></span>
     </a>
     <a href="#" title="<%= t('common.fields') %>" class="rightbutton"><%= image_tag("fields.png") %>

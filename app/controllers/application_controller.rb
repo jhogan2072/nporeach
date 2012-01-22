@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  #rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
+  rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
   protect_from_forgery
   layout :layout_by_resource
   before_filter :check_authorization

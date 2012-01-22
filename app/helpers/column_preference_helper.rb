@@ -1,0 +1,2 @@
+module ColumnPreferenceHelper
+end

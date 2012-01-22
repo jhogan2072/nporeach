@@ -1,6 +1,7 @@
 class UsersController < InheritedResources::Base
   respond_to :html, :json
   respond_to :js, :only => :index
+  #respond_to :js, :csv, :only => :index
   before_filter :authenticate_user!
   before_filter :authorized?
   before_filter :check_user_limit, :only => :create
@@ -26,6 +27,16 @@ class UsersController < InheritedResources::Base
     new!
   end
 
+  def index
+    index! do |format|
+      format.html
+    #  format.csv do
+    #    send_data(csv_for(@users),
+    #      :type => csv_content_type,
+    #      :filename => "users.csv")
+    #  end
+    end
+  end
   protected
 
     # This is the way to scope everything to the account belonging

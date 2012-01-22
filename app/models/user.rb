@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
   belongs_to :account
-  has_many :assignments
+  has_many :assignments, :dependent => :destroy
   has_many :roles, :through => :assignments
+  has_many :column_preferences, :dependent => :destroy
   validates :email, presence: true
   validates :last_name, :first_name, presence: true
   validates :email, :uniqueness => {:scope => :account_id}, format: { with: /\A[^@]+@[^@]+\z/ }, :if => :email?
