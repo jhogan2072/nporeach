@@ -27,7 +27,57 @@ class UsersController < InheritedResources::Base
     new!
   end
 
+  def columns
+    add_breadcrumb I18n.t('users.columns.editcolumnprefs'), request.url
+    @user = current_user
+    @collection_name = params[:collection_name]
+    if @collection_name.nil? || @collection_name.empty?
+      flash["notice"] = I18n.t('columnpreferencescontroller.pagenotavailable')
+      redirect_to(root_url)
+    end
+    ColumnPreference::AVAILABLE_COLUMNS[@collection_name].each_with_index do |(key, val), index|
+      current_pref = nil
+      current_pref = @user.get_column_prefs(@collection_name).select {|p| p["column_name"] == key}
+      if current_pref.nil? || current_pref.empty?
+        @user.column_preferences.build(:collection_name => @collection_name, :column_name => key, :column_order => index, :is_displayed => val[0] )
+      end
+    end
+  end
+
+  def update_columns
+    @user = current_user
+    if params["up"]
+      column_prefs = params[:user][:column_preferences_attributes]
+      move_up_id = params["up"].to_i
+      up_item = column_prefs.find{|key,value| value["column_order"] == move_up_id.to_s}.first
+      down_item = column_prefs.find{|key,value| value["column_order"] == (move_up_id - 1).to_s}.first
+      column_prefs[up_item]["column_order"] = move_up_id - 1
+      column_prefs[down_item]["column_order"] = move_up_id
+    end
+    if params["down"]
+      column_prefs = params[:user][:column_preferences_attributes]
+      move_down_id = params["down"].to_i
+      down_item = column_prefs.find{|key,value| value["column_order"] == move_down_id.to_s}.first
+      up_item = column_prefs.find{|key,value| value["column_order"] == (move_down_id + 1).to_s}.first
+      column_prefs[down_item]["column_order"] = move_down_id + 1
+      column_prefs[up_item]["column_order"] = move_down_id
+    end
+    respond_to do |format|
+      if @user.update_attributes(params[:user])
+        flash[:notice] = I18n.t('userscontroller.preferencesupdated') unless params["up"] || params["down"]
+        format.html {redirect_to :back}
+      else
+        flash[:error] = @user.errors
+        format.html {redirect_to :back}
+      end
+
+    end
+
+  end
+
   def index
+    @selected_columns = get_selected_columns('users')
+    
     index! do |format|
       format.html
     #  format.csv do

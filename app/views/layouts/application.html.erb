@@ -4,6 +4,7 @@
   <title><%= t('layouts.application.title') %></title>
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag "jquery/css/start/jquery-ui-1.8.17.custom" %>
   <%= csrf_meta_tags %>
 </head>
 <body class='<%= controller.controller_name %>'>
@@ -22,6 +23,7 @@
   </div>
   <div class="clear"></div>
   <div id="main">
+    <div id="dialog-modal"></div>
     <div id="breadcrumbs">
       <%= render_breadcrumbs(:class => "breadcrumbs") %>
     </div>

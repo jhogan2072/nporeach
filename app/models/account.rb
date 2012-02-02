@@ -1,5 +1,7 @@
 class Account < ActiveRecord::Base
   has_many :account_settings, :dependent => :destroy
+  accepts_nested_attributes_for :account_settings, :reject_if => lambda { |a| a[:value].blank? }
+  attr_accessible :account_settings_attributes
   has_many :users, :dependent => :destroy
   has_many :roles, :dependent => :destroy
   has_one :owner, :class_name => "User", :conditions => { :owner => true }

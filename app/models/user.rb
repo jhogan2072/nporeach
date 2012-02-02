@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   has_many :assignments, :dependent => :destroy
   has_many :roles, :through => :assignments
   has_many :column_preferences, :dependent => :destroy
+  accepts_nested_attributes_for :column_preferences
+  attr_accessible :column_preferences_attributes
   validates :email, presence: true
   validates :last_name, :first_name, presence: true
   validates :email, :uniqueness => {:scope => :account_id}, format: { with: /\A[^@]+@[^@]+\z/ }, :if => :email?
@@ -24,6 +26,10 @@ class User < ActiveRecord::Base
     else
       scoped
     end
+  end
+
+  def get_column_prefs(collection_name)
+    ColumnPreference.where("user_id = ? and collection_name = ?", self.id, collection_name).order('column_order')
   end
 
   def full_name

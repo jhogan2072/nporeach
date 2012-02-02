@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
+  #rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
   protect_from_forgery
   layout :layout_by_resource
   before_filter :check_authorization
@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_menu
   helper_method :active_menu_action
   helper_method :sort_direction
+  helper_method :get_selected_columns
 
   protected
   def layout_by_resource
@@ -74,5 +75,13 @@ class ApplicationController < ActionController::Base
     end    
     active_action = action_name if action_present
     return active_action
+  end
+
+  def get_selected_columns(collection_name)
+    selected_columns = ColumnPreference.user_columns(collection_name, current_user.id).map {|i| i.column_name}
+    if selected_columns.empty?
+      selected_columns = ColumnPreference::AVAILABLE_COLUMNS[collection_name].select {|k,v| v[0] == true}.map {|i| i[0]}
+    end
+    return selected_columns
   end
 end

@@ -10,12 +10,14 @@ Conservatory::Application.routes.draw do
 
   match '/autocomplete/users' => "autocomplete#users"
 
-  match '/account_settings/edit_all' => 'account_settings#edit_all'
-  match '/account_settings/update_all' => 'account_settings#update_all'
   resources :assignments
   resources :roles
   resources :portlets
   resources :portlet_categories
+  match '/users/columns' => 'users#columns'
+  match '/users/update_columns' => 'users#update_columns'
+  match '/accounts/settings' => 'accounts#settings'
+  match '/accounts/update_settings' => 'accounts#update_settings'
 
   # Routes for the public site
   constraints MainSite do

@@ -1,0 +1,14 @@
+<li>
+  <%= f.hidden_field :id %>
+  <%= f.hidden_field :user_id %>
+  <%= f.hidden_field :collection_name %>
+  <%= f.hidden_field :column_name %>
+  <%= f.check_box(:is_displayed, {:class => "centered_checkbox"}) + content_tag("span", f.object.column_name.humanize, :class => "checkbox_label") %>
+  <%= f.hidden_field :column_order %>
+  <%= image_tag("drag_icon.png") if show_drag_icon %>
+  <noscript>
+    <%= image_submit_tag("moveup.png", :name => "up", :value => f.object.column_order.to_s) unless f.object.column_order == 0%>
+    <%= image_submit_tag("movedown.png", :name => "down", :value => f.object.column_order.to_s) unless f.object.column_order == length - 1 %>
+  </noscript>
+</li>
+

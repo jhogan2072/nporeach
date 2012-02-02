@@ -35,6 +35,6 @@ Setting.create(:name => 'Registrant Name', :description => 'The name for a sessi
 
 MenuItem.create(:name => 'Users', :help_text => 'Manage Users', :category => 'ADMINISTRATION', :controller => 'users', :action => 'index')
 MenuItem.create(:name => 'Roles', :help_text => 'Manage User Roles', :category => 'ADMINISTRATION', :controller => 'roles', :action => 'index')
-MenuItem.create(:name => 'Settings', :help_text => 'Manage Account Settings', :category => 'ADMINISTRATION', :controller => 'account_settings', :action => 'edit_all')
+MenuItem.create(:name => 'Settings', :help_text => 'Manage Account Settings', :category => 'ADMINISTRATION', :controller => 'accounts', :action => 'settings')
 MenuItem.create(:name => 'Account', :help_text => 'Manage Account Information', :category => 'ADMINISTRATION', :controller => 'accounts', :action => 'show')
 MenuItem.create(:name => 'Billing', :help_text => 'Manage Billing Information', :category => 'ADMINISTRATION', :controller => 'accounts', :action => 'billing')

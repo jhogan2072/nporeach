@@ -1,0 +1,17 @@
+<% @page_title = t('.editaccountsetting') %>
+
+<%= form_for @account, :url => { :action => "update_settings" }, :html => {:class => "standard_form"} do |f| %>
+  <%= render 'shared/error_messages', :target => @account, :model => t('accountmodel.modelname') %>
+  <ul>
+    <li class="form_header">
+      <h2><%= t('.editaccountsetting') %></h2>
+    </li>
+    <%= f.fields_for :account_settings do |builder| %>
+      <%= render :partial => "fields", :locals => {:f => builder} %>
+    <% end %>
+    <li>
+      <%= submit_tag %>
+    </li>
+    <li class="bottom"></li>
+  </ul>
+<% end %>

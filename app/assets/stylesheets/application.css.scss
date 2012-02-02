@@ -362,6 +362,8 @@ a {
         vertical-align:middle;
       }
 
+      input[type="checkbox"].centered_checkbox {margin-left: 100px;}
+
       span.checkbox_label {margin-right:15px; margin-left: 5px;}
       
       input[type="checkbox"].checkbox_group {
@@ -461,6 +463,28 @@ a {
 
   }
 
+}
+
+.field_chooser {
+    ul {
+        width:400px;
+        margin-top:10px;
+        .form_header {height:5px;}
+        li {
+            img {
+                float:right;
+                margin-top:5px;
+                width:31px;
+                margin-left:0px;
+                &:hover { cursor:move }
+            }
+            padding-top: 2px;
+            padding-bottom: 2px;
+            span {
+                &:hover { cursor:move }
+            }
+        }
+    }
 }
 
 .wide_form {

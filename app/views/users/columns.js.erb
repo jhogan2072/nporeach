@@ -1,0 +1,19 @@
+$( '#dialog-modal' ).html("<%= j render :partial => 'column_chooser', :locals => {:show_drag_icon => "true"} %>");
+$( '#dialog-modal' ).dialog({
+			height: 725,
+                        width: 600,
+			modal: true,
+                        title: "<%= I18n.t('users.columns.choosedrag') %>"
+		});
+/* Make the form sortable */
+$("form.field_chooser ul").sortable();
+
+/* On submit, set the value of the position inputs to the value of their current physical position in the list */
+$('form.field_chooser').submit(function() {
+
+    $("form.field_chooser ul li input[id$='column_order']").each(function(index) {
+        $(this).val(index)+1;
+     });
+
+    return true;
+});

@@ -1,0 +1,15 @@
+<%= form_for @user, :url => { :action => "update_columns" }, :html => {:class => "standard_form field_chooser"} do |f| %>
+  <%= render 'shared/error_messages', :target => @user, :model => t('usermodel.modelname') %>
+  <%= hidden_field_tag :collection_name, @collection_name %>
+  <ul>
+    <li class="form_header">
+    </li>
+    <%= f.fields_for :column_preferences do |builder| %>
+      <%= render :partial => "column_list", :locals => {:f => builder, :length => @user.column_preferences.length, :show_drag_icon => show_drag_icon} %>
+    <% end %>
+    <li>
+      <%= submit_tag %>
+    </li>
+    <li class="bottom"></li>
+  </ul>
+<% end %>

@@ -16,14 +16,14 @@ class Privilege < ActiveRecord::Base
   }
   
   CONTROLLER_ACTIONS = {
-    "account_settings" => {"edit_all" => 1, "update_all" => 2},
+    "account_settings" => {"settings" => 1, "update_settings" => 2},
     "accounts" => {"show" => 1, "edit" => 2, "update" => 4, "destroy" => 8, "change_owner" => 16, "plans" => 32, "plan" => 64, "billing" => 128, "paypal" => 256, "plan_paypal" => 512, "cancel" => 1024},
     "roles" => {"index" => 1, "new" => 2, "create" => 4, "edit" => 8, "update" => 16, "destroy" => 32},
     "users" => {"index" => 1, "new" => 2, "create" => 4, "edit" => 8, "update" => 16, "destroy" => 32}
   }
   
   ROOT_MENU_ACTIONS = {
-    "account_settings" => "edit_all",
+    "account_settings" => "settings",
     "accounts" => "show",
     "roles" => "index",
     "users" => "index"

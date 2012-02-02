@@ -93,12 +93,16 @@ en:
     errordeletingpaypal: "Error deleting PayPal profile: "
     errorupdatingplan: "Error updating your plan: "
     errorcompletingpaypal: "Error completing PayPal profile: "
-
-  accountsettingscontroller:
     settingsupdated: "Account Settings updated"
+
+  columnpreferencescontroller:
+    pagenotavailable: "The page you requested is not available"
 
   subscriptionscontroller:
     cardhasbeencharged: "The card has been charged."
+
+  userscontroller:
+    preferencesupdated: "Column preferences updated."
     
   layouts:
     public:
@@ -299,18 +303,18 @@ en:
         confirmnewpassword: "Confirm new password"
         changemypassword: "Change My Password"
 
-  account_settings:
-    accountsettings: "Account Settings"
-    edit_all:
-      editaccountsetting: "Edit Account Settings"
-    fields:
-      settingname: "Setting Name"
   users:
     edituser: "Edit User"
     edituserroles: "Edit User Roles"
     newuser: "New User"
     users: "Users"
     missingpassword: "Please enter a password"
+    columns:
+      choosedrag: "Choose Fields - Drag and Drop to reorder"
+      choosefields: "Choose Fields"
+      editcolumnprefs: "Edit Column Preferences"
+    column_chooser:
+      choosefields: "Choose Fields"
     form:
       preventusersave: " prohibited this user from being saved:"
       manageuserinformation: "Manage User Information"
@@ -329,12 +333,17 @@ en:
       suredeleteuser: "Are you sure you want to delete this user?"
     user_list:
       name: "Name"
+      last_name: "Last Name"
+      first_name: "First Name"
+      middle_name: "Middle Name"
       email: "Email"
       address: "Address"
       city: "City"
       state: "State"
       zip: "Zip"
-      homephone: "Home Phone"
+      home_phone: "Home Phone"
+      work_phone: "Work Phone"
+      mobile_phone: "Mobile Phone"
 
     edit:
       editinguser: "Editing a User"
@@ -372,6 +381,8 @@ en:
 
   accounts:
     accounts: "Accounts"
+    settings:
+      editaccountsetting: "Edit Account Settings"
     change_owner:
       changeowner: "Change Account Owner"
       currentowner: "Current Owner"
@@ -434,6 +445,7 @@ en:
       editaccountinformation: "Modify Organization Name"
       changebillingplan: "Change Billing Plan"
       editpaymentinfo: "Edit Payment Information"
+      editaccountsettings: "Edit Account Settings"
       cancelplan: "Cancel your subscription"
   
   portlets:

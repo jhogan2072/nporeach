@@ -1,6 +1,6 @@
 <% @page_title = t('.manageusers') %>
 <div class="standard_list user_list">
-<%= render(partial: 'shared/menubar', locals: {:indexpath => users_path, :newpath => new_user_path, :addimage => "addperson.png", :addtext => t('.adduser')}) %>
+<%= render(partial: 'shared/menubar', locals: {:collection_name => "users", :indexpath => users_path, :newpath => new_user_path, :addimage => "addperson.png", :addtext => t('.adduser')}) %>
 <%= render 'user_list' %>
 <%= will_paginate @users %>
 </div>

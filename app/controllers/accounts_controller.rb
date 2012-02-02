@@ -41,6 +41,32 @@ class AccountsController < InheritedResources::Base
     render :layout => 'public' # Uncomment if your "public" site has a different layout than the one used for logged-in users
   end
   
+  def settings
+    add_breadcrumb I18n.t('accounts.settings.editaccountsetting'), request.url
+    default_settings = Setting.order('id')
+    @account = current_account
+    default_settings.each do |default_setting|
+      cs = nil
+      cs = @account.account_settings.select {|f| f["setting_id"] == default_setting.id }
+      if cs.nil? || cs.length == 0
+        @account.account_settings.build(:account_id => current_account.id, :setting_id => default_setting.id, :value=> default_setting.default_value)
+      end
+    end
+  end
+
+  def update_settings
+    @account = current_account
+    respond_to do |format|
+      if @account.update_attributes(params[:account])
+        flash[:notice] = I18n.t('accountscontroller.settingsupdated')
+        format.html {redirect_to accounts_settings_url}
+      else
+        flash[:error] = @account.errors
+        format.html {redirect_to accounts_settings_url}
+      end
+    end
+  end
+
   def create
     @account.affiliate = SubscriptionAffiliate.find_by_token(cookies[:affiliate]) unless cookies[:affiliate].blank?
 
@@ -223,9 +249,5 @@ class AccountsController < InheritedResources::Base
         @discount = nil
       end
     end
-    
-#    def authorized?
-#      redirect_to new_user_session_url unless self.action_name == 'dashboard' || owner?
-#    end 
 
 end
