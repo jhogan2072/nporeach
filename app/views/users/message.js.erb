@@ -1,0 +1,7 @@
+$( '#dialog-modal' ).html("<%= j render partial: 'shared/new_message', :locals => {addresses: @addresses, sender: @sender} %>");
+$( '#dialog-modal' ).dialog({
+			height: 725,
+                        width: 650,
+			modal: true,
+                        title: "<%= I18n.t('common.sendmessage') %>"
+		});

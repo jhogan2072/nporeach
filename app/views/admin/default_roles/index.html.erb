@@ -1,6 +1,6 @@
 <% @page_title = t('.managedefaultroles') %>
 
 <div class="standard_list role_list">
-  <%= render(partial: 'shared/menubar', locals: {:indexpath => admin_default_roles_path, :newpath => new_admin_default_role_path, :addimage => "addperson.png", :addtext => t('.adddefaultrole')}) %>
+  <%= render(partial: 'shared/menubar', locals: {:collection_name => "default_roles", :indexpath => admin_default_roles_path, :newpath => new_admin_default_role_path, :addimage => "addperson.png", :addtext => t('.adddefaultrole')}) %>
   <%= render 'default_role_list' %>
 </div>

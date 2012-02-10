@@ -1,0 +1,29 @@
+<%= form_for(@message, :url => message_path, :html => {:class => "standard_form"}) do |f| %>
+<%= render 'shared/error_messages', :target => @message, :model => t('messagemodel.modelname') %>
+  <%= hidden_field_tag 'addresses', addresses %>
+  <ul>
+    <li class="form_header">
+      <h2><%= t('common.sendmessage') %></h2>
+    </li>
+    <li>
+      <%= f.label :sender_name %>
+      <%= f.text_field :sender_name, :value => sender.full_name %>
+    </li>
+    <li>
+      <%= f.label :sender_email %>
+      <%= f.text_field :sender_email, :value => sender.email %>
+    </li>
+    <li>
+      <%= f.label :subject %>
+      <%= f.text_field :subject %>
+    </li>
+    <li>
+      <%= f.label :body %>
+      <%= f.text_area :body, :cols=>30, :rows => 10 %>
+    </li>
+    <li>
+      <%= f.submit t('common.send')%>
+    </li>
+    <li class="bottom"></li>
+  </ul>
+<% end %>

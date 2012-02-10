@@ -1,7 +1,6 @@
 class UsersController < InheritedResources::Base
   respond_to :html, :json
-  respond_to :js, :only => :index
-  #respond_to :js, :csv, :only => :index
+  respond_to :js, :csv, :only => [:index, :message]
   before_filter :authenticate_user!
   before_filter :authorized?
   before_filter :check_user_limit, :only => :create
@@ -70,23 +69,36 @@ class UsersController < InheritedResources::Base
         flash[:error] = @user.errors
         format.html {redirect_to :back}
       end
-
     end
-
   end
 
   def index
     @selected_columns = get_selected_columns('users')
-    
     index! do |format|
       format.html
-    #  format.csv do
-    #    send_data(csv_for(@users),
-    #      :type => csv_content_type,
-    #      :filename => "users.csv")
-    #  end
+      format.csv do
+        @exported_users = current_account.users
+        export_csv(@selected_columns, @exported_users, "users")
+      end
     end
   end
+
+  def message
+    @users = collection
+    @sender = current_user
+    @message = Message.new
+    @addresses = @users.map{|a| a.email}.join(",")
+  end
+
+  def print
+    @selected_columns = get_selected_columns('users')
+    @users = collection
+    @page_title = "Users"
+    respond_to do |format|
+      format.html {render partial: 'shared/print', locals: {output_records: @users, output_columns: @selected_columns, list_style: "user_list"}}
+    end
+  end
+  
   protected
 
     # This is the way to scope everything to the account belonging

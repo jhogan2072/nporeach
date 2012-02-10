@@ -1,5 +1,5 @@
 <% @page_title = t('settings.settings') %>
 <div class="standard_list setting_list">
-  <%= render(partial: 'shared/menubar', locals: {:indexpath => admin_settings_path, :newpath => new_admin_setting_path, :addimage => "addprivilege.png", :addtext => t('.addnewsetting')}) %>
+  <%= render(partial: 'shared/menubar', locals: {:collection_name => "settings", :indexpath => admin_settings_path, :newpath => new_admin_setting_path, :addimage => "addprivilege.png", :addtext => t('.addnewsetting')}) %>
   <%= render 'setting_list' %>
 </div>

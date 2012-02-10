@@ -1,5 +1,5 @@
 <%% @page_title = t('.<%= plural_table_name %>') %>
 <div class="standard_list <%= singular_table_name %>_list">
-  <%%= render(partial: 'shared/menubar', locals: {:indexpath => <%= plural_table_name %>_path, :newpath => new_<%= singular_table_name %>_path, :addimage => "addprivilege.png", :addtext => t('.addnew<%= singular_table_name %>')}) %>
+  <%%= render(partial: 'shared/menubar', locals: {:collection_name => <%= plural_table_name %>, :indexpath => <%= plural_table_name %>_path, :newpath => new_<%= singular_table_name %>_path, :addimage => "addprivilege.png", :addtext => t('.addnew<%= singular_table_name %>')}) %>
   <%%= render '<%= singular_table_name %>_list' %>
 </div>

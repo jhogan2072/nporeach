@@ -21,6 +21,8 @@ en:
     name: "Name"
     description: "Description"
     print: "Print"
+    send: "Send"
+    sendmessage: "Send an email message"
     emaillist: "Email List"
     export: "Export"
     fields: "Fields"
@@ -38,6 +40,9 @@ en:
 
   picturemodel:
     onlypictures: "--- you can only upload pictures"
+
+  messagemodel:
+    modelname: "message"
     
   accountmodel:
     modelname: "account"
@@ -98,6 +103,10 @@ en:
   columnpreferencescontroller:
     pagenotavailable: "The page you requested is not available"
 
+  messagecontroller:
+    messagesent: "Message was successfully sent."
+    fillinallfields: "Please fill in all fields"
+    
   subscriptionscontroller:
     cardhasbeencharged: "The card has been charged."
 

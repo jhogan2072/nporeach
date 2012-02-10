@@ -18,6 +18,8 @@ Conservatory::Application.routes.draw do
   match '/users/update_columns' => 'users#update_columns'
   match '/accounts/settings' => 'accounts#settings'
   match '/accounts/update_settings' => 'accounts#update_settings'
+  match 'message' => 'message#new', :as => 'message', :via => :get
+  match 'message' => 'message#create', :as => 'message', :via => :post
 
   # Routes for the public site
   constraints MainSite do
@@ -48,7 +50,12 @@ Conservatory::Application.routes.draw do
   #
   # Account / User Management Routes
   #
-  resources :users, :except => :show
+  resources :users, :except => :show do
+    collection do
+      get 'print'
+      get :message
+    end
+  end
 
   resource :account do 
     member do

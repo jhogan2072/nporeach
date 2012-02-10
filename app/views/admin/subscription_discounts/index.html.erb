@@ -1,5 +1,5 @@
 <% @page_title = t('.discounts') %>
 <div class="standard_list subscription_discount_list">
-  <%= render(partial: 'shared/menubar', locals: {:indexpath => admin_subscription_discounts_path, :newpath => new_admin_subscription_discount_path, :addimage => "addprivilege.png", :addtext => t('.addnewdiscount')}) %>
+  <%= render(partial: 'shared/menubar', locals: {:collection_name => "subscription_discounts", :indexpath => admin_subscription_discounts_path, :newpath => new_admin_subscription_discount_path, :addimage => "addprivilege.png", :addtext => t('.addnewdiscount')}) %>
   <%= render 'subscription_discount_list' %>
 </div>

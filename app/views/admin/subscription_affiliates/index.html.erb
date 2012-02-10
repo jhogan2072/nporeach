@@ -1,5 +1,5 @@
 <% @page_title = t('.affiliates') %>
 <div class="standard_list subscription_affiliates_list">
-  <%= render(partial: 'shared/menubar', locals: {:indexpath => admin_subscription_affiliates_path, :newpath => new_admin_subscription_affiliate_path, :addimage => "addprivilege.png", :addtext => t('.addnewaffiliate')}) %>
+  <%= render(partial: 'shared/menubar', locals: {:collection_name => "subscription_affiliates", :indexpath => admin_subscription_affiliates_path, :newpath => new_admin_subscription_affiliate_path, :addimage => "addprivilege.png", :addtext => t('.addnewaffiliate')}) %>
   <%= render 'subscription_affiliate_list' %>
 </div>

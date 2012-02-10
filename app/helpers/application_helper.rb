@@ -75,4 +75,13 @@ module ApplicationHelper
       url_for :action => Privilege::ROOT_MENU_ACTIONS[priv_controller], :controller => priv_controller
   end
 
+  def email_button(collection_name)
+    case collection_name
+    when "users"
+      link_to image_tag("email.png") + content_tag(:span, t('common.emaillist')), url_for(action: "message"), :class=>"rightbutton", :remote => true
+    else
+      ""
+    end
+  end
+
 end

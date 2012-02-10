@@ -1,6 +1,6 @@
 <% @page_title = t('.accounts') %>
 <div class="standard_list account_list">
-  <%= render(partial: 'shared/menubar', locals: {:indexpath => admin_accounts_path, :newpath => "#", :addimage => "addperson.png", :addtext => t('.addaccount')}) %>
+  <%= render(partial: 'shared/menubar', locals: {:collection_name => "accounts", :indexpath => admin_accounts_path, :newpath => "#", :addimage => "addperson.png", :addtext => t('.addaccount')}) %>
   <%= render 'account_list' %>
 <%= will_paginate(@accounts) %>
 </div>

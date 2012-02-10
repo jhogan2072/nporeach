@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= t('layouts.application.title') %></title>
+    <%= stylesheet_link_tag    "application" %>
+  </head>
+  <body class='<%= controller.controller_name %>' onload="window.print();">
+    <div id="banner">
+      <span><%= page_title(@page_title) %></span>
+      <%= button_to t('common.print'), "#" %>
+    </div>
+    <div class="standard_list <%= list_style %> ">
+      <table>
+        <tr class="headers">
+          <% output_columns.each do |col| %>
+            <th><%= col.humanize %></th>
+          <% end %>
+        </tr>
+        <% output_records.each do |record| %>
+        <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+          <% output_columns.each do |col| %>
+            <td class="<%= col %>"><%= record.send(col) %></td>
+          <% end %>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </body>
+</html>

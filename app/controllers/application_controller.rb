@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  require 'csv'
   #rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
   protect_from_forgery
   layout :layout_by_resource
@@ -9,6 +10,7 @@ class ApplicationController < ActionController::Base
   helper_method :active_menu_action
   helper_method :sort_direction
   helper_method :get_selected_columns
+  helper_method :export_csv
 
   protected
   def layout_by_resource
@@ -84,4 +86,37 @@ class ApplicationController < ActionController::Base
     end
     return selected_columns
   end
+
+  def csv_for(array_of_headers, array_of_records)
+    humanized_headers = Array.new
+    array_of_headers.each_with_index do |header, i|
+      humanized_headers.push(header.humanize)
+    end
+    (output = "").tap do
+      if session[:csv_format].nil? || session[:csv_format].empty? || session[:csv_format] == "Excel"
+        CSV.generate(output) do |csv|
+          csv << humanized_headers
+          array_of_records.each do |record|
+            array_of_data = Array.new
+            array_of_headers.each do |col|
+              array_of_data.push(record.send(col))
+            end
+            csv << array_of_data
+          end
+        end
+      end
+    end
+  end
+
+  def export_csv(array_of_headers, array_of_records, filename)
+    content = csv_for(array_of_headers, array_of_records)
+    if session[:csv_format].nil? || session[:csv_format].empty? || session[:csv_format] == "Excel"
+      filename = I18n.l(Time.now, :format => :short) + "-" + filename + ".csv"
+      send_data content, :filename => filename, :content_type => 'application/vnd.ms-excel'
+    else
+      filename = I18n.l(Time.now, :format => :short) + "-" + filename + ".csv"
+      send_data content, :filename => filename
+    end
+  end
+
 end
