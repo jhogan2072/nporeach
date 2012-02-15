@@ -14,6 +14,16 @@ en:
       create: "Create %{model}"
       update: "Update %{model}"
 
+  settings:
+    timeperiodname: "Time Period Name"
+    timeperioddesc: "The name for a session of classes, e.g. semester, quarter, trimester, etc."
+    accountnotificationemail: "Account Notification Email"
+    accountnotificationemaildesc: "The email address or addresses where account notifications should be sent."
+    billingitemname: "Billing Item Name"
+    billingitemdesc: "The name for an item billed to a customer, e.g. a class, course, lesson, etc."
+    registrantname: "Registrant Name"
+    registrantnamedesc: "The name for a session participant, e.g. student, participant"
+    
   common:
     edit: "Edit"
     delete: "Delete"
@@ -28,6 +38,7 @@ en:
     fields: "Fields"
     cancel: "Cancel"
     savechanges: "Save Changes"
+    chooseaction: "Actions"
 
   saas:
     invalidpaymentinformation: "Invalid payment information"
@@ -390,6 +401,7 @@ en:
 
   accounts:
     accounts: "Accounts"
+    account: "Account"
     settings:
       editaccountsetting: "Edit Account Settings"
     change_owner:

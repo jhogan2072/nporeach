@@ -7,8 +7,8 @@ class AccountsController < InheritedResources::Base
   before_filter :load_discount, :only => [ :plans, :plan, :new, :create ]
   before_filter :build_plan, :only => [:new, :create]
   add_breadcrumb I18n.t('layouts.application.home'), :root_path
-  add_breadcrumb I18n.t('accounts.accounts'), :account_path
-  
+  add_breadcrumb I18n.t('accounts.account'), :account_path
+  layout :resolve_layout
   # ssl_required :billing, :cancel, :new, :create
   # ssl_allowed :plans, :thanks, :canceled, :paypal
 
@@ -249,5 +249,29 @@ class AccountsController < InheritedResources::Base
         @discount = nil
       end
     end
+
+private
+  def resolve_layout
+    case action_name
+    when 'siteaddress'
+      'public'
+    when 'new'
+      'public'
+    when 'plans'
+      'public'
+    when 'thanks'
+      'public'
+    when 'edit'
+      'two_column'
+    when 'plan'
+      'two_column'
+    when 'billing'
+      'two_column'
+    when 'cancel'
+      'two_column'
+    else
+      'application'
+    end
+  end
 
 end

@@ -1,4 +1,5 @@
-<table id="users">
+<div id="users">
+<table>
   <tr class="headers">
     <% @selected_columns.each do |col| %>
       <th class="<%= col %>"><%= header_link(ColumnPreference::AVAILABLE_COLUMNS["users"][col][1], "users", "index", col) %></th>
@@ -8,3 +9,5 @@
   </tr>
   <%= render(@users) %>
 </table>
+<%= will_paginate @users %>
+</div>

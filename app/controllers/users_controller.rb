@@ -6,7 +6,6 @@ class UsersController < InheritedResources::Base
   before_filter :check_user_limit, :only => :create
   add_breadcrumb I18n.t('layouts.application.home'), :root_path
   add_breadcrumb I18n.t('users.users'), :users_path
-  helper_method :sort_column
 
   def create
     create! { users_url }
@@ -113,7 +112,7 @@ class UsersController < InheritedResources::Base
     end
 
     def collection
-     @users ||= end_of_association_chain.search(params[:search]).order(sort_column + ' ' + sort_direction).paginate(:per_page => 15, :page => params[:page])
+     @users ||= end_of_association_chain.search(params[:search]).order(order_by_column + ' ' + sort_direction).paginate(:per_page => 15, :page => params[:page])
     end
     
     def authorized?
@@ -125,8 +124,11 @@ class UsersController < InheritedResources::Base
     end
 
   private
-    def sort_column
-      User.column_names.include?(params[:sort]) ? params[:sort] : "1"
+    def order_by_column
+      User.column_names.include?(params[:sort]) ? params[:sort] : "last_name"
     end
 
+    def sort_column
+      User.column_names.include?(params[:sort]) ? params[:sort] : params[:sort] == "full_name" ? params[:sort] : "1"
+    end
 end

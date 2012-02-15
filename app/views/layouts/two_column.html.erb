@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= t('layouts.application.title') %></title>
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag "jquery/css/start/jquery-ui-1.8.17.custom" %>
+  <%= csrf_meta_tags %>
+</head>
+<body class='<%= controller.controller_name %>'>
+  <div id="banner">
+    <span><%= page_title(@page_title) %></span>
+    <%= link_to image_tag("ahlogo.png", :border => 0 ), root_url %>
+    <% if user_signed_in? %>
+    <ul id="adminmenu">
+      <li><%= link_to "Sign Out", destroy_user_session_path, {method: :delete} %></li>
+    </ul>
+    <% end %>
+
+    <% if user_signed_in? && current_menu %>
+      <%= render(partial: 'shared/menu', locals: {:menu => current_menu, :active_action => active_menu_action}) %>
+    <% end %>
+  </div>
+  <div class="clear"></div>
+  <div id="main">
+    <div id="dialog-modal"></div>
+    <div id="breadcrumbs">
+      <%= render_breadcrumbs(:class => "breadcrumbs") %>
+    </div>
+    <% flash.each do |key, value| %>
+      <div class="flash <%= key %>"><%= value %></div>
+    <% end %>
+    <div id="leftside">
+      <%= render(partial: 'shared/left_menu') %>
+    </div>
+    <div id="rightside">
+      <%= yield %>
+    </div>
+  </div>
+</body>
+</html>

@@ -18,7 +18,11 @@ module ApplicationHelper
 
   def is_current(active_action, submenus)
     if active_action.nil?
-      return (controller_name == submenus.controller)
+      if controller_name == "accounts"
+        return (controller_name == submenus.controller && submenus.action == "show")
+      else
+        return (controller_name == submenus.controller)
+      end
     else
       return (controller_name == submenus.controller && action_name == submenus.action)
     end

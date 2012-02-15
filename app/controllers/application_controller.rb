@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_menu
   helper_method :active_menu_action
   helper_method :sort_direction
+  helper_method :sort_column
   helper_method :get_selected_columns
   helper_method :export_csv
 
@@ -59,6 +60,11 @@ class ApplicationController < ActionController::Base
 
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  end
+
+  def sort_column
+    @model_name = self.class.name.sub("Controller", "").singularize.constantize
+    @model_name.column_names.include?(params[:sort]) ? params[:sort] : "1"
   end
 
   def current_menu

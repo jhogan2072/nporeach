@@ -3,7 +3,6 @@ class Admin::DefaultRolesController < ApplicationController
   add_breadcrumb I18n.t('layouts.application.home'), :root_path
   add_breadcrumb I18n.t('admin.default_roles.default_roles'), :admin_default_roles_path
   respond_to :js, :only => :index
-  helper_method :sort_column
   layout 'superuser'
 
   def create
@@ -45,8 +44,4 @@ class Admin::DefaultRolesController < ApplicationController
     return priv_array.group_by {|priv| priv.category}
   end
 
-  private
-    def sort_column
-      DefaultRole.column_names.include?(params[:sort]) ? params[:sort] : "1"
-    end
 end

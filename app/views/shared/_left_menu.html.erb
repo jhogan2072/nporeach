@@ -1,0 +1,20 @@
+<div class="left_menu_list">
+  <ul>
+    <li class="section_title">
+      <h3><%= t('common.chooseaction') %></h3>
+    </li>
+    <li class="list_line_odd">
+      <%= link_to(t('accounts.show.editaccountinformation'), edit_account_url) %>
+    </li>
+    <li class="list_line_even">
+      <%= link_to(t('accounts.show.changebillingplan'), plan_account_url) %>
+    </li>
+    <li class="list_line_odd">
+      <%= link_to(t('accounts.show.editpaymentinfo'), billing_account_url) %>
+    </li>
+    <li class="list_line_even">
+      <%= link_to(t('accounts.show.cancelplan'), cancel_account_url) %>
+    </li>
+    <li class="bottom"></li>
+  </ul>
+</div>

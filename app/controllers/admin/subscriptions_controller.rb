@@ -1,7 +1,6 @@
 class Admin::SubscriptionsController < ApplicationController
   include Saas::ControllerHelpers
   respond_to :js, :only => :index
-  helper_method :sort_column
   add_breadcrumb I18n.t('layouts.application.home'), :root_path
   add_breadcrumb I18n.t('admin.subscriptions.index.subscriptions'), :admin_subscriptions_path
   layout 'superuser'
@@ -33,9 +32,4 @@ protected
       @subscriptions ||= end_of_association_chain.search(params[:search]).order(sort_column + ' ' + sort_direction).paginate(:include => :subscriber, :per_page => 15, :page => params[:page])
     end
 
-  private
-    def sort_column
-      Subscription.column_names.include?(params[:sort]) ? params[:sort] : "1"
-    end
-  
 end

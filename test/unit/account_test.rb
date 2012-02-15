@@ -71,9 +71,18 @@ class AccountTest < ActiveSupport::TestCase
     roles = account.roles.scoped
     assert_not_nil DefaultRole.first
     assert_not_nil roles.where("name = ?", DefaultRole.first.name)
-    assert_not_nil account.privileges
-    privileges = account.privileges.scoped
-    assert_not_nil privileges.where("name = ?", Privilege.first.name)
+  end
+
+  test "blank domains should not be valid" do
+    account = Account.new(name: 'bar', domain: '', owner_attributes: valid_user, plan: subscription_plans(:free))
+    assert account.invalid?
+  end
+
+  test "duplicate domains should not be valid" do
+    account = Account.create(name: 'bar', domain: 'test', owner_attributes: valid_user, plan: subscription_plans(:free))
+    account = Account.new(name: 'bar', domain: 'test', owner_attributes: valid_user, plan: subscription_plans(:free))
+    assert !account.save
+    assert_equal I18n.translate('accountmodel.isnotavailable'), account.errors[:domain].join('; ')
   end
 
 end

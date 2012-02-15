@@ -4,14 +4,12 @@ one:
   name: MyString
   description: MyString
   controller: MyString
-  menu_text: MyString
-  actions: 1
   category: MyString
+  actions: 1
 
 two:
   name: MyString
   description: MyString
   controller: MyString
-  menu_text: MyString
-  actions: 1
   category: MyString
+  actions: 1

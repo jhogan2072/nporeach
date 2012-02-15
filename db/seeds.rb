@@ -28,13 +28,12 @@ default_role1.default_grants.create(:default_role_id => default_role1.id, :privi
 default_role1.default_grants.create(:default_role_id => default_role1.id, :privilege_id => privilege3.id)
 default_role1.default_grants.create(:default_role_id => default_role1.id, :privilege_id => privilege4.id)
 
-Setting.create(:name => 'Time Period Name', :description => 'The name for a session of classes, e.g. semester, quarter, trimester, etc.', :default_value => 'Semester')
-Setting.create(:name => 'Account Notification Email', :description => 'The email address or addresses where account notifications should be sent.')
-Setting.create(:name => 'Billing Item Name', :description => 'The name for an item billed to a customer, e.g. a class, course, lesson, etc.', :default_value => 'Class')
-Setting.create(:name => 'Registrant Name', :description => 'The name for a session participant, e.g. student, participant', :default_value => 'Student')
+Setting.create(:name => 'settings.timeperiodname', :description => 'settings.timeperioddesc', :default_value => 'Semester')
+Setting.create(:name => 'settings.accountnotificationemail', :description => 'settings.accountnotificationemaildesc')
+Setting.create(:name => 'settings.billingitemname', :description => 'settings.billingitemdesc', :default_value => 'Class')
+Setting.create(:name => 'settings.registrantname', :description => 'settings.registrantnamedesc', :default_value => 'Student')
 
+MenuItem.create(:name => 'Account', :help_text => 'Manage Account Information', :category => 'ADMINISTRATION', :controller => 'accounts', :action => 'show')
 MenuItem.create(:name => 'Users', :help_text => 'Manage Users', :category => 'ADMINISTRATION', :controller => 'users', :action => 'index')
 MenuItem.create(:name => 'Roles', :help_text => 'Manage User Roles', :category => 'ADMINISTRATION', :controller => 'roles', :action => 'index')
 MenuItem.create(:name => 'Settings', :help_text => 'Manage Account Settings', :category => 'ADMINISTRATION', :controller => 'accounts', :action => 'settings')
-MenuItem.create(:name => 'Account', :help_text => 'Manage Account Information', :category => 'ADMINISTRATION', :controller => 'accounts', :action => 'show')
-MenuItem.create(:name => 'Billing', :help_text => 'Manage Billing Information', :category => 'ADMINISTRATION', :controller => 'accounts', :action => 'billing')

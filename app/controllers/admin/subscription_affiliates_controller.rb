@@ -3,7 +3,6 @@ class Admin::SubscriptionAffiliatesController < ApplicationController
   add_breadcrumb I18n.t('layouts.application.home'), :root_path
   add_breadcrumb I18n.t('admin.subscription_affiliates.subscription_affiliates'), :admin_subscription_affiliates_path
   respond_to :js, :only => :index
-  helper_method :sort_column
   layout 'superuser'
 
   def update
@@ -27,11 +26,6 @@ class Admin::SubscriptionAffiliatesController < ApplicationController
   
     def collection
      @subscription_affiliates ||= end_of_association_chain.search(params[:search]).order(sort_column + ' ' + sort_direction).paginate(:per_page => 15, :page => params[:page])
-    end
-
-  private
-    def sort_column
-      SubscriptionAffiliate.column_names.include?(params[:sort]) ? params[:sort] : "1"
     end
 
 end
