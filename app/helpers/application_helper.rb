@@ -88,4 +88,13 @@ module ApplicationHelper
     end
   end
 
+  def data_specific_instructions(data_type)
+    case data_type
+    when "students"
+      I18n.t('csv.import.studentinstructions')
+    else
+      ""
+    end
+  end
+
 end

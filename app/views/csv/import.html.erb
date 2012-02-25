@@ -1,0 +1,34 @@
+<% @page_title = t('accounts.show.importdata') %>
+<%= form_for :upload, :html => { :class => "standard_form wide_form", :multipart => true } do |f| %>
+<ul>
+  <li class="form_header">
+    <h2><%=t('accounts.show.importdata') %></h2>
+  </li>
+  <li>
+    <% if params["data"] %>
+    <p><%= data_specific_instructions(params["data"]) %></p>
+      <%= f.file_field :csv, :onChange => "enableButton();" %>
+      <%= f.submit "Upload", :id => "upload", :disabled => "disabled", :disable_with => 'Uploading...' %>
+    <% else %>
+      <span><%= t('.instructions') %></span>
+    <% end %>
+  </li>
+  <li class="bottom"></li>
+</ul>
+<% end %>
+<div class="standard_list wide_list">
+  <table>
+    <tr class="headers">
+      <th class="nolink_header">Last Name</th>
+      <th class="nolink_header">First Name</th>
+      <th class="nolink_header">Middle Name</th>
+      <th class="nolink_header">Email Address</th>
+    </tr>
+  </table>
+</div>
+<script type="text/javascript" charset="utf-8">
+  function enableButton() {
+    document.getElementById('upload').disabled = document.forms[0].elements['upload_csv'].value == ""
+  }
+  enableButton();
+</script>

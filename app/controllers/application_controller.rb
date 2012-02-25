@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
   helper_method :sort_column
   helper_method :get_selected_columns
   helper_method :export_csv
+  helper_method :left_menu
 
   protected
   def layout_by_resource
@@ -23,6 +24,9 @@ class ApplicationController < ActionController::Base
   end
   
   private
+    def left_menu
+    end
+
     def record_not_found
       render :text => "404 Not Found", :status => 404
     end
@@ -63,8 +67,9 @@ class ApplicationController < ActionController::Base
   end
 
   def sort_column
-    @model_name = self.class.name.sub("Controller", "").singularize.constantize
-    @model_name.column_names.include?(params[:sort]) ? params[:sort] : "1"
+    @model_array = self.class.name.sub("Controller", "").singularize.split("::")
+    @model_name = @model_array[@model_array.length - 1]
+    @model_name.constantize.column_names.include?(params[:sort]) ? params[:sort] : "1"
   end
 
   def current_menu

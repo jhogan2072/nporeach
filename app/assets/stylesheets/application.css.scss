@@ -342,7 +342,7 @@ a {
         margin-left:0;
       }
       
-      input[type="text"],input[type="password"],input[type="email"] {
+      input[type="text"],input[type="password"],input[type="email"]  {
         height:20px;
         border: 1px solid #8D9095;
         border-radius:1px;
@@ -353,6 +353,14 @@ a {
         background-image: image_url("bg_inputs.png");
         margin: 5px;
         margin-left:0;
+      }
+
+      input[type="file"]  {
+        height:20px;
+        font-size:16px;
+        margin: 5px;
+        padding: 5px;
+        margin-left: 50px;
       }
 
       input[type="checkbox"] {
@@ -535,7 +543,23 @@ a {
     img {width:31px; height:31px; float:left;};
     span {margin-left:10px;}
 }
-
+.nolink_header {
+    margin:0;
+    padding:0;
+    border:0;
+    border-radius:0;
+    width:auto;
+    min-width:150px;
+    min-height:31px;
+    color:black;
+    line-height:31px;
+    text-decoration:none;
+    text-align:center;
+    vertical-align:middle;
+    background:-webkit-gradient(linear, left top, left bottom, from(#F5F5F5), to(#DBDBDB));
+    //background:-moz-linear-gradient(top, #F5F5F5, #DBDBDB) repeat scroll 0 0 transparent;
+    text-shadow: white 0px 1px 0px;
+}
 .column_header {
     margin:0;
     padding:0;
@@ -691,6 +715,10 @@ a {
     margin:8px;
     margin-left:0
   }
+}
+
+.wide_list {
+    width:900px;
 }
 
 .flash {

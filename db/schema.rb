@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120122151016) do
+ActiveRecord::Schema.define(:version => 20120217010323) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -82,6 +82,23 @@ ActiveRecord::Schema.define(:version => 20120122151016) do
   create_table "grants", :force => true do |t|
     t.integer  "privilege_id"
     t.integer  "role_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "import_cells", :force => true do |t|
+    t.integer  "import_table_id"
+    t.integer  "row_index"
+    t.integer  "column_index"
+    t.string   "contents"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "import_cells", ["import_table_id"], :name => "index_import_cells_on_import_table_id"
+
+  create_table "import_tables", :force => true do |t|
+    t.string   "original_path"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

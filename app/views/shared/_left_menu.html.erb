@@ -3,18 +3,11 @@
     <li class="section_title">
       <h3><%= t('common.chooseaction') %></h3>
     </li>
-    <li class="list_line_odd">
-      <%= link_to(t('accounts.show.editaccountinformation'), edit_account_url) %>
+    <% left_menu.each do |menu_link| %>
+    <li class="<%= cycle('list_line_odd', 'list_line_even') %>">
+      <%= link_to(menu_link[0], menu_link[1]) %>
     </li>
-    <li class="list_line_even">
-      <%= link_to(t('accounts.show.changebillingplan'), plan_account_url) %>
-    </li>
-    <li class="list_line_odd">
-      <%= link_to(t('accounts.show.editpaymentinfo'), billing_account_url) %>
-    </li>
-    <li class="list_line_even">
-      <%= link_to(t('accounts.show.cancelplan'), cancel_account_url) %>
-    </li>
+    <% end %>
     <li class="bottom"></li>
   </ul>
 </div>

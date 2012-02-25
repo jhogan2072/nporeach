@@ -1,0 +1,16 @@
+<%= form_for(@import_table, :html => {:class => "standard_form", :multipart => true}) do |f| %>
+<%= render 'shared/error_messages', :target => @import_table, :model => t('import_tablemodel.modelname') %>
+<ul>
+  <li class="form_header">
+    <h2><%= t('.placeheaderhere') %></h2>
+  </li>
+  <li>
+    <%= f.label :original_path %>
+    <%= f.text_field :original_path %>
+  </li>
+  <li>
+    <%= f.submit %>
+  </li>
+  <li class="bottom"></li>
+</ul>
+<% end %>

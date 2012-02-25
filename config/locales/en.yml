@@ -399,6 +399,17 @@ en:
     role_list:
       suredeleterole: "Are you sure you want to delete this role?"
 
+  csv:
+    import:
+      students: "Import Students"
+      parents: "Import Parents"
+      instructors: "Import Instructors"
+      registrations: "Import Registrations"
+      instructions: "Use this form to import information into your system.  Data must be in a comma-delimited (CSV) format  to be imported.
+        If you are using Excel to manage or format your existing data, use the Save As... option to save the file in CSV format when you are ready to import it to Arts Helper.
+        Select an option to the left to upload your data and select fields to import."
+      studentinstructions: "Student information should include first name, last name, date of birth, and optionally ethnic origin."
+
   accounts:
     accounts: "Accounts"
     account: "Account"
@@ -468,6 +479,7 @@ en:
       editpaymentinfo: "Edit Payment Information"
       editaccountsettings: "Edit Account Settings"
       cancelplan: "Cancel your subscription"
+      importdata: "Import Data"
   
   portlets:
     default_portlet:

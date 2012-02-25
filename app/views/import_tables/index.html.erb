@@ -1,0 +1,5 @@
+<% @page_title = t('.import_tables') %>
+<div class="standard_list import_table_list">
+  <%= render(partial: 'shared/menubar', locals: {:collection_name => import_tables, :indexpath => import_tables_path, :newpath => new_import_table_path, :addimage => "addprivilege.png", :addtext => t('.addnewimport_table')}) %>
+  <%= render 'import_table_list' %>
+</div>
