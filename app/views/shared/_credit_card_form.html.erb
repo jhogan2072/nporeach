@@ -1,6 +1,6 @@
-<%= render 'shared/error_messages', :target => @creditcard, :model => t('accountsmodel.modelname') %>
-<%= render 'shared/error_messages', :target => @address, :model => t('accountsmodel.modelname') %>
-<%= render 'shared/error_messages', :target => @subscription, :model => t('accountsmodel.modelname') %>
+<%= render 'shared/error_messages', :target => @creditcard, :model => t('accountmodel.modelname') %>
+<%= render 'shared/error_messages', :target => @address, :model => t('accountmodel.modelname') %>
+<%= render 'shared/error_messages', :target => @subscription, :model => t('accountmodel.modelname') %>
 <ul>
   <li class="form_header">
     <h2><%= signup==true ? t('shared.credit_card_form.stepnumber', stepno: 3) : "" %><%= t('shared.credit_card_form.enterpaymentinfo') %></h2>

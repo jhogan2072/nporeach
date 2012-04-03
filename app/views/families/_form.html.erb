@@ -1,0 +1,73 @@
+<%= form_for(@family, :html => {:class => "standard_form wide_form", :multipart => true}) do |f| %>
+<%= render 'shared/error_messages', :target => @family, :model => t('familymodel.modelname') %>
+<ul>
+  <li class="form_header">
+    <h2><%= t('.managefamilyinformation') %></h2>
+  </li>
+  <li>
+    <%= f.label t('.familyname') %>
+    <%= f.text_field :name, :id => "family_name" %>
+  </li>
+  <li>
+    <%= f.label t('families.family_list.mailing_greeting') %>
+    <%= f.text_field :mailing_greeting, :id => "mailing_greeting" %>
+  </li>
+  <li>
+    <%= f.label t('.isanindividual') %>
+    <%= f.check_box :is_individual, :id => "is_individual" %>
+  </li>
+  <li class="bottom"></li>
+</ul>
+
+<ul>
+  <li class="form_header tall">
+    <h2><%= t('.primarycontact') %></h2>
+    <p><%= t('.primaryinstructions') %></p>
+  </li>
+  <%= f.fields_for :primary_contact do |contact| %>
+  <li>
+    <%= contact.hidden_field :account_id, :value => current_account.id %>
+    <%= contact.label t('users.form.name') %>
+    <%= contact.text_field :first_name, :size => "15" %>
+    <%= contact.text_field :last_name, :size => "15", :id => "last_name" %>
+    <%= contact.text_field :middle_name, :size => "3" %>
+  </li>
+  <li>
+    <%= contact.label t('users.user_list.email') %>
+    <%= contact.email_field :email, size:50 %>
+  </li>
+  <li>
+    <%= contact.label :address %>
+    <%= contact.text_field :address %>
+  </li>
+  <li>
+    <%= contact.label :city %>
+    <%= contact.text_field :city %>
+  </li>
+  <li>
+    <%= contact.label :state %>
+    <%= contact.text_field :state %>
+  </li>
+  <li>
+    <%= contact.label :zip %>
+    <%= contact.text_field :zip %>
+  </li>
+  <li>
+    <%= contact.label :home_phone %>
+    <%= contact.text_field :home_phone %>
+  </li>
+  <li>
+    <%= contact.label :work_phone %>
+    <%= contact.text_field :work_phone %>
+  </li>
+  <li>
+    <%= contact.label :mobile_phone %>
+    <%= contact.text_field :mobile_phone %>
+  </li>
+  <% end %>
+  <li>
+    <%= f.submit %>
+  </li>
+  <li class="bottom"></li>
+</ul>
+<% end %>

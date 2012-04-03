@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120226010130) do
+ActiveRecord::Schema.define(:version => 20120329011411) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -77,6 +77,15 @@ ActiveRecord::Schema.define(:version => 20120226010130) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "families", :force => true do |t|
+    t.string   "name"
+    t.integer  "account_id"
+    t.boolean  "is_individual"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "mailing_greeting"
   end
 
   create_table "grants", :force => true do |t|
@@ -244,16 +253,16 @@ ActiveRecord::Schema.define(:version => 20120226010130) do
     t.string   "home_phone"
     t.string   "work_phone"
     t.string   "mobile_phone"
-    t.string   "email",                                   :null => false
-    t.string   "encrypted_password",                      :null => false
-    t.string   "password_salt",                           :null => false
+    t.string   "email"
+    t.string   "encrypted_password"
+    t.string   "password_salt"
     t.datetime "last_sign_in_at"
     t.datetime "current_sign_in_at"
     t.string   "last_sign_in_ip"
     t.string   "current_sign_in_ip"
     t.integer  "account_id"
     t.integer  "customer_id"
-    t.boolean  "owner",                :default => false
+    t.boolean  "owner",                               :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "confirmation_token"
@@ -262,10 +271,22 @@ ActiveRecord::Schema.define(:version => 20120226010130) do
     t.string   "reset_password_token"
     t.string   "remember_token"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",        :default => 0
-    t.integer  "failed_attempts",      :default => 0
+    t.integer  "sign_in_count",                       :default => 0
+    t.integer  "failed_attempts",                     :default => 0
     t.string   "unlock_token"
     t.datetime "locked_at"
+    t.boolean  "is_primary_contact"
+    t.string   "title"
+    t.date     "dob"
+    t.integer  "ethnic_origin",        :limit => 255
+    t.integer  "family_id"
+    t.boolean  "is_employee"
+    t.integer  "designations"
+    t.string   "ext_attr1"
+    t.string   "ext_attr2"
+    t.string   "ext_attr3"
+    t.string   "ext_attr4"
+    t.string   "ext_attr5"
   end
 
   add_index "users", ["account_id"], :name => "index_users_on_account_id"

@@ -1,0 +1,18 @@
+.families {
+  div.family_list {
+    width:800px;
+
+    .name {width:150px;}
+    .mailing_greeting {width: 200px;}
+    .is_individual {width:100px;}
+  }
+
+  div.user_list {
+    width:800px;
+
+    .full_name {width:200px;}
+    .email {width:200px;}
+    .designations {width:200px;}
+  }
+
+}

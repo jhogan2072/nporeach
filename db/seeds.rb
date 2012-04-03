@@ -18,7 +18,7 @@ plans = [
 Admin.create(:email => 'johnehogan@yahoo.com', :password => 'welcome', :password_confirmation => 'welcome')
 
 default_role1 = DefaultRole.create(:name => 'System Administrator')
-privilege1 = Privilege.create(:name => 'Manage Users', :description => 'Administer account users', :controller => 'users', :category => 'ADMINISTRATION', :actions => 63)
+privilege1 = Privilege.create(:name => 'Manage People', :description => 'Create and edit families, students, donors, employees, and system users', :controller => 'familes', :category => 'ADMINISTRATION', :actions => 63)
 privilege2 = Privilege.create(:name => 'Manage Roles', :description => 'Administer roles that are specific to this account', :controller => 'roles', :category => 'ADMINISTRATION', :actions => 63)
 privilege3 = Privilege.create(:name => 'Manage Settings', :description => 'Personalize the system with settings for your account', :controller => 'account_settings', :category => 'ADMINISTRATION', :actions => 3)
 privilege4 = Privilege.create(:name => 'Manage Account Information', :description => 'Change the name of the organization, update billing information, update the account owner, cancel the account.', :controller => 'accounts', :category => 'ADMINISTRATION', :actions => 2047)
@@ -34,6 +34,6 @@ Setting.create(:name => 'settings.billingitemname', :description => 'settings.bi
 Setting.create(:name => 'settings.registrantname', :description => 'settings.registrantnamedesc', :default_value => 'Student')
 
 MenuItem.create(:name => 'Account', :help_text => 'Manage Account Information', :category => 'ADMINISTRATION', :controller => 'accounts', :action => 'show')
-MenuItem.create(:name => 'Users', :help_text => 'Manage Users', :category => 'ADMINISTRATION', :controller => 'users', :action => 'index')
+MenuItem.create(:name => 'People', :help_text => 'Manage families, students, employees, donors, etc.', :category => 'ADMINISTRATION', :controller => 'families', :action => 'index')
 MenuItem.create(:name => 'Roles', :help_text => 'Manage User Roles', :category => 'ADMINISTRATION', :controller => 'roles', :action => 'index')
 MenuItem.create(:name => 'Settings', :help_text => 'Manage Account Settings', :category => 'ADMINISTRATION', :controller => 'accounts', :action => 'settings')

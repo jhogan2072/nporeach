@@ -16,25 +16,29 @@ module ApplicationHelper
     content_tag("ul", attributes, &block)
   end
 
-  def is_current(active_action, submenus)
+  def is_current(active_action, submenu)
     if active_action.nil?
       if controller_name == "accounts"
-        return (controller_name == submenus.controller && submenus.action == "show")
+        return (controller_name == submenu.controller && submenu.action == "show")
       else
-        return (controller_name == submenus.controller)
+        if controller_name == "users" && submenu.controller == "families"
+          return true
+        else
+          return (controller_name == submenu.controller)
+        end
       end
     else
-      return (controller_name == submenus.controller && action_name == submenus.action)
+      return (controller_name == submenu.controller && action_name == submenu.action)
     end
   end
 
-  def submenu_url(submenus, active_action)
-    link_to(content_tag("span", submenus.name),
-      url_for(:controller => submenus.controller,
-      :action => submenus.action),
-      :title => submenus.name,
-      :alt => submenus.help_text,
-      :class => (is_current(active_action, submenus))? "current" : "")
+  def submenu_url(submenu, active_action)
+    link_to(content_tag("span", submenu.name),
+      url_for(:controller => submenu.controller,
+      :action => submenu.action),
+      :title => submenu.name,
+      :alt => submenu.help_text,
+      :class => (is_current(active_action, submenu))? "current" : "")
   end
 
   def header_link(link_text, link_to_controller, link_to_action, column )
@@ -55,10 +59,10 @@ module ApplicationHelper
     end
   end
 
-  def has_privilege(privilege, current_privileges)
+  def has_item(item, assigned_items)
     retval = false
-    unless privilege.nil? || current_privileges.nil?
-      retval = true if (privilege & current_privileges > 0)
+    unless item.nil? || assigned_items.nil?
+      retval = true if (item & assigned_items > 0)
     end
     return retval
   end
@@ -67,12 +71,28 @@ module ApplicationHelper
     if controller_name
       retval = ""
       Privilege::CONTROLLER_ACTIONS[controller_name].each_pair do |key, value|
-        retval += content_tag("div", check_box_tag('allowed_actions[]', value, has_privilege(value, current_privileges), :class => "checkbox_group") + content_tag("span", key, :class => "checkbox_label"))
+        retval += content_tag("div", check_box_tag('allowed_actions[]', value, has_item(value, current_privileges), :class => "checkbox_group") + content_tag("span", key, :class => "checkbox_label"))
       end
       return retval.html_safe
     else
       content_tag("div", content_tag("label", "Please choose a controller"), :class => "checkbox_group")
     end
+  end
+
+  def designations_div(user_designations)
+    retval = ""
+    User::DESIGNATIONS.each_pair do |key, value|
+      retval += content_tag("div", check_box_tag('assigned_designations[]', key, has_item(key, user_designations), :class => "checkbox_group", :id => key==1? "student_chk": "chk" + key.to_s) + content_tag("span", value, :class => "checkbox_label"))
+    end
+    return retval.html_safe
+  end
+
+  def origins_div(ethnic_origins)
+    retval = ""
+    User::ETHNIC_ORIGINS.each_pair do |key, value|
+      retval += content_tag("div", check_box_tag('eeo[]', key, has_item(key, ethnic_origins), :class => "checkbox_group") + content_tag("span", value, :class => "checkbox_label"))
+    end
+    return retval.html_safe
   end
 
   def link_for_privilege(priv_controller)
@@ -82,7 +102,7 @@ module ApplicationHelper
   def email_button(collection_name)
     case collection_name
     when "users"
-      link_to image_tag("email.png") + content_tag(:span, t('common.emaillist')), url_for(action: "message"), :class=>"rightbutton", :remote => true
+      link_to image_tag("email.png") + content_tag(:span, t('common.emaillist')), url_for(action: "message", controller: "users"), :class=>"rightbutton", :remote => true
     else
       ""
     end
@@ -95,6 +115,34 @@ module ApplicationHelper
     else
       ""
     end
+  end
+
+  def helpful_information
+    if controller_name == "families"
+      content_tag("p", I18n.t('families.menu.info'), :class => "helpful_information")
+    end
+  end
+
+  def display_user_column_value(col, user)
+    return_val = ""
+    case ColumnPreference::AVAILABLE_COLUMNS["users"][col][2]
+    when "link"
+      return_val = link_to(col=="full_name" ? user.full_name : user[col], edit_user_path(user))
+    when "string"
+      return_val = col=="full_name" ? user.full_name : user[col]
+    when "designations"
+      tmp_arr = User::DESIGNATIONS.keys.select {|i| i & (user.designations.nil? ? 0 : user.designations) > 0 }  #=> [1,2,4]
+      tmp_arr.each_with_index { |item,index|
+        if index>0
+          return_val += ", " + User::DESIGNATIONS[item]
+        else
+          return_val += User::DESIGNATIONS[item]
+        end
+      }
+    else
+      return_val = user[col]
+    end
+    return return_val
   end
 
 end

@@ -2,46 +2,76 @@
 <%= render 'shared/error_messages', :target => @user, :model => t('usermodel.modelname') %>
   <ul>
     <li class="form_header">
-      <h2><%= t('.manageuserinformation') %></h2>
+      <h2><%= t('.addafamilymember') + " - " + t('familymodel.modelname') %></h2>
     </li>
     <li>
       <%= f.label t('.name') %>
       <%= f.text_field :first_name, :size => "15" %>
       <%= f.text_field :last_name, :size => "15" %>
       <%= f.text_field :middle_name, :size => "3" %>
-    </li>
-    <li>
-      <%= f.label :address %>
-      <%= f.text_field :address %>
-    </li>
-    <li>
-      <%= f.label :city %>
-      <%= f.text_field :city %>
-    </li>
-    <li>
-      <%= f.label :state %>
-      <%= f.text_field :state %>
-    </li>
-    <li>
-      <%= f.label :zip %>
-      <%= f.text_field :zip %>
-    </li>
-    <li>
-      <%= f.label :home_phone %>
-      <%= f.text_field :home_phone %>
-    </li>
-    <li>
-      <%= f.label :work_phone %>
-      <%= f.text_field :work_phone %>
-    </li>
-    <li>
-      <%= f.label :mobile_phone %>
-      <%= f.text_field :mobile_phone %>
+      <% if action_name == 'new'  %>
+        <%= f.hidden_field :family_id, :value => params['fid']? params['fid']: flash[:family_id] %>
+      <% else %>
+        <%= f.hidden_field :family_id %>
+      <% end %>
     </li>
     <li>
       <%= f.label t('users.user_list.email') %>
       <%= f.email_field :email %>
     </li>
+    <li>
+      <%= f.label t('.designations') %>
+      <div class="checkbox_container">
+        <%= designations_div(@user.designations) %>
+        <%= hidden_field_tag 'assigned_designations[]', '' %>
+      </div>
+    </li>
+    <div id="student_info" style="<%= "display: none; " if (1 & (@user.designations.nil? ? 0 : @user.designations) == 0) %>">
+    <li>
+      <%= f.label t('.dob') %>
+      <%= f.text_field :dob, :class => "date" %>
+    </li>
+    <li>
+      <%= f.label t('.ethnic_origin') %>
+      <div class="checkbox_container">
+        <%= origins_div(@user.ethnic_origin) %>
+        <%= hidden_field_tag 'eeo[]', '' %>
+      </div>
+    </li>
+    </div>
+    <li>
+      <a id="toggle_contact"><%= t('.toggle') %></a>
+    </li>
+    <div id="contact_info" style="display: none; ">
+      <li>
+        <%= f.label :address %>
+        <%= f.text_field :address %>
+      </li>
+      <li>
+        <%= f.label :city %>
+        <%= f.text_field :city %>
+      </li>
+      <li>
+        <%= f.label :state %>
+        <%= f.text_field :state %>
+      </li>
+      <li>
+        <%= f.label :zip %>
+        <%= f.text_field :zip %>
+      </li>
+      <li>
+        <%= f.label :home_phone %>
+        <%= f.text_field :home_phone %>
+      </li>
+      <li>
+        <%= f.label :work_phone %>
+        <%= f.text_field :work_phone %>
+      </li>
+      <li>
+        <%= f.label :mobile_phone %>
+        <%= f.text_field :mobile_phone %>
+      </li>
+    </div>
      <% if action_name == "new" || action_name == "create" %>
     <li>
       <%= f.label t('.password') %>

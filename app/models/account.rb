@@ -2,6 +2,7 @@ class Account < ActiveRecord::Base
   has_many :account_settings, :dependent => :destroy
   accepts_nested_attributes_for :account_settings, :reject_if => lambda { |a| a[:value].blank? }
   attr_accessible :account_settings_attributes
+  has_many :families, :dependent => :destroy
   has_many :users, :dependent => :destroy
   has_many :roles, :dependent => :destroy
   has_one :owner, :class_name => "User", :conditions => { :owner => true }
@@ -25,7 +26,7 @@ class Account < ActiveRecord::Base
   validates_format_of :domain, :with => /\A[a-zA-Z][a-zA-Z0-9]*\Z/
   validates_exclusion_of :domain, :in => %W( support blog www billing help api ), :message => I18n.t('accountmodel.domainnotavailable')
   validates :owner, :presence => {:on => :create, :message => I18n.t('accountmodel.adminmissing')}
-  validates_associated :owner, {:on => :create, :message => I18n.t('accountmodel.adminnotvalid')}
+  #validates_associated :owner, {:on => :create, :message => I18n.t('accountmodel.adminnotvalid')}
   validate :valid_domain?
   
   attr_accessible :name, :domain, :owner_attributes

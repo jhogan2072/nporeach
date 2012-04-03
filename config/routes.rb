@@ -49,7 +49,7 @@ Conservatory::Application.routes.draw do
     match '/content/:action' => 'content'
   end
 
-  root :to => "accounts#dashboard"
+  root :to => "accounts#show"
   devise_for :users
 
   #
@@ -59,6 +59,12 @@ Conservatory::Application.routes.draw do
     collection do
       get 'print'
       get :message
+    end
+  end
+  
+  resources :families, :except => :show do
+    member do
+      match 'members'
     end
   end
 

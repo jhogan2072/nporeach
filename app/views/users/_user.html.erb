@@ -1,6 +1,6 @@
     <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
       <% @selected_columns.each do |col| %>
-        <td class="<%= col %>"><%=h (ColumnPreference::AVAILABLE_COLUMNS["users"][col][2] == "link")? link_to(col=="full_name" ? user.full_name : user[col], edit_user_path(user)) : col=="full_name" ? user.full_name : user[col] %></td>
+        <td class="<%= col %>"><%=h display_user_column_value(col, user) %></td>
       <% end %>
       <td align="center"><%= link_to(t('common.edit'), edit_user_path(user)) %></td>
       <td align="center"><%= link_to(t('common.delete'), user, :method => 'delete', :confirm => t('.suredeleteuser')) unless user == current_user %></td>

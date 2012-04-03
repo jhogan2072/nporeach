@@ -20,7 +20,6 @@ module Conservatory
       g.orm             :active_record
       g.template_engine :erb
       g.test_framework  :test_unit, :fixture => false
-      g.stylesheets     false
     end
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)

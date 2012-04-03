@@ -11,9 +11,9 @@ class CreateUsers < ActiveRecord::Migration
       t.string :home_phone
       t.string :work_phone
       t.string :mobile_phone
-      t.string :email, :null => false
-      t.string :crypted_password, :null => false
-      t.string :password_salt, :null => false
+      t.string :email
+      t.string :crypted_password
+      t.string :password_salt
       t.string :persistence_token, :null => false
       t.datetime :last_login_at
       t.datetime :current_login_at

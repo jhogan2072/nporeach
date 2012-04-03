@@ -1,0 +1,5 @@
+<% @page_title = t('.managefamilies') %>
+<div class="standard_list family_list">
+  <%= render(partial: 'shared/menubar', locals: {:collection_name => "families", :indexpath => families_path, :newpath => new_family_path, :addimage => "employees.png", :addtext => t('.addnewfamily')}) %>
+  <%= render 'family_list' %>
+</div>

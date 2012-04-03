@@ -27,7 +27,8 @@ class ColumnPreference < ActiveRecord::Base
       "zip"=>[true, I18n.t('users.user_list.zip'), "string", "" ],
       "home_phone"=>[true, I18n.t('users.user_list.home_phone'), "string", "" ],
       "work_phone"=>[false, I18n.t('users.user_list.work_phone'), "string", "" ],
-      "mobile_phone"=>[false, I18n.t('users.user_list.mobile_phone'), "string", "" ]
+      "mobile_phone"=>[false, I18n.t('users.user_list.mobile_phone'), "string", "" ],
+      "designations"=>[false, I18n.t('users.user_list.designations'), "designations", "" ]
       }
     }
 

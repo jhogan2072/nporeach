@@ -5,14 +5,42 @@ class UsersController < InheritedResources::Base
   before_filter :authorized?
   before_filter :check_user_limit, :only => :create
   add_breadcrumb I18n.t('layouts.application.home'), :root_path
-  add_breadcrumb I18n.t('users.users'), :users_path
+  add_breadcrumb I18n.t('families.families'), :families_path
 
   def create
-    create! { users_url }
+    @user = current_account.users.build(params[:user])
+    @user.designations = 0
+    @user.ethnic_origin = 0
+    @originvalues = params[:eeo]
+    @originvalues.each do |value|
+      @user.ethnic_origin += value.to_i
+    end
+    @designationvalues = params[:assigned_designations]
+    @designationvalues.each do |value|
+      @user.designations += value.to_i
+    end
+    create! do |success, failure|
+      success.html { redirect_to members_family_path(params[:user][:family_id]) }
+      failure.html do
+        flash[:family_id] = params[:user][:family_id]
+        render :action => 'new'
+      end
+    end
   end
   
   def update
-    update! { users_url }
+    @user = current_account.users.find(params[:id])
+    @user.designations = 0
+    @user.ethnic_origin = 0
+    @originvalues = params[:eeo]
+    @originvalues.each do |value|
+      @user.ethnic_origin += value.to_i
+    end
+    @designationvalues = params[:assigned_designations]
+    @designationvalues.each do |value|
+      @user.designations += value.to_i
+    end
+    update! { members_family_path(@user.family_id) }
   end
 
   def edit
@@ -21,7 +49,7 @@ class UsersController < InheritedResources::Base
   end
 
   def new
-    add_breadcrumb I18n.t('users.newuser'), request.url
+    add_breadcrumb I18n.t('users.newfamilymember'), request.url
     new!
   end
 
@@ -72,7 +100,10 @@ class UsersController < InheritedResources::Base
   end
 
   def index
+    add_breadcrumb I18n.t('users.systemusers'), request.url
     @selected_columns = get_selected_columns('users')
+    #display only the people that have logins into the system
+    @users = collection.where("encrypted_password is not null")
     index! do |format|
       format.html
       format.csv do
@@ -91,7 +122,6 @@ class UsersController < InheritedResources::Base
 
   def print
     @selected_columns = get_selected_columns('users')
-    @users = collection
     @page_title = "Users"
     respond_to do |format|
       format.html {render partial: 'shared/print', locals: {output_records: @users, output_columns: @selected_columns, list_style: "user_list"}}

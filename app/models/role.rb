@@ -20,5 +20,11 @@ class Role < ActiveRecord::Base
     end
   end
 
+#  def entitiled_actions
+#    link_array = Array.new
+#    self.privileges.each do |p|
+#      link_array << [t('accounts.show.editaccountinformation'), edit_account_url, nil]
+#    end
+#  end
 
 end

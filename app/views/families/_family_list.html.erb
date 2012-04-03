@@ -1,0 +1,20 @@
+<table id="families" class="narrow_list">
+  <tr class="headers">
+    <th class="name"><%= header_link(t('families.form.familyname'), "families", "index", "name") %></th>
+    <th class="mailing_greeting"><%= header_link(t('.mailing_greeting'), "families", "index", "mailing_greeting") %></th>
+    <th class="is_individual"><%= header_link(t('.is_individual'), "families", "index", "is_individual") %></th>
+    <th class="editdelete"><a href="#" class="column_header"></a></th>
+    <th class="editdelete"><a href="#" class="column_header"></a></th>
+    <th class="editdelete"><a href="#" class="column_header"></a></th>
+  </tr>
+  <% @families.each do |family| %>
+    <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+      <td class="name"><%= family.name %></td>
+      <td class="mailing_greeting"><%= family.mailing_greeting %></td>
+      <td class="amount"><%= family.is_individual? ? "True" : "False" %></td>
+      <td class="name" align="center"><%= link_to t('.familymembers'), members_family_path(family) %></td>
+      <td align="center"><%= link_to(t('common.edit'), edit_family_path(family)) %></td>
+      <td align="center"><%= link_to(t('common.delete'), family, :method => 'delete', :confirm => t('.suredeletefamily')) %></td>
+  </tr>
+  <% end %>
+</table>

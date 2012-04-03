@@ -141,5 +141,9 @@
       min-height:0px;
     }
   }
-  .section_title { border:0 }
+  .section_title { 
+    border:0;
+    h2 {margin: 0; color: #0350A6;}
+    h4 {margin-top: 5px; margin-bottom:5px;}
+  }
 }

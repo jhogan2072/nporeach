@@ -3,7 +3,7 @@
 </div>
 <%= form_for @account, :url => { :action => 'create' }, :html => {:class => "standard_form wide_form", :multipart => true} do |account| %>
   <%= hidden_field_tag 'plan', params[:plan] %>
-  <%= account.error_messages %>  
+  <%= render 'shared/error_messages', :target => @account, :model => t('accountmodel.modelname') %>
 
   <ul>
     <li class="form_header">
@@ -36,6 +36,8 @@
       <%= owner.text_field :first_name, :size => "15" %>
       <%= owner.text_field :last_name, :size => "15" %>
       <%= owner.text_field :middle_name, :size => "3" %>
+      <%= owner.hidden_field :designations, :value => 8 %>
+      <%= owner.hidden_field :is_primary_contact, :value => true %>
     </li>
     <li>
       <%= owner.label :email %>
