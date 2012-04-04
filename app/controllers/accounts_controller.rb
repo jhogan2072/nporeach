@@ -67,6 +67,19 @@ class AccountsController < InheritedResources::Base
     end
   end
 
+  def update_mylinks
+    @user = current_user
+    respond_to do |format|
+      if @user.update_attributes(params[:account])
+        flash[:notice] = I18n.t('accountscontroller.settingsupdated')
+        format.html {redirect_to accounts_settings_url}
+      else
+        flash[:error] = @account.errors
+        format.html {redirect_to accounts_settings_url}
+      end
+    end
+  end
+
   def create
     @account.affiliate = SubscriptionAffiliate.find_by_token(cookies[:affiliate]) unless cookies[:affiliate].blank?
 
@@ -212,6 +225,20 @@ class AccountsController < InheritedResources::Base
   end
   
   def dashboard
+    add_breadcrumb I18n.t('accountscontroller.dashboard'), request.url
+    @user = current_user
+    @common_links = Array.new
+    if session[:user_links].nil?
+      current_menu.each do |category, menu_items|
+        menu_items.each do |m|
+          @common_links << [t(m.help_text), url_for(:action => m.action, :controller => m.controller)]
+        end
+      end
+    else
+      session[:user_links].each do |link|
+        @common_links << [link[0], link[1]]
+      end
+    end
   end
 
   protected

@@ -33,11 +33,11 @@ module ApplicationHelper
   end
 
   def submenu_url(submenu, active_action)
-    link_to(content_tag("span", submenu.name),
+    link_to(content_tag("span", I18n.t(submenu.name)),
       url_for(:controller => submenu.controller,
       :action => submenu.action),
-      :title => submenu.name,
-      :alt => submenu.help_text,
+      :title => I18n.t(submenu.name),
+      :alt => I18n.t(submenu.help_text),
       :class => (is_current(active_action, submenu))? "current" : "")
   end
 

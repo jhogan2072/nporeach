@@ -23,6 +23,7 @@ Conservatory::Application.routes.draw do
   match '/users/update_columns' => 'users#update_columns'
   match '/accounts/settings' => 'accounts#settings'
   match '/accounts/update_settings' => 'accounts#update_settings'
+  match '/accounts/update_mylinks' => 'accounts#update_mylinks'
   match 'message' => 'message#new', :as => 'message', :via => :get
   match 'message' => 'message#create', :as => 'message', :via => :post
 
@@ -49,7 +50,7 @@ Conservatory::Application.routes.draw do
     match '/content/:action' => 'content'
   end
 
-  root :to => "accounts#show"
+  root :to => "accounts#dashboard"
   devise_for :users
 
   #

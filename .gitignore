@@ -23,3 +23,6 @@
 /nbproject
 
 *.swp
+
+#Rubymine project files
+/.idea

@@ -1,18 +1,22 @@
-<div class="default_portlet">
-  <div class="portlet_header">
-    <h2><%= t('.welcome') %></h2>
+<%= form_for @user, :url => { :action => "update_mylinks" }, :html => {:class => "standard_form"} do |f| %>
+<%= render 'shared/error_messages', :target => @user, :model => t('usermodel.modelname') %>
+
+  <div class="standard_list">
+    <div id="help_message" style="display: none; "><%= t('help.mylinks') %></div>
+    <table id="my_links">
+      <tr class="section_title">
+        <td class="section_title">
+          <h2><%= t('.welcome') %><%= image_tag("help_icon.png", :id => "help_icon") %></h2>
+
+          <p><%= raw t('.thingstodo', clickhere: link_to("Click here", "#")) %></p>
+        </td>
+      </tr>
+      <% @common_links.each do |link| %>
+      <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+        <td><%= link_to(link[0], link[1]) %><%= image_tag("remove_icon.png") %></td>
+      </tr>
+      <% end %>
+    </table>
+    <input type="submit" value="Save Changes" id="submit_button" style="display: none;"/>
   </div>
-  <div>
-    <%= image_tag("arts.jpg", size: "200x200") %>
-    <p><%= t('.defaultmessage') %></p>
-  </div>
-  <div class="right_half">
-    <p><%= t('.thingstodo') %></p>
-      <ul>
-        <li><%= link_to t('families.index.managefamilies'), families_path %></li>
-        <li><%= link_to t('roles.index.manageroles'), roles_path %></li>
-        <li><%= link_to t('.accountsettings'), account_path %></li>
-        <li><%= link_to(t('.logout'), destroy_user_session_path, :method => :delete) %></li>
-      </ul>
-  </div>
-</div>
+<% end %>

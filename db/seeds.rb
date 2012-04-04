@@ -33,7 +33,7 @@ Setting.create(:name => 'settings.accountnotificationemail', :description => 'se
 Setting.create(:name => 'settings.billingitemname', :description => 'settings.billingitemdesc', :default_value => 'Class')
 Setting.create(:name => 'settings.registrantname', :description => 'settings.registrantnamedesc', :default_value => 'Student')
 
-MenuItem.create(:name => 'Account', :help_text => 'Manage Account Information', :category => 'ADMINISTRATION', :controller => 'accounts', :action => 'show')
-MenuItem.create(:name => 'People', :help_text => 'Manage families, students, employees, donors, etc.', :category => 'ADMINISTRATION', :controller => 'families', :action => 'index')
-MenuItem.create(:name => 'Roles', :help_text => 'Manage User Roles', :category => 'ADMINISTRATION', :controller => 'roles', :action => 'index')
-MenuItem.create(:name => 'Settings', :help_text => 'Manage Account Settings', :category => 'ADMINISTRATION', :controller => 'accounts', :action => 'settings')
+MenuItem.create(:name => 'admin.menu_items.names.account', :help_text => 'admin.menu_items.help_text.manageaccountinformation', :category => 'ADMINISTRATION', :controller => 'accounts', :action => 'show')
+MenuItem.create(:name => 'admin.menu_items.names.people', :help_text => 'admin.menu_items.help_text.managefamilies', :category => 'ADMINISTRATION', :controller => 'families', :action => 'index')
+MenuItem.create(:name => 'admin.menu_items.names.roles', :help_text => 'admin.menu_items.help_text.manageroles', :category => 'ADMINISTRATION', :controller => 'roles', :action => 'index')
+MenuItem.create(:name => 'admin.menu_items.names.settings', :help_text => 'admin.menu_items.help_text.manageaccountsettings', :category => 'ADMINISTRATION', :controller => 'accounts', :action => 'settings')

@@ -15,7 +15,7 @@ defaults: &defaults
     
 development:
   <<: *defaults
-  base_domain: conservatory.dev # Edit /etc/hosts to add subscriptions.dev, test.subscriptions.dev, etc., or use Pow: http://pow.cx
+  base_domain: conservatory.dev:3000 # Edit /etc/hosts to add subscriptions.dev, test.subscriptions.dev, etc., or use Pow: http://pow.cx
 
 test:
   <<: *defaults
