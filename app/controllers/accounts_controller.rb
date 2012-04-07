@@ -68,14 +68,11 @@ class AccountsController < InheritedResources::Base
   end
 
   def dashboard
-    add_breadcrumb I18n.t('accountscontroller.dashboard'), request.url
     @user = current_user
-    #@my_links = Array.new
     if @user.user_preferences.blank?
       current_menu.each do |category, menu_items|
         menu_items.each do |m|
           @user.user_preferences.new(:pref_key => "MY_LINKS", :pref_value => t(m.help_text) + "#" + url_for(:action => m.action, :controller => m.controller))
-          #@my_links << [t(m.help_text), url_for(:action => m.action, :controller => m.controller), "",""]
         end
       end
     end
@@ -84,7 +81,6 @@ class AccountsController < InheritedResources::Base
   def update_mylinks
     @user = current_user
     respond_to do |format|
-      #UserPreference.delete_all(["user_id = ? and pref_key = 'MY_LINKS'", @user.id]) if params[:links_count].to_i != params[:user][:user_preferences_attributes].length
       if @user.update_attributes(params[:user])
         flash[:notice] = I18n.t('accountscontroller.settingsupdated')
         format.html {redirect_to dashboard_account_url}

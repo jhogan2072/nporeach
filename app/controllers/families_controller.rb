@@ -59,6 +59,10 @@ class FamiliesController < InheritedResources::Base
      @families ||= end_of_association_chain.search(params[:search]).order(sort_column + ' ' + sort_direction).paginate(:per_page => 15, :page => params[:page])
     end
 private
+  def help_text
+    I18n.t('families.menu.info')
+  end
+
   def left_menu
     menu_array = Array.new
     menu_array << [t('families.menu.importfamilies'), url_for(csv_import_path(:data => "students"))]

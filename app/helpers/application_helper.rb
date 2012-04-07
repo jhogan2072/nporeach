@@ -117,9 +117,9 @@ module ApplicationHelper
     end
   end
 
-  def helpful_information
+  def helpful_information(help_text)
     if controller_name == "families"
-      content_tag("p", I18n.t('families.menu.info'), :class => "helpful_information")
+      content_tag("div", content_tag("p", help_text, :class => "helpful_information"), :class => "helpful_background")
     end
   end
 

@@ -31,7 +31,7 @@
       <div class="flash <%= key %>"><%= value %></div>
     <% end %>
     <div id="leftside">
-      <%= render(partial: 'shared/left_menu', locals: {:left_menu => left_menu}) %>
+      <%= render(partial: 'shared/left_menu', locals: {:left_menu => left_menu, :help_text => help_text}) %>
     </div>
     <div id="rightside">
       <%= yield %>

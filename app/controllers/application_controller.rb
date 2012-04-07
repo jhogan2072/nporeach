@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
   helper_method :get_selected_columns
   helper_method :export_csv
   helper_method :left_menu
+  helper_method :help_text
 
   protected
   def layout_by_resource
@@ -24,6 +25,9 @@ class ApplicationController < ActionController::Base
   end
   
   private
+    def help_text
+    end
+
     def left_menu
     end
 
