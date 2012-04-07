@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120329011411) do
+ActiveRecord::Schema.define(:version => 20120406002904) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -69,6 +69,17 @@ ActiveRecord::Schema.define(:version => 20120329011411) do
   create_table "default_grants", :force => true do |t|
     t.integer  "privilege_id"
     t.integer  "default_role_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "default_privileges", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "controller"
+    t.string   "category"
+    t.string   "menu_text"
+    t.integer  "operations"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -241,6 +252,17 @@ ActiveRecord::Schema.define(:version => 20120329011411) do
   end
 
   add_index "subscriptions", ["subscriber_id", "subscriber_type"], :name => "index_subscriptions_on_subscriber"
+
+  create_table "user_preferences", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "pref_key"
+    t.string   "pref_value"
+    t.integer  "seq_no"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_preferences", ["user_id"], :name => "ix_user_preferences_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "last_name"
