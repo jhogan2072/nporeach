@@ -11,8 +11,7 @@ $(document).ready ->
       return false;
     $(".remove_link").click ->
       $(this).parent().parent().hide();
-      $("user_user_preferences_attributes_" + 1 + "__destroy").prop("checked", true);
-      #$(this).siblings().parent().remove();
+      $(this).siblings().last().val(1);
       if $('#submit_button').is(":hidden") then $('#submit_button').show('blind');
       result = $('#my_links tbody').sortable('toArray');
       setImageSortOrder(result);
