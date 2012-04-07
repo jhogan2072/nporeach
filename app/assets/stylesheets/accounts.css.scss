@@ -40,7 +40,15 @@
   .standard_list {
     table {
         width: 630px;
-        td { img { float:right; &:hover { cursor:pointer;}}}
+        td {
+          width: 630px;
+          img {
+            float:right;
+            &:hover {
+              cursor:pointer;
+            }
+          }
+        }
     }
   }
   .standard_form {

@@ -7,6 +7,9 @@ class User < ActiveRecord::Base
   has_many :column_preferences, :dependent => :destroy
   accepts_nested_attributes_for :column_preferences
   attr_accessible :column_preferences_attributes
+  has_many :user_preferences, :dependent => :destroy
+  accepts_nested_attributes_for :user_preferences, :allow_destroy => true
+  attr_accessible :user_preferences_attributes
   #validates :email, presence: true
   #validates :family_id, presence: true
   validates :last_name, :first_name, presence: true

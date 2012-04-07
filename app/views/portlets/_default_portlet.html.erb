@@ -3,7 +3,7 @@
 
   <div class="standard_list">
     <div id="help_message" style="display: none; "><%= t('help.mylinks') %></div>
-    <table id="my_links">
+    <table>
       <tr class="section_title">
         <td class="section_title">
           <h2><%= t('.welcome') %><%= image_tag("help_icon.png", :id => "help_icon") %></h2>
@@ -11,12 +11,24 @@
           <p><%= raw t('.thingstodo', clickhere: link_to("Click here", "#")) %></p>
         </td>
       </tr>
-      <% @common_links.each do |link| %>
-      <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
-        <td><%= link_to(link[0], link[1]) %><%= image_tag("remove_icon.png") %></td>
-      </tr>
+    </table>
+    <table id="my_links">
+      <% @user.user_preferences.each_with_index do |preference, index| %>
+          <tr class="<%= cycle('list_line_odd', 'list_line_even') %>" id="<%="row" + index.to_s%>">
+            <td>
+              <%= link_to(preference.pref_value.split("#")[0], preference.pref_value.split("#")[1]) %><%= image_tag("remove_icon.png", :class =>"remove_link", :id => "remove" + index.to_s) %>
+              <%= f.fields_for :user_preferences, preference do |builder| %>
+                  <%= builder.hidden_field :id %>
+                  <%= builder.hidden_field :pref_key %>
+                  <%= builder.hidden_field :pref_value %>
+                  <%= builder.hidden_field :seq_no %>
+                  <%= builder.check_box :_destroy %>
+            <% end %>
+            </td>
+          </tr>
       <% end %>
     </table>
+    <div><%= hidden_field_tag("links_count", @user.user_preferences.length) %></div>
     <input type="submit" value="Save Changes" id="submit_button" style="display: none;"/>
   </div>
 <% end %>

@@ -67,15 +67,30 @@ class AccountsController < InheritedResources::Base
     end
   end
 
+  def dashboard
+    add_breadcrumb I18n.t('accountscontroller.dashboard'), request.url
+    @user = current_user
+    #@my_links = Array.new
+    if @user.user_preferences.blank?
+      current_menu.each do |category, menu_items|
+        menu_items.each do |m|
+          @user.user_preferences.new(:pref_key => "MY_LINKS", :pref_value => t(m.help_text) + "#" + url_for(:action => m.action, :controller => m.controller))
+          #@my_links << [t(m.help_text), url_for(:action => m.action, :controller => m.controller), "",""]
+        end
+      end
+    end
+  end
+
   def update_mylinks
     @user = current_user
     respond_to do |format|
-      if @user.update_attributes(params[:account])
+      #UserPreference.delete_all(["user_id = ? and pref_key = 'MY_LINKS'", @user.id]) if params[:links_count].to_i != params[:user][:user_preferences_attributes].length
+      if @user.update_attributes(params[:user])
         flash[:notice] = I18n.t('accountscontroller.settingsupdated')
-        format.html {redirect_to accounts_settings_url}
+        format.html {redirect_to dashboard_account_url}
       else
-        flash[:error] = @account.errors
-        format.html {redirect_to accounts_settings_url}
+        flash[:error] = @user.errors
+        format.html {redirect_to dashboard_account_url}
       end
     end
   end
@@ -224,23 +239,6 @@ class AccountsController < InheritedResources::Base
     render :layout => 'public' # Uncomment if your "public" site has a different layout than the one used for logged-in users
   end
   
-  def dashboard
-    add_breadcrumb I18n.t('accountscontroller.dashboard'), request.url
-    @user = current_user
-    @common_links = Array.new
-    if session[:user_links].nil?
-      current_menu.each do |category, menu_items|
-        menu_items.each do |m|
-          @common_links << [t(m.help_text), url_for(:action => m.action, :controller => m.controller)]
-        end
-      end
-    else
-      session[:user_links].each do |link|
-        @common_links << [link[0], link[1]]
-      end
-    end
-  end
-
   protected
   
     def resource
