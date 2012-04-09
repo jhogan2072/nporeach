@@ -825,17 +825,22 @@ width: 300px;
 }
 p.helpful_information {
     font-family: Comic Sans MS;
-    padding-left: 50px;
-    padding-right: 20px;
+    padding-left: 35px;
+    padding-right: 30px;
     border-radius:16px;
     margin: 0px;
-    padding-top:50px;
 }
 div.helpful_background {
+  margin-top: 20px;
   background-image: image_url("post-it.png");
-  background-size:328px 352px;
+  background-size:298px 324px;
   background-repeat:no-repeat;
   min-width: 298px;
-  min-height: 322px;
+  min-height: 324px;
+  img {
+    margin-top: 10px;
+    margin-left: 20px;
+    &:hover {cursor:pointer;}
+  }
 }
 

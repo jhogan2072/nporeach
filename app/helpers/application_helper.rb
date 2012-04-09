@@ -118,8 +118,10 @@ module ApplicationHelper
   end
 
   def helpful_information(help_text)
+    text_id_arr = help_text.split("_")
+    displayed_text = text_id_arr[0]
     if controller_name == "families"
-      content_tag("div", content_tag("p", help_text, :class => "helpful_information"), :class => "helpful_background")
+      content_tag("div", image_tag("remove_icon.png", :class => "remove_help", :id => "remove_help_" + text_id_arr[1], :title => "Click here to hide this message in future.") << content_tag("p", displayed_text, :class => "helpful_information"), :class => "helpful_background")
     end
   end
 

@@ -60,7 +60,7 @@ class FamiliesController < InheritedResources::Base
     end
 private
   def help_text
-    I18n.t('families.menu.info')
+    I18n.t('families.menu.info') + "_001"
   end
 
   def left_menu
