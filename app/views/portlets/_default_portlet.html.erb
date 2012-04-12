@@ -1,4 +1,4 @@
-<%= form_for @user, :url => { :action => "update_mylinks" }, :html => {:class => "standard_form"} do |f| %>
+<%= form_for @user, :url => { :action => "update_mylinks", :id => current_user.id }, :html => {:class => "standard_form"} do |f| %>
 <%= render 'shared/error_messages', :target => @user, :model => t('usermodel.modelname') %>
 
   <div class="standard_list">
@@ -13,7 +13,7 @@
       </tr>
     </table>
     <table id="my_links">
-      <% @user.user_preferences.each_with_index do |preference, index| %>
+      <% @my_links.each_with_index do |preference, index| %>
           <tr class="<%= cycle('list_line_odd', 'list_line_even') %>" id="<%="row" + index.to_s%>">
             <td>
               <%= link_to(preference.pref_value.split("#")[0], preference.pref_value.split("#")[1]) %><%= image_tag("remove_icon.png", :class =>"remove_link", :id => "remove" + index.to_s) %>

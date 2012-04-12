@@ -49,6 +49,23 @@ class User < ActiveRecord::Base
     end
   end
 
+  def get_user_pref(pref_key)
+    self.user_preferences.where("pref_key = ?", pref_key).order("seq_no")
+  end
+
+  def set_user_pref(pref_key, pref_values)
+    pref_values.each_with_index do |value, index|
+      current_value = self.user_preferences.where("user_id = ? and pref_key = ?", self.id, pref_key)
+      if current_value.empty?
+        self.user_preferences.build(:pref_key => pref_key, :pref_value => value, :seq_no => index)
+        self.save
+      else
+        current_value.update(current_value.first.id, :pref_key => pref_key, :pref_value => value, :seq_no => index)
+        #self.user_preferences.find(current_value.first.id).update_attributes(:pref_key => pref_key, :pref_value => value, :seq_no => index, :without_protection => true)
+      end
+    end
+  end
+
   def get_column_prefs(collection_name)
     ColumnPreference.where("user_id = ? and collection_name = ?", self.id, collection_name).order('column_order')
   end

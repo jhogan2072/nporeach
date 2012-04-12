@@ -9,7 +9,7 @@ $ ->
         if !($('#mailing_greeting').val())
             $('#mailing_greeting').val('The ' + $('#family_name').val() + ' Family')
     $('#toggle_contact').click ->
-        if ($('#contact_info').attr('style') == "display: none; ")
+        if $('#contact_info').is(":hidden")
             $('#contact_info').show('blind', 1000);
         else 
             $('#contact_info').hide('blind', 1000);

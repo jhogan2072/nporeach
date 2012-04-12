@@ -616,6 +616,21 @@ a {
     margin-bottom:10px;
     margin-top:10px;
     border-left:0;
+    td {
+      img {
+        float:right;
+        &:hover {
+          cursor:pointer;
+        }
+      }
+    }
+    td.section_title {
+      border:0;
+      h2 {margin: 0; color: #0350A6;}
+      h4 {margin-top: 5px; margin-bottom:5px;}
+      p {margin: 0; color: #636B75; font-size: 0.9em;}
+      img {&:hover { cursor:pointer;}}
+    }
   }
 
   table.narrow_list {
@@ -831,15 +846,16 @@ p.helpful_information {
     margin: 0px;
 }
 div.helpful_background {
-  margin-top: 20px;
+  margin-top: 10px;
   background-image: image_url("post-it.png");
   background-size:298px 324px;
   background-repeat:no-repeat;
   min-width: 298px;
   min-height: 324px;
+  a {line-height: 16px;height: 16px;display:inline-block;}
   img {
-    margin-top: 10px;
-    margin-left: 20px;
+    margin-top: 12px;
+    margin-left: 263px;
     &:hover {cursor:pointer;}
   }
 }

@@ -67,30 +67,6 @@ class AccountsController < InheritedResources::Base
     end
   end
 
-  def dashboard
-    @user = current_user
-    if @user.user_preferences.blank?
-      current_menu.each do |category, menu_items|
-        menu_items.each do |m|
-          @user.user_preferences.new(:pref_key => "MY_LINKS", :pref_value => t(m.help_text) + "#" + url_for(:action => m.action, :controller => m.controller))
-        end
-      end
-    end
-  end
-
-  def update_mylinks
-    @user = current_user
-    respond_to do |format|
-      if @user.update_attributes(params[:user])
-        flash[:notice] = I18n.t('accountscontroller.settingsupdated')
-        format.html {redirect_to dashboard_account_url}
-      else
-        flash[:error] = @user.errors
-        format.html {redirect_to dashboard_account_url}
-      end
-    end
-  end
-
   def create
     @account.affiliate = SubscriptionAffiliate.find_by_token(cookies[:affiliate]) unless cookies[:affiliate].blank?
 

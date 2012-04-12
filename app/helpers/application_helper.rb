@@ -118,10 +118,14 @@ module ApplicationHelper
   end
 
   def helpful_information(help_text)
-    text_id_arr = help_text.split("_")
-    displayed_text = text_id_arr[0]
+    text_arr = help_text.split("_")
+    return unless current_user.get_user_pref("HELP_" + text_arr[1]).empty?
+    displayed_text = text_arr[0]
     if controller_name == "families"
-      content_tag("div", image_tag("remove_icon.png", :class => "remove_help", :id => "remove_help_" + text_id_arr[1], :title => "Click here to hide this message in future.") << content_tag("p", displayed_text, :class => "helpful_information"), :class => "helpful_background")
+      content_tag("div", 
+        link_to(image_tag("close_help.png", :class => "remove_help", :title => I18n.t('help.clicktoremove')), remove_help_user_path(current_user.id, :help_id => text_arr[1]), :remote => true, :id => "remove_help_" + text_arr[1]) <<
+        #link_to("[x]", remove_help_user_path(current_user.id, :class => "remove_help", :help_id => text_arr[1]), :remote => true, :id => "remove_help_" + text_arr[1]) <<
+          content_tag("p", displayed_text, :class => "helpful_information"), :class => "helpful_background")
     end
   end
 

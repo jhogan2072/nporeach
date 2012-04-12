@@ -3,6 +3,14 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .accounts {
+  .standard_list {
+    table {
+        width: 630px;
+        td {
+          width: 630px;
+        }
+    }
+  }
 
   margin: 0;
   p {
@@ -37,20 +45,6 @@
       }
   }
   
-  .standard_list {
-    table {
-        width: 630px;
-        td {
-          width: 630px;
-          img {
-            float:right;
-            &:hover {
-              cursor:pointer;
-            }
-          }
-        }
-    }
-  }
   .standard_form {
     input[type="submit"] {margin-left: 10px; margin-bottom: 10px;}
     li{
@@ -91,12 +85,5 @@
     .bottom {
       min-height:0px;
     }
-  }
-  .section_title { 
-    border:0;
-    h2 {margin: 0; color: #0350A6;}
-    h4 {margin-top: 5px; margin-bottom:5px;}
-    p {margin: 0; color: #636B75; font-size: 0.9em;}
-    img {&:hover { cursor:pointer;}}
   }
 }

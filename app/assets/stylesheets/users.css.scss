@@ -3,6 +3,15 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .users {
+  .standard_list {
+    table {
+        width: 630px;
+        td {
+          width: 630px;
+        }
+    }
+  }
+
   div.user_list {
     width:1141px;
   

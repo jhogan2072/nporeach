@@ -23,7 +23,6 @@ Conservatory::Application.routes.draw do
   match '/users/update_columns' => 'users#update_columns'
   match '/accounts/settings' => 'accounts#settings'
   match '/accounts/update_settings' => 'accounts#update_settings'
-  match '/accounts/update_mylinks' => 'accounts#update_mylinks'
   match 'message' => 'message#new', :as => 'message', :via => :get
   match 'message' => 'message#create', :as => 'message', :via => :post
 
@@ -50,13 +49,16 @@ Conservatory::Application.routes.draw do
     match '/content/:action' => 'content'
   end
 
-  root :to => "accounts#dashboard"
+  root :to => "users#dashboard"
   devise_for :users
 
   #
   # Account / User Management Routes
   #
   resources :users, :except => :show do
+    member do
+      match :update_mylinks, :dashboard, :remove_help
+    end
     collection do
       get 'print'
       get :message
@@ -71,12 +73,12 @@ Conservatory::Application.routes.draw do
 
   resource :account do 
     member do
-      get :dashboard, :thanks, :plans, :canceled
+      get :thanks, :plans, :canceled
       match :billing, :paypal, :plan, :plan_paypal, :cancel, :change_owner
     end
   end
 
-  # Administrative routs
+  # Administrative routes
   devise_for :admins
 
   namespace "admin" do

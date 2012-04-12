@@ -21,6 +21,7 @@ en:
     navigate to the page you would like to save a link for.  If that page is available to be linked, you'll
     see an 'Add To Favorites' button in the upper right portion of the screen.  Click that button, enter
     some text for the link that makes sense for you, and the link will be automatically added to your list."
+    clicktoremove: "Click here to hide this message in future."
 
   settings:
     timeperiodname: "Time Period Name"

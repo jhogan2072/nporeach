@@ -1,6 +1,6 @@
 class UsersController < InheritedResources::Base
   respond_to :html, :json
-  respond_to :js, :csv, :only => [:index, :message]
+  respond_to :js, :csv, :only => [:index, :message, :remove_help]
   before_filter :authenticate_user!
   before_filter :authorized?
   before_filter :check_user_limit, :only => :create
@@ -97,6 +97,39 @@ class UsersController < InheritedResources::Base
         format.html {redirect_to :back}
       end
     end
+  end
+
+  def dashboard
+    @user = current_user
+    @my_links = Array.new
+    if @user.get_user_pref('MY_LINKS').blank?
+      current_menu.each do |category, menu_items|
+        menu_items.each do |m|
+          @my_links << @user.user_preferences.new(:pref_key => "MY_LINKS", :pref_value => t(m.help_text) + "#" + url_for(:action => m.action, :controller => m.controller))
+        end
+      end
+    else
+      @my_links = @user.get_user_pref('MY_LINKS').to_a()
+    end
+  end
+
+  def update_mylinks
+    @user = current_user
+    respond_to do |format|
+      if @user.update_attributes(params[:user])
+        flash[:notice] = I18n.t('accountscontroller.settingsupdated')
+        format.html {redirect_to dashboard_user_url}
+      else
+        flash[:error] = @user.errors
+        format.html {redirect_to dashboard_user_url}
+      end
+    end
+  end
+
+  def remove_help
+    false_value = Array.new(1, "0")
+    @help_id = params["help_id"]
+    current_user.set_user_pref('HELP_' + @help_id, false_value)
   end
 
   def index
