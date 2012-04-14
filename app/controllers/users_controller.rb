@@ -6,6 +6,7 @@ class UsersController < InheritedResources::Base
   before_filter :check_user_limit, :only => :create
   add_breadcrumb I18n.t('layouts.application.home'), :root_path
   add_breadcrumb I18n.t('families.families'), :families_path
+  layout :resolve_layout
 
   def create
     @user = current_account.users.build(params[:user])
@@ -161,37 +162,54 @@ class UsersController < InheritedResources::Base
     end
   end
   
-  protected
+protected
 
-    # This is the way to scope everything to the account belonging
-    # for the current subdomain in InheritedResources.  This
-    # translates into
-    # @user = current_account.users.build(params[:user]) 
-    # in the new/create actions and
-    # @user = current_account.users.find(params[:id]) in the
-    # edit/show/destroy actions.
-    def begin_of_association_chain
-      current_account
-    end
+  # This is the way to scope everything to the account belonging
+  # for the current subdomain in InheritedResources.  This
+  # translates into
+  # @user = current_account.users.build(params[:user])
+  # in the new/create actions and
+  # @user = current_account.users.find(params[:id]) in the
+  # edit/show/destroy actions.
+  def begin_of_association_chain
+    current_account
+  end
 
-    def collection
-     @users ||= end_of_association_chain.search(params[:search]).order(order_by_column + ' ' + sort_direction).paginate(:per_page => 15, :page => params[:page])
-    end
-    
-    def authorized?
-      redirect_to new_user_session_url unless (user_signed_in? && self.action_name == 'index') || owner?
-    end
-    
-    def check_user_limit
-      redirect_to new_user_url if current_account.reached_user_limit?
-    end
+  def collection
+   @users ||= end_of_association_chain.search(params[:search]).order(order_by_column + ' ' + sort_direction).paginate(:per_page => 15, :page => params[:page])
+  end
 
-  private
-    def order_by_column
-      User.column_names.include?(params[:sort]) ? params[:sort] : "last_name"
-    end
+  def authorized?
+    redirect_to new_user_session_url unless (user_signed_in? && self.action_name == 'index') || owner?
+  end
 
-    def sort_column
-      User.column_names.include?(params[:sort]) ? params[:sort] : params[:sort] == "full_name" ? params[:sort] : "1"
+  def check_user_limit
+    redirect_to new_user_url if current_account.reached_user_limit?
+  end
+
+private
+  def order_by_column
+    User.column_names.include?(params[:sort]) ? params[:sort] : "last_name"
+  end
+
+  def sort_column
+    User.column_names.include?(params[:sort]) ? params[:sort] : params[:sort] == "full_name" ? params[:sort] : "1"
+  end
+
+  def resolve_layout
+    case action_name
+      when 'index'
+        'hybrid'
+      else
+        'application'
     end
+  end
+
+  def left_menu
+    menu_array = Array.new
+    menu_array << [t('families.menu.importfamilies'), url_for(csv_import_path(:data => "students"))]
+    menu_array << [t('families.menu.viewfamilies'), url_for(families_path)]
+    menu_array << [t('families.menu.managesystemusers'), url_for(users_path)]
+  end
+
 end

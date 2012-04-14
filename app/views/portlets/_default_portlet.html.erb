@@ -1,7 +1,7 @@
 <%= form_for @user, :url => { :action => "update_mylinks", :id => current_user.id }, :html => {:class => "standard_form"} do |f| %>
 <%= render 'shared/error_messages', :target => @user, :model => t('usermodel.modelname') %>
 
-  <div class="standard_list">
+  <div class="standard_list default_portlet">
     <div id="help_message" style="display: none; "><%= t('help.mylinks') %></div>
     <table>
       <tr class="section_title">
