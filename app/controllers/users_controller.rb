@@ -199,7 +199,11 @@ private
   def resolve_layout
     case action_name
       when 'index'
-        'hybrid'
+        if get_selected_columns('users').length > 4
+          'hybrid'
+        else
+          'two_column'
+        end
       else
         'application'
     end
