@@ -276,6 +276,7 @@ private
     menu_array << [t('accounts.show.editaccountinformation'), edit_account_url, nil]
     menu_array << [t('accounts.show.changebillingplan'), plan_account_url, nil]
     menu_array << [t('accounts.show.editpaymentinfo'), billing_account_url, nil]
+    menu_array << [t('accounts.show.editaccountsettings'), accounts_settings_url, nil]
     menu_array << [t('accounts.show.importdata'), csv_import_url, nil]
     menu_array << [t('accounts.show.cancelplan'), cancel_account_url, nil]
   end

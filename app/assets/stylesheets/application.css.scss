@@ -699,7 +699,7 @@ a {
 .standard_list {
   width: 650px;
   margin: 0 auto;
-  margin-top: 30px;
+  margin-top: 32px;
   padding: 0;
   border-radius: 10px;
   border: 1px solid #C1CAD5;
@@ -917,9 +917,10 @@ a {
 }
 
 #rightside {
-  float: left;
+  display: inline-block;
   margin-left: 16px;
   padding-left: 32px;
+  z-index: -100;
 }
 
 #leftside {
@@ -932,10 +933,19 @@ a {
 
 #hybrid_left {
   float:left;
-  padding-left: 16px;
-  width: 50px;
+  padding-left: 10px;
+  width: 367px;
+  z-index: 100;
 }
 
+#sliding_menu {display: inline-block; z-index:101;}
+
+#menu_icon {
+  &:hover {cursor: pointer;}
+  margin-top: 32px;
+  margin-right: 5px;
+  float: left;
+}
 .left_menu_list {
   width: 300px;
   h3 {

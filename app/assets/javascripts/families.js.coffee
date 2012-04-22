@@ -13,3 +13,8 @@ $ ->
             $('#contact_info').show('blind', 1000);
         else 
             $('#contact_info').hide('blind', 1000);
+    $('#menu_icon').click ->
+        if $('#sliding_menu').is(":hidden")
+            $('#sliding_menu').show('slide', 500);
+        else
+            $('#sliding_menu').hide('slide', 500);
