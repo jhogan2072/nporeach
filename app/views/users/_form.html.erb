@@ -2,7 +2,7 @@
 <%= render 'shared/error_messages', :target => @user, :model => t('usermodel.modelname') %>
   <ul>
     <li class="form_header">
-      <h2><%= t('.addafamilymember') + " - " + t('familymodel.modelname') %></h2>
+      <h2><%= t('.addafamilymember') + " - " + @family_name + " " + t('familymodel.modelname') %></h2>
     </li>
     <li>
       <%= f.label t('.name') %>
@@ -16,10 +16,6 @@
       <% end %>
     </li>
     <li>
-      <%= f.label t('users.user_list.email') %>
-      <%= f.email_field :email %>
-    </li>
-    <li>
       <%= f.label t('.designations') %>
       <div class="checkbox_container">
         <%= designations_div(@user.designations) %>
@@ -29,7 +25,7 @@
     <div id="student_info" style="<%= "display: none; " if (1 & (@user.designations.nil? ? 0 : @user.designations) == 0) %>">
     <li>
       <%= f.label t('.dob') %>
-      <%= f.text_field :dob, :class => "date" %>
+      <%= f.text_field :formatted_dob, :class => "date" %>
     </li>
     <li>
       <%= f.label t('.ethnic_origin') %>
@@ -40,7 +36,7 @@
     </li>
     </div>
     <li>
-      <a id="toggle_contact"><%= t('.toggle') %></a>
+      <a id="toggle_contact" class="toggle_link"><%= t('.toggle') %></a>
     </li>
     <div id="contact_info" style="display: none; ">
       <li>
@@ -72,15 +68,11 @@
         <%= f.text_field :mobile_phone %>
       </li>
     </div>
-     <% if action_name == "new" || action_name == "create" %>
-    <li>
-      <%= f.label t('.password') %>
-      <%= f.password_field :password %>
-    </li>
-    <li>
-        <%= f.label t('.confirmpassword') %>
-        <%= f.password_field :password_confirmation %>
-    </li>
+     <% if action_name == "new" || (action_name == "edit" && @user.email.nil?) %>
+        <li>
+          <%= link_to t('.togglepassword'), credentials_users_path, class: "toggle_link", remote: true %>
+        </li>
+        <div id="credentials"></div>
     <% end %>
     <li>
       <%= f.label t('roles.roles') %>
@@ -88,14 +80,14 @@
       <% current_account.roles.each do |role| %>
         <div>
         <%= check_box_tag 'user[role_ids][]', role.id, @user.roles.include?(role) %>
-        <%= content_tag("span", role.name, :class => "checkbox_label") %>
+        <%= content_tag("span", translated_role(role.name), :class => "checkbox_label") %>
         </div>
       <% end %>
       <%= hidden_field_tag 'user[role_ids][]', '' %>
       </div>
     </li>
     <li>
-      <%= f.submit %>
+      <%= f.submit t('common.savechanges') %>
     </li>
     <li class="bottom"></li>
   </ul>

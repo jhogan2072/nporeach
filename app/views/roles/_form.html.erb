@@ -6,7 +6,7 @@
     </li>
     <li>
       <%= f.label t('.rolename') %>
-      <%= f.text_field :name %>
+      <%= f.text_field :name, :value => @role_name %>
     </li>
     <li class="table_container">
     <% if @privileges %>

@@ -151,4 +151,10 @@ module ApplicationHelper
     return return_val
   end
 
+  def translated_role(role_name)
+    t(role_name, :raise => I18n::MissingTranslationData)
+  rescue I18n::MissingTranslationData
+    role_name
+  end
+
 end

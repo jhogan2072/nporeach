@@ -31,7 +31,7 @@
       <div class="flash <%= key %>"><%= value %></div>
     <% end %>
     <div id="hybrid_left">
-      <%= image_tag("show_menu.png", :id => "menu_icon") %>
+      <%= image_tag("img_trans.gif", :id => "menu_icon", :class => "show_icon") %>
       <div id="sliding_menu" style="display: none; ">
         <%= render(partial: 'shared/left_menu', locals: {:left_menu => left_menu, :help_text => help_text}) %>
       </div>

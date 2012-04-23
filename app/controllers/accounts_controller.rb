@@ -100,7 +100,7 @@ class AccountsController < InheritedResources::Base
   end
   
   def plans
-    @plans = SubscriptionPlan.find(:all, :order => 'amount desc').collect {|p| p.discount = @discount; p.description = t(p.description); p }
+    @plans = SubscriptionPlan.all(:order => 'amount desc').collect {|p| p.discount = @discount; p.description = t(p.description); p }
     render :layout => 'public' # Uncomment if your "public" site has a different layout than the one used for logged-in users
   end
   

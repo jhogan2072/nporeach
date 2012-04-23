@@ -9,7 +9,7 @@
     <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
       <td class="name"><%=link_to role.name, edit_role_path(role) %></td>
       <td class="privileges"><ul><% role.privileges.each_with_index do |privilege, i| %>
-          <li><%= h(privilege.name)%></li>
+          <li><%= h(t(privilege.name))%></li>
         <% end %></ul>
       </td>
       <td align="center"><%= link_to(t('common.edit'), edit_role_path(role)) %></td>

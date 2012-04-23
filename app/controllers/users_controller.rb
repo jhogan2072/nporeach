@@ -1,6 +1,6 @@
 class UsersController < InheritedResources::Base
   respond_to :html, :json
-  respond_to :js, :csv, :only => [:index, :message, :remove_help]
+  respond_to :js, :csv, :only => [:index, :message, :remove_help, :credentials]
   before_filter :authenticate_user!
   before_filter :authorized?
   before_filter :check_user_limit, :only => :create
@@ -20,7 +20,7 @@ class UsersController < InheritedResources::Base
     @designationvalues.each do |value|
       @user.designations += value.to_i
     end
-    create! do |success, failure|
+    create!(:notice => I18n.t('users.form.successfulcreation')) do |success, failure|
       success.html { redirect_to members_family_path(params[:user][:family_id]) }
       failure.html do
         flash[:family_id] = params[:user][:family_id]
@@ -41,16 +41,18 @@ class UsersController < InheritedResources::Base
     @designationvalues.each do |value|
       @user.designations += value.to_i
     end
-    update! { members_family_path(@user.family_id) }
+    update!(:notice => I18n.t('users.form.successfulupdate')) { members_family_path(@user.family_id) }
   end
 
   def edit
     add_breadcrumb I18n.t('users.edituser'), request.url
+    @family_name = User.find(params["id"].to_i).family.name
     edit!
   end
 
   def new
     add_breadcrumb I18n.t('users.newfamilymember'), request.url
+    @family_name = params["fid"]? Family.find(params["fid"].to_i).name : ""
     new!
   end
 
@@ -161,6 +163,7 @@ class UsersController < InheritedResources::Base
       format.html {render partial: 'shared/print', locals: {output_records: @users, output_columns: @selected_columns, list_style: "user_list"}}
     end
   end
+
   
 protected
 

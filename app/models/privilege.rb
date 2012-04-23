@@ -8,11 +8,7 @@ class Privilege < ActiveRecord::Base
 
   CATEGORIES = {
     "ADMINISTRATION" => ["registrations.png",I18n.t('privilegemodel.administration')], 
-    "SCHEDULES" => ["schedule.png",I18n.t('privilegemodel.schedules')], 
-    "REGISTRATIONS" => ["registrations.png", I18n.t('privilegemodel.registrations')],
-    "EMPLOYEES" => ["employees.png", I18n.t('privilegemodel.employees')],
-    "PAYMENTS" => ["payments.png", I18n.t('privilegemodel.payments')],
-    "STUDENTS" => ["students.png", I18n.t('privilegemodel.students')],
+    "PERSONAL" => ["students.png", I18n.t('privilegemodel.personal')],
   }
   
   CONTROLLER_ACTIONS = {

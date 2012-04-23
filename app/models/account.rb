@@ -26,7 +26,6 @@ class Account < ActiveRecord::Base
   validates_format_of :domain, :with => /\A[a-zA-Z][a-zA-Z0-9]*\Z/
   validates_exclusion_of :domain, :in => %W( support blog www billing help api ), :message => I18n.t('accountmodel.domainnotavailable')
   validates :owner, :presence => {:on => :create, :message => I18n.t('accountmodel.adminmissing')}
-  #validates_associated :owner, {:on => :create, :message => I18n.t('accountmodel.adminnotvalid')}
   validate :valid_domain?
   
   attr_accessible :name, :domain, :owner_attributes
@@ -39,7 +38,7 @@ class Account < ActiveRecord::Base
   
   def domain=(domain)
     @domain = domain
-    self.full_domain = "#{domain}.#{Saas::Config.base_domain}"
+    self.full_domain = "#{domain}.#{Saas::Config.base_domain.split(':').first}"
   end
   
   def to_s

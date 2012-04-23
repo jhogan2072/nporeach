@@ -27,10 +27,10 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
   attr_protected :account_id
 
-  DESIGNATIONS = {1 => "Student",
-    2 => "Parent",
-    4 => "Donor",
-    8 => "Employee"
+  DESIGNATIONS = {1 => I18n.t('users.designations.student'),
+    2 => I18n.t('users.designations.parent'),
+    4 => I18n.t('users.designations.donor'),
+    8 => I18n.t('users.designations.employee')
   }
 
   ETHNIC_ORIGINS = {1 => I18n.t('users.ethnic_origins.africanamerican'),
@@ -46,6 +46,15 @@ class User < ActiveRecord::Base
       where('last_name LIKE ?', "%#{search}%")
     else
       scoped
+    end
+  end
+
+  def formatted_dob
+    I18n.l(self.dob, :format => :short) if self.dob
+  end
+  def formatted_dob=(date_str)
+    unless date_str.nil? || date_str.empty?
+      self.dob = Date.strptime(date_str, I18n.translate("date.formats.short"))
     end
   end
 

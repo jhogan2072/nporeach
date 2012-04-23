@@ -2,6 +2,10 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  date:
+    formats:
+      short: "%m/%d/%Y"
+
   activerecord:
     errors:
       template:
@@ -95,11 +99,7 @@ en:
   privilegemodel:
     modelname: "privilege"
     administration: "Administration"
-    schedules: "Schedules"
-    registrations: "Registrations"
-    payments: "Payments"
-    employees: "Employees"
-    students: "Students"
+    personal: "Personal"
 
   subscriptionmodel:
     modelname: "subscription"
@@ -164,6 +164,9 @@ en:
       edit:
         editaccount: "Editing an Account"
     default_roles:
+      names:
+        systemadministrator: "System Administrator"
+        familymember: "Family Member"
       default_roles: "Default Roles"
       index:
         managedefaultroles: "Manage Default Roles"
@@ -175,6 +178,22 @@ en:
       new:
         newdefaultrole: "New Default Role"
     privileges:
+      names:
+        managepeople: "Manage People"
+        manageroles: "Manage Roles"
+        managesettings: "Manage Settings"
+        manageaccountinfo: "Manage Account Information"
+        personalinfo: "Update Personal Information"
+        changepassword: "Reset Password"
+        addmembers: "Add Family Members"
+      descriptions:
+        managepeople: "Create and edit families, students, donors, employees, and system users"
+        manageroles: "Administer roles that are specific to this account"
+        managesettings: "Personalize the system with settings for your account"
+        manageaccountinfo: "Change the name of the organization, update billing information, update the account owner, cancel the account."
+        personalinfo: "Update personal information such as name, date of birth and contact address"
+        changepassword: "Change or reset your password"
+        addmembers: "Add or update family members"
       privileges: "Privileges"
       edit:
         editingprivilege: "Editing a Privilege"
@@ -203,6 +222,7 @@ en:
         people: "People"
         roles: "Roles"
         settings: "Settings"
+        personalinfo: "Personal Info"
       index:
         addnewmenu_item: "Add Menu Item"
       edit:
@@ -397,6 +417,11 @@ en:
       nativeamerican: "Native American"
       white: "White"
       other: "Other"
+    designations:
+      student: "Student"
+      parent: "Parent"
+      donor: "Donor"
+      employee: "Employee"
     columns:
       choosedrag: "Choose Fields - Drag and Drop to reorder"
       choosefields: "Choose Fields"
@@ -404,15 +429,18 @@ en:
     column_chooser:
       choosefields: "Choose Fields"
     form:
-      addafamilymember: "Add A Family Member"
+      addafamilymember: "Add or Edit A Family Member"
       name: "Name (first, last, middle)"
       password: "Password"
       confirmpassword: "Password confirmation"
       updateinformation: "Update information"
       toggle: "Click here to toggle contact info"
+      togglepassword: "Click here to create a system login for this family member"
       designations: "Designations"
       dob: "Date of Birth"
       ethnic_origin: "Ethnic Origin"
+      successfulcreation: "Family member successfully added."
+      successfulupdate: "Family member successfully updated."
     index:
       manageusers: "Manage People"
       adduser: "Add Person"

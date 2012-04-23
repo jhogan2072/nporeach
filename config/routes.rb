@@ -61,6 +61,7 @@ Conservatory::Application.routes.draw do
     end
     collection do
       get 'print'
+      get :credentials
       get :message
     end
   end

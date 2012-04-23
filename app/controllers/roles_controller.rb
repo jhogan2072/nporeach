@@ -16,7 +16,11 @@ class RolesController < InheritedResources::Base
   def edit
     add_breadcrumb I18n.t('roles.editrole'), request.url
     @privileges = Privilege.privileges_by_category
+    @role = Role.find(params[:id])
+    @role_name = t(@role.name, :raise => I18n::MissingTranslationData)
     edit!
+  rescue I18n::MissingTranslationData
+    @role_name = @role.name
   end
 
   def new
@@ -32,6 +36,10 @@ protected
 
     def collection
      @roles ||= end_of_association_chain.search(params[:search]).order(sort_column + ' ' + sort_direction).paginate(:per_page => 15, :page => params[:page])
+     @roles.each_with_index do |role, index|
+       @roles[index].name = t(role.name, :raise => I18n::MissingTranslationData)
+     end
+    rescue I18n::MissingTranslationData
     end
 
 end

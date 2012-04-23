@@ -920,7 +920,7 @@ a {
   display: inline-block;
   margin-left: 16px;
   padding-left: 32px;
-  z-index: -100;
+  position: relative;
 }
 
 #leftside {
@@ -935,6 +935,7 @@ a {
   float:left;
   padding-left: 10px;
   width: 367px;
+  position: relative;
   z-index: 100;
 }
 
@@ -946,6 +947,22 @@ a {
   margin-right: 5px;
   float: left;
 }
+
+.show_icon
+{
+  width:42px;
+  height:32px;
+  background-image: image_url("show_hide_menu.png");
+  background-position: 0 0;
+}
+.hide_icon
+{
+  width:42px;
+  height:32px;
+  background-image: image_url("show_hide_menu.png");
+  background-position: 0 -32px;
+}
+
 .left_menu_list {
   width: 300px;
   h3 {

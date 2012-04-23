@@ -8,8 +8,8 @@
   </tr>
   <% @privileges.each do |privilege| %>
     <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
-      <td class="name"><%=link_to privilege.name, edit_admin_privilege_path(privilege) %></td>
-      <td class="description"><%= privilege.description %></td>
+      <td class="name"><%=link_to t(privilege.name), edit_admin_privilege_path(privilege) %></td>
+      <td class="description"><%= t(privilege.description) %></td>
       <td class="controller"><%= privilege.controller %></td>
       <td align="center"><%= link_to(t('common.edit'), edit_admin_privilege_path(privilege)) %></td>
       <td align="center"><%= link_to(t('common.delete'), [:admin, privilege], :method => 'delete', :confirm => t('.suredeleteprivilege')) %></td>

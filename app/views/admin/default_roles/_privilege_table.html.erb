@@ -10,7 +10,7 @@
       <% privileges.each do |priv| %>
         <li>
         <%= check_box_tag 'default_role[privilege_ids][]', priv.id, @default_role.privileges.include?(priv), :class => "checkbox_group" %>
-        <%= priv.name %>
+        <%= t(priv.name) %>
         </li>
       <% end %>
       </ul>
