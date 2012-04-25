@@ -185,7 +185,7 @@ en:
         manageaccountinfo: "Manage Account Information"
         personalinfo: "Update Personal Information"
         changepassword: "Reset Password"
-        addmembers: "Add Family Members"
+        addmembers: "Family Members"
       descriptions:
         managepeople: "Create and edit families, students, donors, employees, and system users"
         manageroles: "Administer roles that are specific to this account"
@@ -222,7 +222,7 @@ en:
         people: "People"
         roles: "Roles"
         settings: "Settings"
-        personalinfo: "Personal Info"
+        personalinfo: "Profile"
       index:
         addnewmenu_item: "Add Menu Item"
       edit:
@@ -377,6 +377,7 @@ en:
     the: "The"
     families: "Families"
     editfamily: "Edit Family"
+    myfamily: "My Family"
     newfamily: "New Family"
     members:
       familymembers: "Family Members"
@@ -390,6 +391,8 @@ en:
       will be the primary contact for the entire family."
     edit:
       editingfamily: "Editing a Family"
+    my_family:
+      myfamily: "My Family"
     new:
       newfamily: "New Family"
     index:
@@ -428,6 +431,8 @@ en:
       editcolumnprefs: "Edit Column Preferences"
     column_chooser:
       choosefields: "Choose Fields"
+    profile:
+      edityourprofile: "Edit Your Profile"
     form:
       addafamilymember: "Add or Edit A Family Member"
       name: "Name (first, last, middle)"

@@ -50,7 +50,6 @@
     <li>
       <%= owner.label :password_confirmation %>
       <%= owner.password_field :password_confirmation %>
-      <%= hidden_field_tag "owner[role_ids][]", Role.where("name = 'admin.default_roles.names.systemadministrator'").first.id %>
     </li>
     <li class="bottom"></li>
     <% end %>

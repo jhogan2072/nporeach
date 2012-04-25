@@ -87,7 +87,7 @@ class ApplicationController < ActionController::Base
     active_action = nil
     action_present = false
     current_menu.each do |key, value|
-      item_found = value.any? { |menu_item| (menu_item.controller == controller_name && menu_item.action == action_name) }
+      item_found = value.any? { |menu_item| (menu_item[0] == controller_name && menu_item[1] == action_name) }
       action_present = true if item_found
     end    
     active_action = action_name if action_present

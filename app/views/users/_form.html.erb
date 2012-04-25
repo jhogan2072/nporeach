@@ -2,7 +2,7 @@
 <%= render 'shared/error_messages', :target => @user, :model => t('usermodel.modelname') %>
   <ul>
     <li class="form_header">
-      <h2><%= t('.addafamilymember') + " - " + @family_name + " " + t('familymodel.modelname') %></h2>
+      <h2><%= @form_title %></h2>
     </li>
     <li>
       <%= f.label t('.name') %>

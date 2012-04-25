@@ -65,6 +65,9 @@ class Account < ActiveRecord::Base
           grant.save!
         end
       end
+      #Assign the system administrator role to the owner of the newly created account
+      sysadminrole = Role.where("name = 'admin.default_roles.names.systemadministrator'").first
+      self.owner.assignments.create!(:role_id => sysadminrole.id)
       # Handle the unlikely case that we can't find a matching privilege for a default_privilege, i.e. the previous insertion failed
       rescue ActiveRecord::RecordNotFound
         logger.error("Unable to create a default grant for the #{self.name} account - could be a general database problem.")

@@ -60,7 +60,9 @@ Conservatory::Application.routes.draw do
       match :update_mylinks, :dashboard, :remove_help
     end
     collection do
-      get 'print'
+      get :print
+      get :profile
+      get :password
       get :credentials
       get :message
     end
@@ -69,6 +71,9 @@ Conservatory::Application.routes.draw do
   resources :families, :except => :show do
     member do
       match 'members'
+    end
+    collection do
+      get :my_family
     end
   end
 

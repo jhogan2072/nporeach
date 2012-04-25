@@ -47,7 +47,21 @@ class UsersController < InheritedResources::Base
   def edit
     add_breadcrumb I18n.t('users.edituser'), request.url
     @family_name = User.find(params["id"].to_i).family.name
+    @form_title = I18n.t('users.form.addafamilymember') + " - " + @family_name + " " + I18n.t('familymodel.modelname')
+    @password_title = I18n.t('users.passwords.resetuserspassword')
     edit!
+  end
+
+  def profile
+    add_breadcrumb I18n.t('users.profile.edityourprofile'), request.url
+    @form_title = I18n.t('users.profile.edityourprofile')
+    @user = current_user
+  end
+
+  def password
+    add_breadcrumb I18n.t('users.passwords.changeyourpassword'), request.url
+    @password_title = I18n.t('users.passwords.changeyourpassword')
+    @user = current_user
   end
 
   def new
@@ -108,7 +122,7 @@ class UsersController < InheritedResources::Base
     if @user.get_user_pref('MY_LINKS').blank?
       current_menu.each do |category, menu_items|
         menu_items.each do |m|
-          @my_links << @user.user_preferences.new(:pref_key => "MY_LINKS", :pref_value => t(m.help_text) + "#" + url_for(:action => m.action, :controller => m.controller))
+          @my_links << @user.user_preferences.new(:pref_key => "MY_LINKS", :pref_value => t(m[2]) + "#" + url_for(:action => m[1], :controller => m[0]))
         end
       end
     else

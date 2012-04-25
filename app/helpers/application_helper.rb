@@ -9,8 +9,12 @@ module ApplicationHelper
     (discount.percent? ? number_to_percentage(discount.amount * 100, :precision => 0) : number_to_currency(discount.amount)) + ' off'
   end
 
-  def hide_ul_if(condition, attributes = {}, &block)
-    if condition || (controller_name == 'accounts' && action_name == 'dashboard')
+  def hide_ul_if(menu_items, attributes = {}, &block)
+    result = false
+    menu_items.each do |item|
+      result = true if (item[0] == controller_name && item[1] == action_name)
+    end
+    if result == false
       attributes["style"] = "display: none"
     end
     content_tag("ul", attributes, &block)
@@ -19,25 +23,25 @@ module ApplicationHelper
   def is_current(active_action, submenu)
     if active_action.nil?
       if controller_name == "accounts"
-        return (controller_name == submenu.controller && submenu.action == "show")
+        return (controller_name == submenu[0] && submenu[1] == "show")
       else
-        if controller_name == "users" && submenu.controller == "families"
+        if controller_name == "users" && submenu[0] == "families"
           return true
         else
-          return (controller_name == submenu.controller)
+          return (controller_name == submenu[0])
         end
       end
     else
-      return (controller_name == submenu.controller && action_name == submenu.action)
+      return (controller_name == submenu[0] && action_name == submenu[1])
     end
   end
 
   def submenu_url(submenu, active_action)
-    link_to(content_tag("span", I18n.t(submenu.name)),
-      url_for(:controller => submenu.controller,
-      :action => submenu.action),
-      :title => I18n.t(submenu.name),
-      :alt => I18n.t(submenu.help_text),
+    link_to(content_tag("span", I18n.t(submenu[3])),
+      url_for(:controller => submenu[0],
+      :action => submenu[1]),
+      :title => I18n.t(submenu[3]),
+      :alt => I18n.t(submenu[2]),
       :class => (is_current(active_action, submenu))? "current" : "")
   end
 

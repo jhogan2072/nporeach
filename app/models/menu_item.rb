@@ -12,8 +12,12 @@ class MenuItem < ActiveRecord::Base
       end
       if menu_items.length > 0
         cur_menu = menu_items.group_by { |mi| mi.category  }
+        menu = Hash.new
+        cur_menu.each do |k, v|
+          menu[k] = v.map {|i| Array[i.controller, i.action, i.help_text, i.name]}
+        end
       end
-      return cur_menu if defined?(cur_menu)
+      return menu if defined?(menu)
   end
 
   def self.search(search)

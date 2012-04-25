@@ -22,11 +22,17 @@ class FamiliesController < InheritedResources::Base
   def members
     @family = Family.find(params[:id])
     add_breadcrumb @family.name + " " + I18n.t('families.members.familymembers'), request.url
-    # @selected_columns = get_selected_columns('users')
     @selected_columns = Array.new(["full_name","email", "designations"])
     @users = User.where("family_id = ?", params[:id]).paginate(:per_page => 15, :page => params[:page])
   end
-  
+
+  def my_family
+    add_breadcrumb I18n.t('families.myfamily'), request.url
+    @family = current_user.family
+    @selected_columns = Array.new(["full_name","email", "designations"])
+    @users = User.where("family_id = ?", current_user.family.id).paginate(:per_page => 15, :page => params[:page])
+  end
+
   def edit
     add_breadcrumb I18n.t('families.editfamily'), request.url
     edit!
