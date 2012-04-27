@@ -1,0 +1,5 @@
+$(document).ready(function(){
+  var hgt = $('li.child_fieldset').height();
+  $('li.child_fieldset').height(hgt + 36);
+  $('#child_menu_items_table tr:last').after("<%=j render 'new_child_item' %>");
+});

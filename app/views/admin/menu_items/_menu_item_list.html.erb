@@ -10,8 +10,8 @@
   </tr>
   <% @menu_items.each do |menu_item| %>
     <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
-      <td class="name"><%= link_to menu_item.name, edit_admin_menu_item_path(menu_item) %></td>
-      <td class="help_text"><%= menu_item.help_text %></td>
+      <td class="name"><%= link_to truncate(menu_item.name, :length => 25), edit_admin_menu_item_path(menu_item) %></td>
+      <td class="help_text"><%= truncate(menu_item.help_text, :length => 35) %></td>
       <td class="category"><%= menu_item.category %></td>
       <td class="controller"><%= menu_item.controller %></td>
       <td class="action"><%= menu_item.action %></td>

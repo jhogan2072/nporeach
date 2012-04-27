@@ -1,5 +1,10 @@
 class MenuItem < ActiveRecord::Base
-  validates :name, presence:true, uniqueness: true
+  has_many :child_menu_items, :dependent => :destroy
+  accepts_nested_attributes_for :child_menu_items, :allow_destroy => true, :reject_if => :all_blank
+  attr_accessible :child_menu_items_attributes
+  attr_accessible :name, :help_text, :category, :controller, :action
+  validates :name, presence:true
+  validates :controller, uniqueness: {scope: :action}
 
   def self.current_menu(current_user)
       menu_items = []
@@ -18,6 +23,13 @@ class MenuItem < ActiveRecord::Base
         end
       end
       return menu if defined?(menu)
+  end
+
+  def with_blank_children(n = 1)
+    n.times do
+      child_menu_items.build
+    end
+    self
   end
 
   def self.search(search)

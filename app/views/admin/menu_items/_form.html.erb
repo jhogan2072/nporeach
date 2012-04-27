@@ -1,30 +1,48 @@
-<%= form_for([:admin, @menu_item], :html => {:class => "standard_form", :multipart => true}) do |f| %>
-<%= render 'shared/error_messages', :target => @admin_menu_item, :model => t('menuitemmodel.modelname') %>
+<%= form_for([:admin, @menu_item.with_blank_children], :html => {:class => "standard_form horizontal_form", :multipart => true}) do |f| %>
+<%= render 'shared/error_messages', :target => @menu_item, :model => t('menuitemmodel.modelname') %>
 <ul>
   <li class="form_header">
     <h2><%= t('.managemenu_items') %></h2>
   </li>
   <li>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= f.label(:name, "Name".html_safe << f.text_field(:name)) %>
+    <%= f.label(:help_text, "Help Text".html_safe << f.text_field(:help_text)) %>
+    <%= f.label(:category, "Category".html_safe << f.text_field(:category)) %>
+    <%= f.label(:controller, "Controller".html_safe << f.text_field(:controller)) %>
+    <%= f.label(:action, "Action".html_safe << f.text_field(:action)) %>
   </li>
-  <li>
-    <%= f.label :help_text %>
-    <%= f.text_field :help_text %>
+  <li class="child_fieldset">
+    <fieldset>
+      <legend>Child Menu Items</legend>
+      <table id="child_menu_items_table">
+      <tr class="nolink_header">
+        <th>Name</th>
+        <th>Help Text</a></th>
+        <th>Controller</th>
+        <th>Action</th>
+      </tr>
+      <% @menu_item.child_menu_items.each.with_index do |cmi,index| %>
+        <%= f.fields_for(:child_menu_items, cmi) do |child_form| %>
+          <tr>
+            <td><%= child_form.text_field :name %></td>
+            <td><%= child_form.text_field :help_text %></td>
+            <td><%= child_form.text_field :controller %></td>
+            <td>
+              <%= child_form.text_field :action %>
+              <%= child_form.hidden_field :_destroy, value:"" %>
+            </td>
+            <% if index == @menu_item.child_menu_items.length - 1 %>
+              <td><%= link_to image_tag("plus.png"), add_child_admin_menu_items_path, remote: true %></td>
+            <% else %>
+              <td><%= content_tag("div", image_tag("minus.png"), class: "remove_child_menu_item") %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      <% end %>
+      </table>
+    </fieldset>
   </li>
-  <li>
-    <%= f.label :category %>
-    <%= f.text_field :category %>
-  </li>
-  <li>
-    <%= f.label :controller %>
-    <%= f.text_field :controller %>
-  </li>
-  <li>
-    <%= f.label :action %>
-    <%= f.text_field :action %>
-  </li>
-  <li>
+  <li class="form_submit">
     <%= f.submit %>
   </li>
   <li class="bottom"></li>

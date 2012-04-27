@@ -11,7 +11,13 @@ Conservatory::Application.routes.draw do
   get "csv/import"
   post "csv/import" => 'csv#upload'
 
-  namespace :admin do resources :menu_items end
+  namespace :admin do 
+    resources :menu_items do
+      collection do
+        get :add_child
+      end
+    end
+  end
 
   match '/autocomplete/users' => "autocomplete#users"
 

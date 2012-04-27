@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120406002904) do
+ActiveRecord::Schema.define(:version => 20120426125619) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -52,6 +52,16 @@ ActiveRecord::Schema.define(:version => 20120406002904) do
   create_table "assignments", :force => true do |t|
     t.integer  "user_id"
     t.integer  "role_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "child_menu_items", :force => true do |t|
+    t.integer  "menu_item_id"
+    t.string   "name"
+    t.string   "help_text"
+    t.string   "controller"
+    t.string   "action"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,9 +1,9 @@
 .menu_items {
   div.menu_item_list {
-    width:950px;
+    width:1000px;
 
-    .name {width:200px;}
-    .help_text {width:300px;}
+    .name {width:200px; max-width:200px;}
+    .help_text {width:270px; max-width:280px;}
     .category {width:100px;}
     .controller {width:100px;}
     .action {width:100px;}
