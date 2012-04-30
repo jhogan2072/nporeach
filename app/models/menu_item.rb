@@ -19,10 +19,25 @@ class MenuItem < ActiveRecord::Base
         cur_menu = menu_items.group_by { |mi| mi.category  }
         menu = Hash.new
         cur_menu.each do |k, v|
-          menu[k] = v.map {|i| Array[i.controller, i.action, i.help_text, i.name]}
+          menu[k] = v.map {|i| Array[i.controller, i.action, i.help_text, i.name, i.id]}
         end
       end
       return menu if defined?(menu)
+  end
+  
+  def current_child_menu
+    allowed_child_menu_items = Array.new
+    self.child_menu_items.each do |cmi|
+      allowed_child_menu_items << cmi if current_user.can?(cmi.controller, cmi.action)
+    end
+    if allowed_child_menu_items.length > 0
+      children_by_parent = allowed_child_menu_items.group_by { |child| child.menu_item_id}
+      child_menu = Hash.new
+      children_by_parent.each do |k, v|
+        child_menu[k] = v.map {|i| Array[i.controller, i.action, i.help_text, i.name, i.id]}
+      end
+    end
+    return child_menu if defined?(child_menu)
   end
 
   def with_blank_children(n = 1)

@@ -18,7 +18,7 @@
     <% end %>
 
     <% if user_signed_in? && current_menu %>
-      <%= render(partial: 'shared/menu', locals: {:menu => current_menu, :active_action => active_menu_action}) %>
+      <%= render(partial: 'shared/menu') %>
     <% end %>
   </div>
   <div class="clear"></div>

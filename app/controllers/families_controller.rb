@@ -5,7 +5,11 @@ class FamiliesController < InheritedResources::Base
   layout 'two_column'
 
   add_breadcrumb I18n.t('layouts.application.home'), :root_path
-  add_breadcrumb I18n.t('families.families'), :families_path
+  add_breadcrumb I18n.t('families.families'), :families_path, :if => :have_access?
+
+  def have_access?
+    current_user.can?("families", "index")
+  end
 
   def create
     #@spw = Devise.friendly_token.first(8)
