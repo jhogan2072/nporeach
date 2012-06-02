@@ -26,7 +26,7 @@ class Privilege < ActiveRecord::Base
     "users" => "profile"
   }
   
-  GLOBAL_PRIVILEGES = ["sessions#new", "sessions#create", "sessions#destroy", "accounts#show"]
+  GLOBAL_PRIVILEGES = ["sessions#new", "sessions#create", "sessions#destroy", "accounts#show", "users#dashboard"]
 
   def self.privileges_by_category
     priv_array = []
