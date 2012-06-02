@@ -11,14 +11,6 @@ Conservatory::Application.routes.draw do
   get "csv/import"
   post "csv/import" => 'csv#upload'
 
-  namespace :admin do 
-    resources :menu_items do
-      collection do
-        get :add_child
-      end
-    end
-  end
-
   match '/autocomplete/users' => "autocomplete#users"
 
   resources :assignments
@@ -27,8 +19,6 @@ Conservatory::Application.routes.draw do
   resources :portlet_categories
   match '/users/columns' => 'users#columns'
   match '/users/update_columns' => 'users#update_columns'
-  match '/accounts/settings' => 'accounts#settings'
-  match '/accounts/update_settings' => 'accounts#update_settings'
   match 'message' => 'message#new', :as => 'message', :via => :get
   match 'message' => 'message#create', :as => 'message', :via => :post
 
@@ -86,7 +76,7 @@ Conservatory::Application.routes.draw do
   resource :account do 
     member do
       get :thanks, :plans, :canceled
-      match :billing, :paypal, :plan, :plan_paypal, :cancel, :change_owner
+      match :billing, :paypal, :plan, :plan_paypal, :cancel, :change_owner, :settings, :update_settings
     end
   end
 
@@ -101,6 +91,12 @@ Conservatory::Application.routes.draw do
     resources :subscriptions do
       member do
         post :charge
+      end
+    end
+
+    resources :menu_items do
+      collection do
+        get :add_child
       end
     end
 

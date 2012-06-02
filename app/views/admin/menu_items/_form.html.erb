@@ -11,15 +11,16 @@
     <%= f.label(:controller, "Controller".html_safe << f.text_field(:controller)) %>
     <%= f.label(:action, "Action".html_safe << f.text_field(:action)) %>
   </li>
-  <li class="child_fieldset">
+  <li class="child_fieldset" style="height:<%=@height%>px;">
     <fieldset>
       <legend>Child Menu Items</legend>
       <table id="child_menu_items_table">
       <tr class="nolink_header">
-        <th>Name</th>
-        <th>Help Text</a></th>
-        <th>Controller</th>
-        <th>Action</th>
+        <th><%= t('common.name') %></th>
+        <th><%= t('.helptext') %></th>
+        <th><%= t('.controller') %></th>
+        <th><%= t('.action') %></th>
+        <th><%= t('.iscol') %></th>
       </tr>
       <% @menu_item.child_menu_items.each.with_index do |cmi,index| %>
         <%= f.fields_for(:child_menu_items, cmi) do |child_form| %>
@@ -30,6 +31,9 @@
             <td>
               <%= child_form.text_field :action %>
               <%= child_form.hidden_field :_destroy, value:"" %>
+            </td>
+            <td>
+              <%= child_form.check_box :is_collection %>
             </td>
             <% if index == @menu_item.child_menu_items.length - 1 %>
               <td><%= link_to image_tag("plus.png"), add_child_admin_menu_items_path, remote: true %></td>

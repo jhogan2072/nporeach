@@ -4,9 +4,9 @@
     <%= link_to image_tag(Privilege::CATEGORIES[category][0]) << content_tag("span",Privilege::CATEGORIES[category][1]), link_for_privilege(menu_items[0][0]) %>
   </li>
   <li>
-    <%= display_submenus_ul(menu_items) do %>
+    <%= display_submenus_ul(category, menu_items) do %>
       <% menu_items.each do |submenu| %>
-        <li><%= submenu_link(submenu) %></li>
+        <li><%= submenu_link(submenu, category) %></li>
       <% end %>
     <% end %>
   </li>

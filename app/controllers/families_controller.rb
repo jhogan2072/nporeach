@@ -7,10 +7,6 @@ class FamiliesController < InheritedResources::Base
   add_breadcrumb I18n.t('layouts.application.home'), :root_path
   add_breadcrumb I18n.t('families.families'), :families_path, :if => :have_access?
 
-  def have_access?
-    current_user.can?("families", "index")
-  end
-
   def create
     #@spw = Devise.friendly_token.first(8)
     @family = Family.new(params[:family])
@@ -69,6 +65,10 @@ class FamiliesController < InheritedResources::Base
      @families ||= end_of_association_chain.search(params[:search]).order(sort_column + ' ' + sort_direction).paginate(:per_page => 15, :page => params[:page])
     end
 private
+  def have_access?
+    current_user.can?("families", "index")
+  end
+
   def help_text
     I18n.t('families.menu.info') + "_001"
   end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120426125619) do
+ActiveRecord::Schema.define(:version => 20120524202613) do
 
   create_table "account_settings", :force => true do |t|
     t.integer  "account_id"
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(:version => 20120426125619) do
     t.string   "action"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_collection"
   end
 
   create_table "column_preferences", :force => true do |t|

@@ -5,7 +5,6 @@ class UsersController < InheritedResources::Base
   before_filter :authorized?
   before_filter :check_user_limit, :only => :create
   add_breadcrumb I18n.t('layouts.application.home'), :root_path
-  add_breadcrumb I18n.t('families.families'), :families_path
   layout :resolve_layout
 
   def create
@@ -45,6 +44,11 @@ class UsersController < InheritedResources::Base
   end
 
   def edit
+    if request.referer && request.referer.index('my_family')
+      add_breadcrumb I18n.t('families.myfamily'), request.referer
+    else
+      add_breadcrumb I18n.t('families.families'), :families_path
+    end
     add_breadcrumb I18n.t('users.edituser'), request.url
     @family_name = User.find(params["id"].to_i).family.name
     @form_title = I18n.t('users.form.addafamilymember') + " - " + @family_name + " " + I18n.t('familymodel.modelname')
@@ -65,6 +69,11 @@ class UsersController < InheritedResources::Base
   end
 
   def new
+    if request.referer && request.referer.index('my_family')
+      add_breadcrumb I18n.t('families.myfamily'), request.referer
+    else
+      add_breadcrumb I18n.t('families.families'), :families_path
+    end
     add_breadcrumb I18n.t('users.newfamilymember'), request.url
     @family_name = params["fid"]? Family.find(params["fid"].to_i).name : ""
     new!

@@ -13,6 +13,7 @@ class AccountsController < InheritedResources::Base
   # ssl_allowed :plans, :thanks, :canceled, :paypal
 
   def change_owner
+    add_breadcrumb I18n.t('accounts.show.changeowner'), request.url
     @account = current_account
     if request.post? || request.put?
       #Make the change to the users involved

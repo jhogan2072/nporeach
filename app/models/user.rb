@@ -10,8 +10,6 @@ class User < ActiveRecord::Base
   has_many :user_preferences, :dependent => :destroy
   accepts_nested_attributes_for :user_preferences, :allow_destroy => true
   attr_accessible :user_preferences_attributes
-  #validates :email, presence: true
-  #validates :family_id, presence: true
   validates :last_name, :first_name, presence: true
   validates :email, :uniqueness => {:scope => :account_id}, format: { with: /\A[^@]+@[^@]+\z/ }, :if => :email?
   validates :password, presence: true, :if => :password_required?
@@ -91,7 +89,7 @@ class User < ActiveRecord::Base
   end
 
   def can?(controller, action)
-    is_global_privilege(controller, action) || roles.includes(:privileges).for(controller, action).any?
+    self.owner? || is_global_privilege(controller, action) || roles.includes(:privileges).for(controller, action).any?
   end
   
   protected

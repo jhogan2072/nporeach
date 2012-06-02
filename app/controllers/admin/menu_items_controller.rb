@@ -15,6 +15,8 @@ class Admin::MenuItemsController < ApplicationController
 
   def edit
     add_breadcrumb I18n.t('admin.menu_items.edit.editmenu_item'), request.url
+    mi = MenuItem.find(params[:id])
+    @height = mi.child_menu_items.count == 0? 110 : (mi.child_menu_items.count + 1) * 36 + 80
     edit!
   end
 
