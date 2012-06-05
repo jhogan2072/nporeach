@@ -2,7 +2,7 @@ class FamiliesController < InheritedResources::Base
   respond_to :html, :json
   respond_to :js, :csv, :only => [:index, :message]
   before_filter :build_primary_contact, :only => [:new, :create]
-  layout 'two_column'
+  layout :resolve_layout
 
   add_breadcrumb I18n.t('layouts.application.home'), :root_path
   add_breadcrumb I18n.t('families.families'), :families_path, :if => :have_access?
@@ -71,6 +71,15 @@ private
 
   def help_text
     I18n.t('families.menu.info') + "_001"
+  end
+
+  def resolve_layout
+    case action_name
+      when 'my_family'
+        'application'
+      else
+        'two_column'
+    end
   end
 
   def left_menu

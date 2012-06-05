@@ -26,7 +26,7 @@
     <div id="dialog-modal"></div>
     <div id="breadcrumbs">
       <%= render_breadcrumbs(:class => "breadcrumbs") %>
-      <%= link_to(image_tag("add_favorite.png", size: "16x16", style: "margin-right:5px;") + content_tag(:span, "Add to Favorites"), "#", id: "add_to_favorites") %>
+      <%= display_add_to_favorites  %>
     </div>
     <% flash.each do |key, value| %>
       <div class="flash <%= key %>"><%= value %></div>

@@ -8,7 +8,7 @@ class MenuItem < ActiveRecord::Base
 
   def self.current_menu(current_user)
     menu_items = []
-    MenuItem.find(:all).each do |menu_item|
+    MenuItem.all.each do |menu_item|
       menu_items << menu_item if current_user.can?(menu_item.controller, menu_item.action)
     end
     if menu_items.length > 0

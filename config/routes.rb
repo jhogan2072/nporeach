@@ -53,7 +53,7 @@ Conservatory::Application.routes.draw do
   #
   resources :users, :except => :show do
     member do
-      match :update_mylinks, :dashboard, :remove_help
+      match :update_mylinks, :dashboard, :remove_help, :add_favorite, :update_favorite
     end
     collection do
       get :print

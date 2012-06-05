@@ -92,7 +92,6 @@ module ApplicationHelper
     if controller_name == "families"
       content_tag("div", 
         link_to(image_tag("close_help.png", :class => "remove_help", :title => I18n.t('help.clicktoremove')), remove_help_user_path(current_user.id, :help_id => text_arr[1]), :remote => true, :id => "remove_help_" + text_arr[1]) <<
-        #link_to("[x]", remove_help_user_path(current_user.id, :class => "remove_help", :help_id => text_arr[1]), :remote => true, :id => "remove_help_" + text_arr[1]) <<
           content_tag("p", displayed_text, :class => "helpful_information"), :class => "helpful_background")
     end
   end
@@ -125,4 +124,11 @@ module ApplicationHelper
     role_name
   end
 
+  def display_add_to_favorites
+    case controller_name
+      when 'sessions'
+      else
+        link_to(image_tag("add_favorite.png", size: "18x18", style: "vertical-align:middle;margin-right:5px;margin-bottom:2px;") + content_tag(:span, "Add to Favorites"), add_favorite_user_path(current_user), id: "add_to_favorites", remote: true)
+    end
+  end
 end

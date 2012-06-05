@@ -1,6 +1,7 @@
 class UsersController < InheritedResources::Base
   respond_to :html, :json
-  respond_to :js, :csv, :only => [:index, :message, :remove_help, :credentials]
+  respond_to :js, :only => [:index, :message, :remove_help, :credentials, :add_favorite]
+  respond_to :csv, :only => :index
   before_filter :authenticate_user!
   before_filter :authorized?
   before_filter :check_user_limit, :only => :create
@@ -125,6 +126,33 @@ class UsersController < InheritedResources::Base
     end
   end
 
+  def add_favorite
+    @referring_url = request.referer
+    @user = current_user
+  end
+
+  def update_favorite
+    @user = current_user
+    max_seq_no = @user.user_preferences.maximum(:seq_no, :conditions => ["user_id = ? and pref_key = 'MY_LINKS'", @user.id])
+    if max_seq_no.nil?
+      current_menu.each do |category, menu_items|
+        menu_items.each_with_index do |m, i|
+          @user.user_preferences.build(:pref_key => "MY_LINKS", :pref_value => t(m[2]) + "#" + url_for(:action => m[1], :controller => m[0]), :seq_no => i)
+          max_seq_no = i
+        end
+      end
+      @user.save!
+    end
+    preference_value = params["link_description"] + "#" + params["referring_url"]
+    respond_to do |format|
+      @user.user_preferences.build(:pref_key => 'MY_LINKS', :pref_value => preference_value, :seq_no => max_seq_no + 1)
+      if @user.save
+        flash[:notice] = I18n.t('userscontroller.favoriteadded')
+        format.html {redirect_to :back}
+      end
+    end
+  end
+
   def dashboard
     @user = current_user
     @my_links = Array.new
@@ -206,7 +234,7 @@ protected
   end
 
   def authorized?
-    redirect_to new_user_session_url unless (user_signed_in? && self.action_name == 'index') || owner?
+    redirect_to new_user_session_url unless (user_signed_in?) || owner?
   end
 
   def check_user_limit

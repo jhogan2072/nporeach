@@ -1,0 +1,17 @@
+<%= form_for @user, :url => { :action => "update_favorite" }, :html => {:class => "standard_form"} do |f| %>
+    <%= render 'shared/error_messages', :target => @user, :model => t('usermodel.modelname') %>
+    <ul>
+      <li class="form_header">
+        <p><%= t('.instructions') %></p>
+      </li>
+      <li>
+        <%= label_tag t('.link_description') %>
+        <%= text_field_tag("link_description",'', size: 30) %>
+        <%= hidden_field_tag("referring_url", h(referring_url)) %>
+      </li>
+      <li>
+        <%= submit_tag %>
+      </li>
+      <li class="bottom"></li>
+    </ul>
+<% end %>

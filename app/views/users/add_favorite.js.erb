@@ -1,0 +1,7 @@
+$( '#dialog-modal' ).html("<%= j render :partial => 'add_fave', :locals => {:referring_url => @referring_url} %>");
+$( '#dialog-modal' ).dialog({
+    height: 350,
+    width: 800,
+    modal: true,
+    title: "<%= I18n.t('users.add_favorite.adddescription') %>"
+});

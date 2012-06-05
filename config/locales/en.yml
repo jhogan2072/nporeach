@@ -136,6 +136,7 @@ en:
 
   userscontroller:
     preferencesupdated: "Column preferences updated."
+    favoriteadded: "Favorite added."
     
   layouts:
     public:
@@ -455,6 +456,11 @@ en:
       choosefields: "Choose Fields"
     profile:
       edityourprofile: "Edit Your Profile"
+    add_favorite:
+      adddescription: "Please enter a description for your Favorite"
+    add_fave:
+      link_description: "Link Description"
+      instructions: "Enter a textual description for the greyed out page that will appear as a link in your list of favorites on your home page.  To close this dialog without saving the page as a Favorite, click the X in the upper right."
     form:
       addafamilymember: "Add or Edit A Family Member"
       name: "Name (first, last, middle)"

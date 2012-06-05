@@ -16,7 +16,7 @@
       <% @my_links.each_with_index do |preference, index| %>
           <tr class="<%= cycle('list_line_odd', 'list_line_even') %>" id="<%="row" + index.to_s%>">
             <td>
-              <%= link_to(preference.pref_value.split("#")[0], preference.pref_value.split("#")[1]) %><%= image_tag("remove_icon.png", :class =>"remove_link", :id => "remove" + index.to_s) %>
+              <%= link_to(preference.pref_value.split("#")[0], raw(preference.pref_value.split("#")[1])) %><%= image_tag("remove_icon.png", :class =>"remove_link", :id => "remove" + index.to_s) %>
               <%= f.fields_for :user_preferences, preference do |builder| %>
                   <%= builder.hidden_field :id %>
                   <%= builder.hidden_field :pref_key %>
