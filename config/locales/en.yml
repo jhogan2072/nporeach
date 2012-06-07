@@ -194,7 +194,7 @@ en:
         manageaccountinfo: "Change the name of the organization, update billing information, update the account owner, cancel the account."
         personalinfo: "Update personal information such as name, date of birth and contact address"
         changepassword: "Change or reset your password"
-        familymembers: "Add or update family members"
+        familymembers: "View family members"
       privileges: "Privileges"
       edit:
         editingprivilege: "Editing a Privilege"

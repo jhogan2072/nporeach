@@ -1,6 +1,7 @@
 class FamiliesController < InheritedResources::Base
   respond_to :html, :json
-  respond_to :js, :csv, :only => [:index, :message]
+  respond_to :js, :only => [:index, :message]
+  respond_to :csv, :only => :my_family
   before_filter :build_primary_contact, :only => [:new, :create]
   layout :resolve_layout
 
@@ -31,6 +32,13 @@ class FamiliesController < InheritedResources::Base
     @family = current_user.family
     @selected_columns = Array.new(["full_name","email", "designations"])
     @users = User.where("family_id = ?", current_user.family.id).paginate(:per_page => 15, :page => params[:page])
+    respond_to do |format|
+      format.html
+      format.csv do
+        @exported_users = @users
+        export_csv(@selected_columns, @exported_users, "users")
+      end
+    end
   end
 
   def edit

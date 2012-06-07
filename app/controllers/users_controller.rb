@@ -194,7 +194,7 @@ class UsersController < InheritedResources::Base
     index! do |format|
       format.html
       format.csv do
-        @exported_users = current_account.users
+        @exported_users = @users
         export_csv(@selected_columns, @exported_users, "users")
       end
     end

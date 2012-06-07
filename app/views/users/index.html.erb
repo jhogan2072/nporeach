@@ -1,5 +1,5 @@
 <% @page_title = t('.manageusers') %>
 <div class="standard_list user_list">
-<%= render(partial: 'shared/menubar', locals: {:collection_name => "users", :indexpath => users_path, :newpath => new_user_path, :addimage => "addperson.png", :addtext => t('.adduser')}) %>
+<%= render(partial: 'shared/menubar', locals: {:collection_name => "users", :indexpath => users_path, :newpath => new_user_path, :addimage => "addperson.png", :addtext => t('.adduser'), :allow_fields => true}) %>
 <%= render 'user_list' %>
 </div>

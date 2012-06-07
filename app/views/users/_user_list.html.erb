@@ -1,11 +1,15 @@
-<div id="users">
+<div id="users" class="list_container">
 <table>
   <tr class="headers">
     <% @selected_columns.each do |col| %>
       <th class="<%= col %>"><%= header_link(ColumnPreference::AVAILABLE_COLUMNS["users"][col][1], "users", "index", col) %></th>
     <% end %>
+    <% if current_user.can?(controller_name, "edit") %>
     <th class="editdelete"><a href="#" class="column_header"></a></th>
+    <% end %>
+    <% if current_user.can?(controller_name, "destroy") %>
     <th class="editdelete"><a href="#" class="column_header"></a></th>
+    <% end %>
   </tr>
   <%= render(@users) %>
 </table>

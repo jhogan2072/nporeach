@@ -2,6 +2,10 @@
       <% @selected_columns.each do |col| %>
         <td class="<%= col %>"><%=h display_user_column_value(col, user) %></td>
       <% end %>
-      <td align="center"><%= link_to(t('common.edit'), edit_user_path(user)) %></td>
-      <td align="center"><%= link_to(t('common.delete'), user, :method => 'delete', :confirm => t('.suredeleteuser')) unless user == current_user %></td>
+      <% if current_user.can?(controller_name, "edit") %>
+        <td align="center"><%= link_to(t('common.edit'), edit_user_path(user)) %></td>
+      <% end %>
+      <% if current_user.can?(controller_name, "destroy") %>
+        <td align="center"><%= link_to(t('common.delete'), user, :method => 'delete', :confirm => t('.suredeleteuser')) unless user == current_user %></td>
+      <% end %>
     </tr>

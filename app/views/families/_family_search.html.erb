@@ -1,4 +1,4 @@
     <div class="standard_list user_list">
-      <%= render(partial: 'shared/menubar', locals: {:collection_name => "users", :indexpath => users_path, :newpath => new_user_path(:fid => @family.id), :addimage => "addperson.png", :addtext => t('.addmember')}) %>
+      <%= render(partial: 'shared/menubar', locals: {:collection_name => "users", :indexpath => my_family_families_path, :newpath => new_user_path(:fid => @family.id), :addimage => "addperson.png", :addtext => t('.addmember'), :allow_fields => false}) %>
       <%= render partial: 'users/user_list' %>
     </div>

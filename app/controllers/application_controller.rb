@@ -103,6 +103,9 @@ class ApplicationController < ActionController::Base
           array_of_records.each do |record|
             array_of_data = Array.new
             array_of_headers.each do |col|
+              #if col = "designations"
+              #  record.designations = "blah"
+              #end
               array_of_data.push(record.send(col))
             end
             csv << array_of_data

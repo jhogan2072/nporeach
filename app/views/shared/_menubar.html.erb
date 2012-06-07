@@ -1,9 +1,11 @@
 <div class="toolbar">
   <div id="dialog-modal"></div>
   <div class="menubuttons">
+    <% if current_user.can?(collection_name, "new") %>
     <a href="<%= newpath %>" title="<%= addtext %>"><%= image_tag(addimage) %>
       <span><%= addtext %></span>
     </a>
+    <% end %>
     <%= form_tag indexpath, :method => :get do %>
       <%= hidden_field_tag :direction, params[:direction] %>
       <%= hidden_field_tag :sort, params[:sort] %>
@@ -13,7 +15,9 @@
     <%= link_to image_tag("print.png") + content_tag(:span, t('common.print')), indexpath + "/print", :class=>"rightbutton", :target => "_blank" %>
     <%= email_button(collection_name) %>
     <%= link_to image_tag("export.png") + content_tag(:span, t('common.export')), indexpath + ".csv", :class=>"rightbutton", :target => "_blank" %>
+    <% if defined?(allow_fields)? allow_fields : nil %>
     <%= link_to image_tag("fields.png") + content_tag(:span, t('common.fields')), url_for(users_columns_path(:collection_name => collection_name)), :class=>"rightbutton", :remote => true %>
+    <% end %>
   </div>
 </div>
 
