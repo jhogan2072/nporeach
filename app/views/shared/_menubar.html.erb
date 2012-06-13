@@ -1,7 +1,7 @@
 <div class="toolbar">
   <div id="dialog-modal"></div>
   <div class="menubuttons">
-    <% if current_user.can?(collection_name, "new") %>
+    <% if current_admin || current_user.can?(collection_name, "new") %>
     <a href="<%= newpath %>" title="<%= addtext %>"><%= image_tag(addimage) %>
       <span><%= addtext %></span>
     </a>

@@ -29,6 +29,7 @@ class ApplicationController < ActionController::Base
     end
 
     def left_menu
+      MenuItem.find(session[:current_menu_item_id]).allowed_child_menu_items(current_user, true)
     end
 
     def record_not_found
@@ -103,10 +104,11 @@ class ApplicationController < ActionController::Base
           array_of_records.each do |record|
             array_of_data = Array.new
             array_of_headers.each do |col|
-              #if col = "designations"
-              #  record.designations = "blah"
-              #end
-              array_of_data.push(record.send(col))
+              if col == "designations"
+                array_of_data.push(record.designations_string)
+              else
+                array_of_data.push(record.send(col))
+              end
             end
             csv << array_of_data
           end

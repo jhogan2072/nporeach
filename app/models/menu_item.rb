@@ -21,10 +21,14 @@ class MenuItem < ActiveRecord::Base
     return menu if defined?(menu)
   end
   
-  def allowed_child_menu_items(current_user)
+  def allowed_child_menu_items(current_user, collection_only)
     cmis = Array.new
     self.child_menu_items.each do |cmi|
-      cmis << cmi if current_user.can?(cmi.controller, cmi.action) # && cmi.is_collection
+      if collection_only
+        cmis << cmi if current_user.can?(cmi.controller, cmi.action) && cmi.is_collection
+      else
+        cmis << cmi if current_user.can?(cmi.controller, cmi.action)
+      end
     end
     if cmis.length > 0
       child_menu = Array.new

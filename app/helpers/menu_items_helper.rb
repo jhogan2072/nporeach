@@ -24,7 +24,7 @@ module MenuItemsHelper
       else
         if level == 0 && retval == false
           mi = MenuItem.find(menu_item[4])
-          cm = mi.allowed_child_menu_items(current_user)
+          cm = mi.allowed_child_menu_items(current_user, false)
           unless cm.nil?
             retval = find_match(cm, 1)
           end
@@ -48,7 +48,7 @@ module MenuItemsHelper
     result = (submenu[0] == controller_name && submenu[1] == action_name)
     if result == false
       menu_item = MenuItem.find(submenu[4])
-      cmis = menu_item.allowed_child_menu_items(current_user)
+      cmis = menu_item.allowed_child_menu_items(current_user, false)
       unless menu_item.nil? || cmis.nil?
         result = cmis.any? { |menu_item| (menu_item[0] == controller_name && menu_item[1] == action_name) }
         if result
@@ -58,7 +58,14 @@ module MenuItemsHelper
     else
       session[:current_category] = category
     end
+    if result
+      session[:current_menu_item_id] = submenu[4]
+    end
     return result
+  end
+
+  def link_for_privilege(priv_controller)
+      url_for :action => Privilege::ROOT_MENU_ACTIONS[priv_controller], :controller => priv_controller
   end
 
 end

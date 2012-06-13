@@ -263,11 +263,4 @@ private
     end
   end
 
-  def left_menu
-    menu_array = Array.new
-    menu_array << [t('families.menu.importfamilies'), url_for(csv_import_path(:data => "students"))]
-    menu_array << [t('families.menu.viewfamilies'), url_for(families_path)]
-    menu_array << [t('families.menu.managesystemusers'), url_for(users_path)]
-  end
-
 end

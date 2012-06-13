@@ -63,10 +63,6 @@ module ApplicationHelper
     return retval.html_safe
   end
 
-  def link_for_privilege(priv_controller)
-      url_for :action => Privilege::ROOT_MENU_ACTIONS[priv_controller], :controller => priv_controller
-  end
-
   def email_button(collection_name)
     case collection_name
     when "users"
@@ -104,14 +100,7 @@ module ApplicationHelper
     when "string"
       return_val = col=="full_name" ? user.full_name : user[col]
     when "designations"
-      tmp_arr = User::DESIGNATIONS.keys.select {|i| i & (user.designations.nil? ? 0 : user.designations) > 0 }  #=> [1,2,4]
-      tmp_arr.each_with_index { |item,index|
-        if index>0
-          return_val += ", " + User::DESIGNATIONS[item]
-        else
-          return_val += User::DESIGNATIONS[item]
-        end
-      }
+      return_val = user.designations_string
     else
       return_val = user[col]
     end

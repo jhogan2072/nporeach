@@ -5,7 +5,7 @@
     </li>
     <% left_menu.each do |menu_link| %>
     <li class="<%= cycle('list_line_odd', 'list_line_even') %>">
-      <%= link_to(menu_link[0], menu_link[1]) %>
+      <%= link_to(t(menu_link[3]), url_for(controller: menu_link[0], action: menu_link[1])) %>
     </li>
     <% end %>
     <li class="bottom"></li>

@@ -78,14 +78,20 @@ class User < ActiveRecord::Base
   end
 
   def full_name
-    fullname = read_attribute(:last_name)
-    if self.first_name
-      fullname += ", " + read_attribute(:first_name)
-      if self.middle_name
-        fullname += " " + read_attribute(:middle_name)
+    "#{self.last_name}#{self.first_name ? (', ' + self.first_name) : ''}#{self.middle_name ? (' ' + self.middle_name) : ''}"
+  end
+
+  def designations_string
+    return_val = ""
+    tmp_arr = User::DESIGNATIONS.keys.select {|i| i & (self.designations.nil? ? 0 : self.designations) > 0 }  #=> [1,2,4]
+    tmp_arr.each_with_index { |item,index|
+      if index>0
+        return_val += ", " + User::DESIGNATIONS[item]
+      else
+        return_val += User::DESIGNATIONS[item]
       end
-    end
-    return fullname
+    }
+    return return_val
   end
 
   def can?(controller, action)

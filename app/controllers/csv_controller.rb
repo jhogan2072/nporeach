@@ -1,7 +1,7 @@
 class CsvController < ApplicationController
   require 'csv'
   before_filter :authenticate_user!
-  layout 'two_column'
+  layout 'hybrid'
   
   def import
   end
@@ -30,12 +30,4 @@ class CsvController < ApplicationController
     redirect_to import_table_path(table)
   end
 
-private
-  def left_menu
-    menu_array = Array.new
-    menu_array << [t('csv.import.students'), url_for(csv_import_path(:data => "students"))]
-    menu_array << [t('csv.import.parents'), url_for(csv_import_path(:data => "parents"))]
-    menu_array << [t('csv.import.instructors'), url_for(csv_import_path(:data => "instructors"))]
-    menu_array << [t('csv.import.registrations'), url_for(csv_import_path(:data => "registrations"))]
-  end
 end
