@@ -7,7 +7,11 @@
     <li>
       <%= f.label t('.name') %>
       <%= f.text_field :first_name, :size => "15" %>
-      <%= f.text_field :last_name, :size => "15" %>
+      <% if action_name == 'new'  %>
+        <%= f.text_field :last_name, :size => "15", :value => params['fid']? Family.find(params['fid'].to_i).name: "" %>
+      <% else %>
+        <%= f.text_field :last_name, :size => "15" %>
+      <% end %>
       <%= f.text_field :middle_name, :size => "3" %>
       <% if action_name == 'new'  %>
         <%= f.hidden_field :family_id, :value => params['fid']? params['fid']: flash[:family_id] %>
@@ -79,7 +83,11 @@
       <div class="checkbox_container">
       <% current_account.roles.each do |role| %>
         <div>
-        <%= check_box_tag 'user[role_ids][]', role.id, @user.roles.include?(role) %>
+          <% if action_name == "new" && params['fid'] && role.name == "admin.default_roles.names.familymember" %>
+            <%= check_box_tag 'user[role_ids][]', role.id, true %>
+          <% else %>
+            <%= check_box_tag 'user[role_ids][]', role.id, @user.roles.include?(role) %>
+          <% end %>
         <%= content_tag("span", translated_role(role.name), :class => "checkbox_label") %>
         </div>
       <% end %>

@@ -7,10 +7,6 @@ class ColumnPreference < ActiveRecord::Base
   default_scope :order => 'column_order'
   scope :included_columns, where(:is_displayed => true)
 
-  def self.user_columns(collection_name, user_id)
-    included_columns.where("collection_name = ? and user_id = ?", collection_name, user_id)
-  end
-
   # This is a hash of hashes containing information about the various collections for which columns may be selected
   # The array of fields for each column consists of true/false to include by default, its localized name, the display type for that column
   # in the list - e.g. link, date, string, and an optional type in the case of a link
@@ -31,5 +27,9 @@ class ColumnPreference < ActiveRecord::Base
       "designations"=>[false, I18n.t('users.user_list.designations'), "designations", "" ]
       }
     }
+
+  def self.user_columns(collection_name, user_id)
+    included_columns.where("collection_name = ? and user_id = ?", collection_name, user_id)
+  end
 
 end

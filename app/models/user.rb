@@ -16,13 +16,12 @@ class User < ActiveRecord::Base
   validates_confirmation_of :password, :if => :password_required?
   validates_length_of       :password, :within => 6..128, :allow_blank => true
 
-
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable, :registerable
   devise :database_authenticatable, :timeoutable, :recoverable, :rememberable, :trackable, :encryptable, :authentication_keys => [:email, :account_id]
   
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :address
   attr_protected :account_id
 
   DESIGNATIONS = {1 => I18n.t('users.designations.student'),
@@ -44,6 +43,16 @@ class User < ActiveRecord::Base
       where('last_name LIKE ?', "%#{search}%")
     else
       scoped
+    end
+  end
+
+  def address
+    if self[:is_primary_contact]
+      read_attribute[:address]
+    else
+      if self[:address].nil?
+        self.first([:is_primary_contact => true, :family_id => self[:family_id]]).address
+      end
     end
   end
 
