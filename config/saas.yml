@@ -1,7 +1,7 @@
 defaults: &defaults
-  app_name: Conservatory
-  from_email: support@artshelper.com
-  base_domain: artshelper.com
+  app_name: Nporeach
+  from_email: support@nporeach.com
+  base_domain: nporeach.com
 
   gateway: bogus
   credentials:
@@ -15,7 +15,7 @@ defaults: &defaults
     
 development:
   <<: *defaults
-  base_domain: conservatory.dev:3000 # Edit /etc/hosts to add subscriptions.dev, test.subscriptions.dev, etc., or use Pow: http://pow.cx
+  base_domain: nporeach.dev:3000 # Edit /etc/hosts to add subscriptions.dev, test.subscriptions.dev, etc., or use Pow: http://pow.cx
 
 test:
   <<: *defaults

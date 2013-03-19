@@ -48,7 +48,7 @@ class User < ActiveRecord::Base
 
   def address
     if self[:is_primary_contact]
-      read_attribute[:address]
+      read_attribute(:address)
     else
       if self[:address].nil?
         self.first([:is_primary_contact => true, :family_id => self[:family_id]]).address

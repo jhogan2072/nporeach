@@ -4,7 +4,7 @@ class MainSite
   end
 end
 
-Conservatory::Application.routes.draw do
+Nporeach::Application.routes.draw do
 
   resources :import_tables
 

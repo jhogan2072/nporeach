@@ -2,7 +2,7 @@ class FamiliesController < InheritedResources::Base
   respond_to :html, :json
   respond_to :js, :only => [:index, :message]
   respond_to :csv, :only => :my_family
-  before_filter :build_primary_contact, :only => [:new, :create]
+  before_filter :create_primary_contact, :only => [:new]
   layout :resolve_layout
 
   add_breadcrumb I18n.t('layouts.application.home'), :root_path
@@ -10,9 +10,14 @@ class FamiliesController < InheritedResources::Base
 
   def create
     #@spw = Devise.friendly_token.first(8)
-    @family = Family.new(params[:family])
-    @family.primary_contact.account_id = current_account.id
+    @family = Family.new
+    @family.is_individual = params[:family][:is_individual]
+    @family.mailing_greeting = params[:family][:mailing_greeting]
+    @family.name = params[:family][:name]
     @family.account_id = current_account.id
+    @family.primary_contact = User.new
+    populate_primary_contact(@family.primary_contact)
+
     create! { families_url }
   end
 
@@ -57,16 +62,32 @@ class FamiliesController < InheritedResources::Base
     # This is the way to scope everything to the account belonging
     # for the current subdomain in InheritedResources.  This
     # translates into
-    # @user = current_account.users.build(params[:user])
+    # @family = current_account.families.build(params[:family])
     # in the new/create actions and
-    # @user = current_account.users.find(params[:id]) in the
+    # @family = current_account.families.find(params[:id]) in the
     # edit/show/destroy actions.
     def begin_of_association_chain
       current_account
     end
 
-    def build_primary_contact
+    def create_primary_contact
       build_resource.primary_contact = User.new unless build_resource.primary_contact
+    end
+
+    def populate_primary_contact(primary_contact_user)
+      primary_contact_user.account_id = current_account.id
+      primary_contact_user.first_name = params[:family][:primary_contact_attributes][:first_name]
+      primary_contact_user.last_name = params[:family][:primary_contact_attributes][:last_name]
+      primary_contact_user.middle_name = params[:family][:primary_contact_attributes][:middle_name]
+      primary_contact_user.address = params[:family][:primary_contact_attributes][:address]
+      primary_contact_user.city = params[:family][:primary_contact_attributes][:city]
+      primary_contact_user.state = params[:family][:primary_contact_attributes][:state]
+      primary_contact_user.zip = params[:family][:primary_contact_attributes][:zip]
+      primary_contact_user.home_phone = params[:family][:primary_contact_attributes][:home_phone]
+      primary_contact_user.mobile_phone = params[:family][:primary_contact_attributes][:mobile_phone]
+      primary_contact_user.work_phone = params[:family][:primary_contact_attributes][:work_phone]
+      primary_contact_user.is_primary_contact = true
+      #build_resource.primary_contact = User.new unless build_resource.primary_contact
     end
 
     def collection

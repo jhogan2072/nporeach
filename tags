@@ -34,7 +34,7 @@ Admin	app/controllers/admin/subscriptions_controller.rb	/^class Admin::Subscript
 Admin	app/models/admin.rb	/^class Admin < ActiveRecord::Base$/;"	c
 Admin	test/unit/helpers/admin/privelege_actions_helper_test.rb	/^class Admin::PrivelegeActionsHelperTest < ActionView::TestCase$/;"	c
 AppControllerStuff	vendor/plugins/saas/lib/saas.rb	/^  module AppControllerStuff$/;"	m	class:InstanceMethods
-Application	config/application.rb	/^  class Application < Rails::Application$/;"	c	class:Conservatory
+Application	config/application.rb	/^  class Application < Rails::Application$/;"	c	class:Nporeach
 ApplicationController	app/controllers/application_controller.rb	/^class ApplicationController < ActionController::Base$/;"	c
 ApplicationHelper	app/helpers/application_helper.rb	/^module ApplicationHelper$/;"	m
 Assignment	app/models/assignment.rb	/^class Assignment < ActiveRecord::Base$/;"	c
@@ -54,7 +54,7 @@ BogusGateway	vendor/plugins/active_merchant_extensions/lib/gateways/bogus.rb	/^ 
 BrowsingTest	test/performance/browsing_test.rb	/^class BrowsingTest < ActionDispatch::PerformanceTest$/;"	c
 ClassMethods	vendor/plugins/saas/lib/saas.rb	/^  module ClassMethods$/;"	m	class:Saas
 ComparableError	app/models/subscription_discount.rb	/^  class ComparableError < StandardError; end$/;"	c	class:SubscriptionDiscount
-Conservatory	config/application.rb	/^module Conservatory$/;"	m
+Nporeach	config/application.rb	/^module Nporeach$/;"	m
 ContentController	app/controllers/content_controller.rb	/^class ContentController < ApplicationController$/;"	c
 ControllerHelpers	vendor/plugins/saas/lib/saas.rb	/^  module ControllerHelpers$/;"	m	class:InstanceMethods
 Controllers	config/initializers/devise.rb	/^  module Controllers$/;"	m	class:Devise
@@ -441,7 +441,7 @@ Admin	app/controllers/admin/subscriptions_controller.rb	/^class Admin::Subscript
 Admin	app/models/admin.rb	/^class Admin < ActiveRecord::Base$/;"	c
 Admin	test/unit/helpers/admin/privelege_actions_helper_test.rb	/^class Admin::PrivelegeActionsHelperTest < ActionView::TestCase$/;"	c
 AppControllerStuff	vendor/plugins/saas/lib/saas.rb	/^  module AppControllerStuff$/;"	m	class:InstanceMethods
-Application	config/application.rb	/^  class Application < Rails::Application$/;"	c	class:Conservatory
+Application	config/application.rb	/^  class Application < Rails::Application$/;"	c	class:Nporeach
 ApplicationController	app/controllers/application_controller.rb	/^class ApplicationController < ActionController::Base$/;"	c
 ApplicationHelper	app/helpers/application_helper.rb	/^module ApplicationHelper$/;"	m
 Assignment	app/models/assignment.rb	/^class Assignment < ActiveRecord::Base$/;"	c
@@ -462,7 +462,7 @@ BogusGateway	vendor/plugins/active_merchant_extensions/lib/gateways/bogus.rb	/^ 
 BrowsingTest	test/performance/browsing_test.rb	/^class BrowsingTest < ActionDispatch::PerformanceTest$/;"	c
 ClassMethods	vendor/plugins/saas/lib/saas.rb	/^  module ClassMethods$/;"	m	class:Saas
 ComparableError	app/models/subscription_discount.rb	/^  class ComparableError < StandardError; end$/;"	c	class:SubscriptionDiscount
-Conservatory	config/application.rb	/^module Conservatory$/;"	m
+Nporeach	config/application.rb	/^module Nporeach$/;"	m
 ContentController	app/controllers/content_controller.rb	/^class ContentController < ApplicationController$/;"	c
 ControllerHelpers	vendor/plugins/saas/lib/saas.rb	/^  module ControllerHelpers$/;"	m	class:InstanceMethods
 Controllers	config/initializers/devise.rb	/^  module Controllers$/;"	m	class:Devise
