@@ -1,0 +1,6 @@
+require File.dirname(__FILE__) + '/../../lib/active_merchant_extensions/active_merchant_extensions.rb'
+require File.dirname(__FILE__) + '/../../lib/active_merchant_extensions/gateways/authorize_net_cim.rb'
+require File.dirname(__FILE__) + '/../../lib/active_merchant_extensions/gateways/bogus.rb'
+require File.dirname(__FILE__) + '/../../lib/active_merchant_extensions/gateways/payment_express.rb'
+require File.dirname(__FILE__) + '/../../lib/active_merchant_extensions/gateways/paypal.rb'
+require File.dirname(__FILE__) + '/../../lib/active_merchant_extensions/gateways/paypal_express_recurring.rb'

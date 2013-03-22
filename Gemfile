@@ -37,6 +37,7 @@ end
 
 gem 'rails3_acts_as_paranoid'
 gem 'devise'
+gem 'devise-encryptable'
 gem "will_paginate", "~> 3.0.2"
 gem 'activemerchant', :require => "active_merchant"
 gem 'ssl_requirement'

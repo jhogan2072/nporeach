@@ -309,7 +309,7 @@ class Subscription < ActiveRecord::Base
     
     def within_limits
       return unless subscription_plan_id_changed?
-      subscriber.class.read_inheritable_attribute(:subscription_limits).each do |limit, rule|
+      subscriber.class.subscription_limits.each do |limit, rule|
         unless (cap = subscription_plan.send(limit)).nil? || rule.call(subscriber) <= cap
           errors.add(:base, "#{limit.to_s.humanize} for new plan would be exceeded.")
         end

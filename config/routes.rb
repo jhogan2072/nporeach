@@ -6,27 +6,11 @@ end
 
 Nporeach::Application.routes.draw do
 
-  resources :import_tables
-
-  get "csv/import"
-  post "csv/import" => 'csv#upload'
-
-  match '/autocomplete/users' => "autocomplete#users"
-
-  resources :assignments
-  resources :roles
-  resources :portlets
-  resources :portlet_categories
-  match '/users/columns' => 'users#columns'
-  match '/users/update_columns' => 'users#update_columns'
-  match 'message' => 'message#new', :as => 'message', :via => :get
-  match 'message' => 'message#create', :as => 'message', :via => :post
-
   # Routes for the public site
   constraints MainSite do
     # Homepage
     root :to => "content#index"
-    
+
     # Account Signup Routes
     match '/signup' => 'accounts#plans', :as => 'plans'
     match '/signup/d/:discount' => 'accounts#plans'
@@ -46,14 +30,34 @@ Nporeach::Application.routes.draw do
   end
 
   root :to => "users#dashboard"
+  resources :import_tables
+
+  get "csv/import"
+  post "csv/import" => 'csv#upload'
+
+  match '/autocomplete/users' => "autocomplete#users"
+
+  resources :assignments
+  resources :roles
+  resources :portlets
+  resources :portlet_categories
+  match 'message' => 'message#new', :as => 'message', :via => :get
+  match 'message' => 'message#create', :as => 'message', :via => :post
+
   devise_for :users
 
   #
   # Account / User Management Routes
   #
+  match '/users/columns' => 'users#columns'
+  match '/users/update_columns' => 'users#update_columns'
   resources :users, :except => :show do
     member do
-      match :update_mylinks, :dashboard, :remove_help, :add_favorite, :update_favorite
+      match :update_mylinks
+      match :dashboard
+      match :remove_help
+      match :add_favorite
+      match :update_favorite
     end
     collection do
       get :print
@@ -76,7 +80,14 @@ Nporeach::Application.routes.draw do
   resource :account do 
     member do
       get :thanks, :plans, :canceled
-      match :billing, :paypal, :plan, :plan_paypal, :cancel, :change_owner, :settings, :update_settings
+      match :billing
+      match :paypal
+      match :plan
+      match :plan_paypal
+      match :cancel
+      match :change_owner
+      match :settings
+      match :update_settings
     end
   end
 
