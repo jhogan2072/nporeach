@@ -10,16 +10,13 @@ class Account < ActiveRecord::Base
   accepts_nested_attributes_for :owner
 
   #
-  # Set up the account to own subscriptions. An alternative would be to
-  # call 'has_subscription' on the user model, if you only want one user per
-  # subscription.  See has_subscription in vendor/plugins/saas/lib/saas.rb
-  # for info on how to use the options for implementing limit checking.
+  # Set up the account to own subscriptions.
   #
   has_subscription :user_limit => Proc.new {|a| a.users.count }
 
   #
   # The model with "has_subscription" needs to provide an email attribute.
-  # But ours is stored in the user model, so we delegate
+  # But ours is stored in the user model, so we delegate to the email of the owner of the account
   #
   delegate :email, :to => :owner
   

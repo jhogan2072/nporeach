@@ -20,7 +20,7 @@ Admin.create(:email => 'johnehogan@yahoo.com', :password => 'welcome', :password
 default_role1 = DefaultRole.create(:name => 'admin.default_roles.names.systemadministrator')
 privilege1 = Privilege.create(:name => 'admin.privileges.names.managepeople', :description => 'admin.privileges.descriptions.managepeople', :controller => 'families', :category => 'ADMINISTRATION', :actions => 63)
 privilege2 = Privilege.create(:name => 'admin.privileges.names.manageroles', :description => 'admin.privileges.descriptions.manageroles', :controller => 'roles', :category => 'ADMINISTRATION', :actions => 63)
-privilege3 = Privilege.create(:name => 'admin.privileges.names.managesettings', :description => 'admin.privileges.descriptions.managesettings', :controller => 'account_settings', :category => 'ADMINISTRATION', :actions => 3)
+privilege3 = Privilege.create(:name => 'admin.privileges.names.managesettings', :description => 'admin.privileges.descriptions.managesettings', :controller => 'accounts', :category => 'ADMINISTRATION', :actions => 6144)
 privilege4 = Privilege.create(:name => 'admin.privileges.names.manageaccountinfo', :description => 'admin.privileges.descriptions.manageaccountinfo', :controller => 'accounts', :category => 'ADMINISTRATION', :actions => 2047)
 default_role2 = DefaultRole.create(:name => 'admin.default_roles.names.familymember')
 privilege5 = Privilege.create(:name => 'admin.privileges.names.personalinfo', :description => 'admin.privileges.descriptions.personalinfo', :controller => 'users', :category => 'PERSONAL', :actions => 64)

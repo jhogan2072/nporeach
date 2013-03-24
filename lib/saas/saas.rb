@@ -183,5 +183,5 @@ begin
   end
   Rails.application.config.action_mailer.default_url_options = { :host => Saas::Config.base_domain }
 rescue
-  puts "Error with SaaS plugin: The config file #{config_file} is missing.  Please run 'rails generate saas' to generate one and generate the migrations.\n\n"
+  puts "Error with SaaS plugin: The config file #{config_file} is missing."
 end
